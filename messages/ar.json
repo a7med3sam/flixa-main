@@ -1,0 +1,688 @@
+{
+  "Metadata": {
+    "title": "فليكسا",
+    "description": "وصف موقع فليكسا",
+    "Categories": {
+      "title": "الأقسام | فليكسا"
+    },
+    "SubCategories": {
+      "title": "الأقسام الفرعية | فليكسا"
+    },
+    "Orders": {
+      "title": "الطلبات"
+    },
+    "Units": {
+      "title": "الوحدات | فليكسا"
+    },
+    "ReturnedOrder": {
+      "title": "الطلبات المرتجعة | فليكسا"
+    },
+    "Banners": {
+      "title": "البانرات الاعلانية | فليكسا"
+    },
+    "Coupons": {
+      "title": " أكواد الخصم | فليكسا"
+    },
+    "ReturnPolicy": {
+      "title": "سياسة الاسترجاع | فليكسا"
+    },
+    "Notifications": {
+      "title": " الاشعارات  | فليكسا"
+    },
+    "PrivacyPolicy": {
+      "title": "سياسة الخصوصية | فليكسا"
+    },
+    "ContactUs": {
+      "title": "تواصل معنا | فليكسا"
+    },
+    "Offers": {
+      "title": "العروض | فليكسا"
+    },
+    "Drivers": {
+      "title": "السائقين | فليكسا"
+    },
+    "Clients": {
+      "title": "العملاء | فليكسا"
+    },
+    "WorksArea": {
+      "title": " مناطق العمل | فليكسا"
+    },
+    "Reports": {
+      "title": " التقارير | فليكسا"
+    },
+    "DeliveryFees": {
+      "title": "رسوم التوصيل | فليكسا"
+    }
+  },
+  "Nav": {
+    "main": "الرئيسية",
+    "users": "إدارة المستخدمين",
+    "commissions": "إدارة العمولات",
+    "financial": "التقارير المالية",
+    "content": "إدارة المحتوى",
+    "about-us": "عن التطبيق",
+    "terms": "الشروط والأحكام",
+    "notifications": "إدارة الإشعارات",
+    "categories": "الأقسام",
+    "subcategories": "الأقسام الفرعية",
+    "products": "المنتجات",
+    "orders": "طلبات",
+    "banners": " بانارات",
+    "return-orders": " الطلبات المرتجعة",
+    "units": "الوحدات",
+    "Marketing": {
+      "title": "العروض والتسويق",
+      "offers": "العروض",
+      "banners": "بانارات الاعلان",
+      "coupons": "أكواد الخصم",
+      "notifications": "الاشعارات"
+    },
+    "Users": {
+      "title": " المستخدمين",
+      "drivers": "السائقين",
+      "clients": "العملاء",
+      "employees": "الموظفين"
+    },
+    "clients": "العملاء",
+    "reports": "التقارير",
+    "return-policy": "سياسة الاسترجاع ",
+    "privacy-policy": "سياسة الخصوصية",
+    "contact-us": "تواصل معنا",
+    "Work-area": " مناطق العمل",
+    "delivery-fees": "رسوم التوصيل",
+    "setting": "الاعدادات"
+  },
+  "Global": {
+    "title": "فليكسا",
+    "comma": "،",
+    "Date": {
+      "sunday": "الأحد",
+      "monday": "الإثنين",
+      "tuesday": "الثلاثاء",
+      "wednesday": "الأربعاء",
+      "thursday": "الخميس",
+      "friday": "الجمعة",
+      "saturday": "السبت",
+      "am": "صباحاً",
+      "pm": "مساءً",
+      "jan": "يناير",
+      "feb": "فبراير",
+      "mar": "مارس",
+      "apr": "أبريل",
+      "may": "مايو",
+      "jun": "يونيو",
+      "jul": "يوليو",
+      "aug": "أغسطس",
+      "sep": "سبتمبر",
+      "oct": "أكتوبر",
+      "nov": "نوفمبر",
+      "dec": "ديسمبر"
+    },
+    "Server": {
+      "not_found": "الطلب غير موجود",
+      "internal_server_error": "خطأ في الخادم الداخلي",
+      "service_not_available": "الخدمة غير متوفرة",
+      "unauthorized": "يجب تسجيل الدخول أولاً",
+      "unexpected_error": "حدث خطأ غير متوقع",
+      "no_permission": " لا يوجد صلاحية",
+      "Success": {
+        "var_updated": "تم تحديث {var} بنجاح",
+        "var_created": "تم إنشاء {var} بنجاح",
+        "var_deleted": "تم حذف {var} بنجاح"
+      }
+    },
+    "Label": {
+      "name_ar": "الاسم بالعربية",
+      "name_en": "الاسم بالإنجليزية",
+      "description_ar": "الوصف بالعربية",
+      "description_en": "الوصف بالإنجليزية",
+      "min_selection": "الحد الأدنى للاختيار",
+      "max_selection": "الحد الأقصى للاختيار",
+      "email": "البريد الإلكتروني",
+      "phone": "رقم الهاتف",
+      "password": "كلمة المرور",
+      "confirm_password": "تأكيد كلمة المرور",
+      "address_ar": "العنوان بالعربية",
+      "address_en": "العنوان بالإنجليزية",
+      "location": "الموقع",
+      "upload_photo": "رفع صورة",
+      "update_photo": "تحديث الصورة",
+      "drop_or_select": "إسقاط أو اختيار ملف",
+      "otp": "رمز التحقق",
+      "status": "الحالة",
+      "order": "الترتيب",
+      "image": "الصورة",
+      "images": "الصور",
+      "search": "بحث",
+      "active": "مفعل",
+      "inactive": "غير مفعل",
+      "category": "القسم الرئيسي",
+      "subcategory": "القسم الفرعي",
+      "barcode": "الباركود",
+      "price": "السعر",
+      "quantity": "الكمية",
+      "unit": "الوحدة",
+      "main_unit": "الوحدة الرئيسية",
+      "sub_unit": "الوحدة الفرعية",
+      "conversion_rate": "معدل التحويل",
+      "product": "المنتج",
+      "unit_price": "سعر الوحدة",
+      "discount_type": "نوع الخصم",
+      "discount_amount": "قيمة الخصم",
+      "new_price": "السعر الجديد",
+      "start_date": "تاريخ البداية",
+      "end_date": "تاريخ النهاية",
+      "min_quantity": "الحد الأدنى للكمية",
+      "max_quantity": "الحد الأقصى للكمية",
+      "stock_quantity": "الكمية المتاحة",
+      "fixed": "قيمة ثابتة",
+      "percentage": "نسبة مئوية",
+      "offer": "العرض",
+      "social_icon": " ايقونة التواصل",
+      "name": "الاسم",
+      "content": "المحتوى",
+      "page": "الصفحة",
+      "save_data": "حفظ البيانات",
+      "profile_image": "الصورة الشخصية",
+      "current_password": "كلمة المرور الحالية",
+      "new_password": "كلمة المرور الجديدة",
+      "confirm_new_password": "تاكيد كلمة المرور الجديدة",
+      "basic_data": "البيانات الأساسية",
+      "change_password": "تغيير كلمة المرور"
+    },
+    "Helper": {
+      "drop_or_select": "قم بإسقاط الملفات هنا أو انقر <browse>تصفح</browse> من جهازك",
+      "allowed_image": "الصيغ المسموحة {formate} <br></br> الحجم الأقصى: {size}",
+      "multi_text": "يقبل قيم متعددة. اضغط (Enter) لإضافة قيمة جديدة"
+    },
+    "Action": {
+      "add": "إضافة",
+      "view": "عرض",
+      "edit": "تعديل",
+      "new": "جديد",
+      "cancel": "إلغاء",
+      "create": "إنشاء",
+      "delete": "حذف",
+      "save": "حفظ",
+      "close": "إغلاق",
+      "confirm": "تأكيد",
+      "verify": "تحقق",
+      "reset": "إعادة تعيين",
+      "back": "رجوع",
+      "remove": "إزالة",
+      "remove_all": "إزالة الكل",
+      "upload": "رفع",
+      "block": "حظر",
+      "print": "طباعة",
+      "active": "مفعل",
+      "next": "التالي",
+      "finish": "اكتمال",
+      "register": "تسجيل"
+    },
+    "Validation": {
+      "var_required": "{var} مطلوب",
+      "var_exists": "{var} موجود مسبقاً",
+      "var_invalid": "{var} غير صالح",
+      "var_email": "{var} يجب أن يكون بريد إلكتروني صالح",
+      "var_url": "{var} يجب أن يكون رابط صالح",
+      "var_phone": "{var} يجب أن يكون رقم هاتف صالح",
+      "var_digits_count": "{var} يجب أن يكون {count} أرقام",
+      "var_start_with": "{var} يجب أن يبدأ بـ {start}",
+      "var_only_digits": "{var} يجب أن يحتوي على أرقام فقط",
+      "var_length": "{var} يجب أن يكون {length} حرف",
+      "var_min": "{var} يجب أن يكون على الأقل {min}",
+      "var_max": "{var} يجب أن يكون على الأكثر {max}",
+      "var_min_lowercase": "{var} يجب أن يحتوي على الأقل على {min} حرف صغير",
+      "var_max_lowercase": "{var} يجب أن يحتوي على الأكثر على {max} حرف صغير",
+      "var_min_uppercase": "{var} يجب أن يحتوي على الأقل على {min} حرف كبير",
+      "var_max_uppercase": "{var} يجب أن يحتوي على الأكثر على {max} حرف كبير",
+      "var_min_number": "{var} يجب أن يحتوي على الأقل على {min} رقم",
+      "var_max_number": "{var} يجب أن يحتوي على الأكثر على {max} رقم",
+      "var_min_special": "{var} يجب أن يحتوي على الأقل على {min} حرف خاص",
+      "var_max_special": "{var} يجب أن يحتوي على الأكثر على {max} حرف خاص",
+      "passwords_not_match": "كلمات المرور غير متطابقة",
+      "file_is_larger_than": "الملف أكبر من {size}",
+      "file_required": "{var} ملف مطلوب",
+      "valid_date": "يرجى ادخال تاريخ صالح",
+      "end_date_after_start": "تاريخ الانتهاء يجب ان يكون بعد تاريخ البدء",
+      "var1_before_var2": "يجب أن يكون {var1} قبل {var2}",
+      "var1_after_var2": "{var1} يجب أن يكون بعد {var2}",
+      "password_validate": "يجب أن تحتوي كلمة المرور على 8 أحرف على الأقل، حرف كبير وصغير، رقم، ورمز خاص",
+      "validated_number": "يجب أن يحتوي الرقم على أرقام فقط",
+      "must_be_positive": "يجب أن يكون أكبر من أو يساوي صفر",
+      "end_distance_greater": "المسافة إلى يجب أن تكون أكبر من المسافة من",
+      "required": "هذا الحقل مطلوب",
+      "vat_min": "يجب أن تكون نسبة الضريبة على الأقل 0.01",
+      "vat_max": "لا يمكن أن تتجاوز نسبة الضريبة 1.00",
+      "vat_invalid": "الرجاء إدخال نسبة ضريبة صالحة بين 0.01 و 1.00"
+    },
+    "Sections": {
+      "DeleteDialog": {
+        "title": "حذف {item}",
+        "content": "هل أنت متأكد من حذف {item}؟",
+        "action": "حذف",
+        "all_sections": "جميع الاقسام"
+      },
+      "Table": {
+        "rows_per_page": "عدد الصفوف في الصفحة:",
+        "of": "من",
+        "more_than": "أكثر من",
+        "dense": "تقليص الصفوف"
+      }
+    }
+  },
+  "Pages": {
+    "Error404": {
+      "title": "عذرًا، الصفحة غير موجودة!",
+      "message": "عذرًا، لم نتمكن من العثور على الصفحة التي تبحث عنها. ربما أدخلت عنوان URL خاطئًا؟ تأكد من التحقق من الإملاء.",
+      "button": "الذهاب إلى الصفحة الرئيسية"
+    },
+    "Error403": {
+      "title": "لا يوجد إذن",
+      "message": "الصفحة التي تحاول الوصول إليها محظورة.",
+      "message2": "يرجى الرجوع إلى مسؤول النظام الخاص بك.",
+      "button": "الذهاب إلى الصفحة الرئيسية"
+    },
+    "Error500": {
+      "title": "500 خطأ في الخادم الداخلي",
+      "message": "حدث خطأ، يرجى المحاولة مرة أخرى لاحقًا.",
+      "button": "الذهاب إلى الصفحة الرئيسية"
+    },
+    "RoleBasedGuard": {
+      "title": "تم رفض الإذن",
+      "message": "ليس لديك إذن للوصول إلى هذه الصفحة"
+    },
+    "Auth": {
+      "login_title": "تسجيل الدخول",
+      "register_title": "تسجيل مطعمك",
+      "redirect_to_signin": "لديك حساب بالفعل؟ <link>تسجيل الدخول</link>",
+      "redirect_to_register": "ليس لديك حساب؟ <link>سجل الآن</link>",
+      "forgot_password": "نسيت كلمة المرور؟",
+      "register_success": "تم إنشاء الحساب بنجاح",
+      "accept_terms": "بالتسجيل، أوافق على <link>الشروط والأحكام</link>",
+      "login_submit": "تسجيل الدخول",
+      "verify_otp": "التحقق من الرمز",
+      "reset_password": "إعادة تعيين كلمة المرور",
+      "otp_sent_to": "ادخل الرمز التأكيدي الذي تم إرساله إلى البريد الإلكتروني: {email}",
+      "resend_otp": "إعادة إرسال الرمز",
+      "login_redirect": "تسجيل الدخول بدلاً من ذلك"
+    },
+    "Home": {
+      "min_free_shipping": "الحد الأدنى للشحن المجاني",
+      "free_shipping_threshold": "قيمة الشحن المجاني",
+      "vat_percentage": "نسبة ضريبة القيمة المضافة",
+      "best_sellers": "المنتجات الأكثر مبيعاً",
+      "revenue": "الإيرادات",
+      "sales": "المبيعات",
+      "free_shipping_orders": "طلبات الشحن المجاني",
+      "total_orders": "مجموع الطلبات",
+      "sales_by_day": "المبيعات حسب اليوم",
+      "edit_free_shipping_vat": "تعديل الشحن المجاني وضريبة القيمة المضافة والحد الأدنى للطلب",
+      "minimum_order_amount": "الحد الأدنى للطلب"
+    },
+
+    "Categories": {
+      "categories_title": "الأقسام الرئيسية",
+      "subcategories_title": "الأقسام الفرعية",
+      "add_category": "إضافة قسم",
+      "add_subcategory": "إضافة قسم فرعي",
+      "edit_category_title": "تعديل القسم",
+      "add_category_title": "إضافة قسم رئيسي",
+      "add_subcategory_title": "إضافة قسم فرعي",
+      "edit_subcategory_title": "تعديل القسم الفرعي",
+      "category_name_ar": "اسم القسم الرئيسي بالعربية",
+      "category_name_en": "اسم القسم الرئيسي بالإنجليزية"
+    },
+    "Products": {
+      "product_title": "المنتجات",
+      "add_product": "إضافة منتج",
+      "main_section": "الفسم الرئيسى ",
+      "sub_section": "الفسم الفرعى",
+      "unit": "الوحدة",
+      "barcode": "باركود المنتج",
+      "edit_product": "نعديل منتج",
+      "add_subunit": "إضافة وحدة فرعية",
+      "remove_subunit": "إزالة وحدة فرعية",
+      "out_of_stock": "غير متوفر"
+    },
+    "Units": {
+      "units_title": "الوحدات",
+      "add_unit": "إضافة وحدة",
+      "edit_unit_title": "تعديل الوحدة",
+      "add_unit_title": "إضافة وحدة"
+    },
+    "Orders": {
+      "title": "الطلبات",
+      "order_number": "رقم الطلب",
+      "client_name": "العميل",
+      "creation_time": "تاريخ الطلب",
+      "total_order_amount": "قيمة الطلب",
+      "payment_method_name": "طريقة الدفع",
+      "is_paid": "حالة الدفع",
+      "driver_name": "السائق",
+      "status": "الحالة",
+      "paied_type": "طريقة الدفع",
+      "all_dates": "كل التواريخ",
+      "done": "تم الدفع",
+      "not_done": "لم يتم الدفع",
+      "not_limited": "غير محدد",
+      "display_order": "عرض الطلب",
+      "display_payment": "عرض الفاتورة",
+      "update_status_order": "تحديث حالة الطلب",
+      "order_canceled": "الغاء الطلب",
+      "change_order_status": "تغيير حالة الطلب",
+      "order_status": "حالة الطلب",
+      "order_value": "قيمة الطلب",
+      "currency": "ريال",
+      "payment_method": "طريقة الدفع",
+      "payment_status": "حالة الدفع",
+      "driver": "السائق",
+      "not_assigned": "غير محدد",
+      "client_phone": "رقم الهاتف",
+      "client_email": "البريد الإلكتروني",
+      "client_address": "العنوان",
+      "order_date": "تاريخ الطلب",
+      "last_update": "تاريخ آخر تحديث",
+      "barcode": "باركود",
+      "quantity": "الكمية",
+      "prdcts": "المنتجات",
+      "unit_price": "سعر الوحدة",
+      "cancel_order": "الغاء الطلب",
+      "reason": "  السبب",
+      "reason_returned": "سبب الإرجاع",
+      "cancel_reason_placeholder": "سبب الالغاء",
+      "total_price": "الإجمالي",
+      "delivery_fee": "قيمة التوصيل",
+      "vat_15": "ضريبة القيمة المضافة 15%",
+      "vat_rate": "ضريبة القيمة المضافة {var}%",
+      "discount": "الخصم",
+      "final_total": "الإجمالي النهائي",
+      "notes": "ملاحظات",
+      "no_notes": "لا توجد ملاحظات",
+      "add_notes_placeholder": "أضف ملاحظاتك هنا",
+      "assign_driver": " تعيين سائق",
+      "order_canceled_success": " تم إلغاء الطلب بنجاح",
+      "single_order": "الطلب",
+      "returned_number": "رقم  الارجاع :",
+      "returned_time": " تاريخ الارجاع :",
+      "products_count_returned": "عدد المنتجات المرتجعة",
+      "returned_value": "قيمة المرتجعات :",
+      "returned_refused": " رفض الارجاع",
+      "add_notes_client": "إضافة ملاحظات العميل",
+      "add_not": "اضافة ملاحظة",
+      "purchasesvalue": "قيمة المشتريات",
+      "delivery_fee_with_shipping_cost": "رسوم التوصيل(شامل ضريبة القيمة المضافة)",
+      "order_success": "تم تحديث حالة الطلب بنجاح",
+      "OrderStatus": {
+        "all": "الكل",
+        "new_order": "الطلبات الجديدة",
+        "in_progress": "قيد التنفيذ",
+        "out_for_delivery": "جاري التوصيل",
+        "canceled": "الملغاة",
+        "completed": "المكتملة",
+        "returned": "المسترجع",
+        "reviwed": "قيد المراجعة",
+        "acceptable": "المقبوله",
+        "non_acceptable": " المرفوضه",
+        "PartiallyReturned": "أرجاع جزئى",
+        "0": 0,
+        "1": "1"
+      },
+      "PaymentStatus": {
+        "success": "تم الدفع",
+        "failed": "لم تم الدفع"
+      }
+    },
+    "Offers": {
+      "title": "العروض",
+      "offer": "العرض",
+      "add_offer": "إضافة عرض جديد",
+      "edit_offer": "تعديل العرض",
+      "delete_offer": "حذف العرض"
+    },
+    "Banners": {
+      "start_date": "تاريخ البداية",
+      "end_date": "تاريخ النهاية",
+      "add_banner": "أضافة بانر",
+      "edit_banner": "تعديل البانر",
+      "this_banner": "هذا البنر"
+    },
+    "DiscountCodes": {
+      "code": "الكود ",
+      "start_date": "تاريخ البداية",
+      "end_date": "تاريخ النهاية",
+      "type_discount": " نوع الخصم",
+      "this_discount": "هذا الكود",
+      "add_discount": "افزود كود الخصم",
+      "discount_type": "نوع الخصم",
+      "discount_value": "قيمة الخصم",
+      "maximum_value": "الحد الاقصى",
+      "current_uses": "عدد الاستخدمات الحالية",
+      "status": "الحالة",
+      "this_codes": "هذا الكود",
+      "new_coupon": " إنشاء كود خصم",
+      "percantage": "نسبة",
+      "values": "قيمة",
+      "discount_reset_percentage": "قم إعادة تعيين الخصم لأن النسبة المئوية لا يمكن أن تتجاوز ١٠٠٪",
+      "percentage_validation": "خصم بنسبة مئوية (من 1 إلى 100%)",
+      "fixed_amount_validation": "خصم بمبلغ ثابت (أي رقم موجب)",
+      "percentage_limit_validation": "لا يمكن أن تتجاوز نسبة الخصم 100%",
+      "discount_must_be_greater_than_0": "يجب أن يكون الخصم أكبر من 0"
+    },
+    "Notification": {
+      "all": "الكل",
+      "title": "عنوان الإشعار",
+      "body": "محتوى الإشعار",
+      "date": "تاريخ الإرسال",
+      "user_id": "معرّف المستخدم",
+      "order_number": "رقم الطلب",
+      "order_id": "معرّف الطلب",
+      "device_token": "رمز الجهاز",
+      "add_notification": "أضافة اشعار جديد",
+      "notification": "الإشعار",
+      "client": " العميل",
+      "driver": "السائق",
+      "send_to": "ارسال ال",
+      "send_to_all": "ارسال للكل",
+      "send_to_specific": " ارسال للمستخدمين المحددين",
+      "notification_type": "نوع الإشعار",
+      "select_users": "اختر المستخدمين",
+      "select_order": "اختر الطلب",
+      "select_drivers": "اختر السائق",
+      "status": {
+        "notification_type": "نوع الإشعار",
+        "system_maintenance": "صيانة النظام",
+        "system_update": "تحديث النظام",
+        "logout": "تسجيل الخروج",
+        "system_alert": "تنبيه النظام",
+        "account_update": "تحديث الحساب",
+        "order_placed": "تم الطلب",
+        "order_confirmed": "تم التأكيد",
+        "order_processing": "قيد المعالجة",
+        "order_shipped": "تم الشحن",
+        "order_delivered": "تم التوصيل",
+        "order_cancelled": "تم الإلغاء",
+        "order_delayed": "تم التأخير",
+        "return_requested": "طلب استرجاع",
+        "return_accepted": "تم قبول الاسترجاع",
+        "return_rejected": "تم رفض الاسترجاع",
+        "information": "معلومة",
+        "warning": "تحذير",
+        "error": "خطأ",
+        "success": "ناجح"
+      },
+      "send_notification": "إرسال الإشعار",
+      "ar_title_notification": "عنوان الإشعار بالعربية",
+      "eng_title_notification": "عنوان الإشعار بالانجليزية",
+      "ar_content": "المحتوى بالعربية",
+      "eng_content": "المحتوى بالنجليزية",
+      "limited_client": "تحديد العميل",
+      "limited_driver": "تحديد السائق",
+      "select_at_least_one_user": "حدد على الاقل مستخدم واحد",
+      "failed_to_send_notification": "فشل في ارسال الإشعار",
+      "creation_time": "تاريخ الانشاء"
+    },
+    "Drivers": {
+      "driver_title": "السائقين",
+      "add_driver": "إضافة سائق",
+      "select_date": "حدد التاريخ",
+      "display_info": "عرض البيانات",
+      "change_driver_status": "تغيير حالة السائق",
+      "edit_driver": "تعديل بيانات السائق",
+      "new_driver": "أضافة سائق",
+      "edit_info": "تعديل البيانات",
+      "main_info": "البيانات الاساسية",
+      "vehicle_info": "بيانات المركبة",
+      "display_orders": "عرض الطلبات",
+      "this_driver": " السائق {var} ",
+      "table": {
+        "status": "حالة الحساب",
+        "registrationDate": "تاريخ التسجيل",
+        "workArea": "منطقة العمل",
+        "idNumber": "رقم الهوية",
+        "phoneNumber": "رقم الهاتف",
+        "email": "البريد الإلكتروني",
+        "name": "اسم السائق",
+        "profile_picture": " صورة الملف الشخصي",
+        "birth_date": "تاريخ الميلاد"
+      },
+      "status": {
+        "all": "الكل",
+        "active": "مفعل",
+        "waiting": "بانتظار التفعيل",
+        "blocked": "تم حظرهم",
+        "disabled": "معطل"
+      },
+      "actions": {
+        "edit": "تعديل السائق",
+        "close": "إغلاق",
+        "viewDocuments": "عرض المستندات"
+      },
+      "personal": {
+        "address": "العنوان",
+        "city": "المدينة",
+        "birthDate": "تاريخ الميلاد"
+      },
+      "vehicle": {
+        "type": "نوع المركبة",
+        "color": "لون المركبة",
+        "licenseNumber": "رقم اللوحة",
+        "model": "موديل المركبة",
+        "vehicle_info": " معلومات المركبة"
+      },
+      "images": {
+        "idPhoto": "صورة الهوية",
+        "profilePhoto": "صورة السائق",
+        "licensePhoto": "صورة الرخصة"
+      }
+    },
+    "Clients": {
+      "client_name": "اسم العميل",
+      "client_phone": "رقم الهاتف ",
+      "gender": "النوع",
+      "account_date": " تاريخ التسجيل",
+      "account_status": "حالة الحساب",
+      "this_client": " العميل {var} ",
+      "client_address": " عنوان العميل",
+      "birth_date": "تاريخ الميلاد"
+    },
+    "Employee": {
+      "title": "موظف",
+      "department": "القسم",
+      "old_password": " كلمة المرور القديمة",
+      "new_password": " كلمة المرور الجديدة",
+      "permissions": "الصلاحيات",
+      "edit_employee": "تعديل بيانات الموظف",
+      "add_employee": "اضافة موظف جديد",
+      "this_employee": "{var}  الموظف",
+      "elements": "العناصر",
+      "leave_empty_to_keep": "ادخل الباسورد"
+    },
+    "WorkArea": {
+      "work_area": "منطقة عمل",
+      "area": "المنطقة",
+      "city": "المدينة",
+      "this_area": "هذه المنطقة",
+      "add_work_area": " اضافة منطقة العمل",
+      "edit_work_area": "تعديل منطقة العمل",
+      "name_area": "أسم المنطقة",
+      "avaliable_space": "المساحة المتاحة",
+      "shopping_price": "التسعيرة"
+    },
+    "Currency": {
+      "symbol": "ر.س"
+    },
+    "Reports": {
+      "title": "التقارير",
+      "salesReports": "تقارير المبيعات",
+      "vat_amount": "ضريبة المضافة",
+      "returns": "المرتجعات",
+      "discount": "التخفبض",
+      "net_revenue": "صافي الايرادات",
+      "shipping_fees": "رسوم التوصيل",
+      "coins": "ر.س",
+      "Sales": {
+        "title": "تقارير المبيعات",
+        "totalSales": "إجمالي المبيعات",
+        "deliveryFees": "رسوم التوصيل",
+        "paymentFees": "رسوم الدفع",
+        "discounts": "الخصومات",
+        "netRevenue": "صافي الإيرادات"
+      },
+      "orders": "الطلبات",
+      "drivers": "السائقين",
+      "clients": "العملاء",
+      "banners": "البانرات",
+      "products": "المنتجات",
+      "select_date_range": "تحديد المدة",
+      "dateFilter": {
+        "day": "اليوم",
+        "week": "هذا الأسبوع",
+        "month": "هذا الشهر"
+      },
+      "daily_report": "التقرير اليومي",
+      "weekly_report": "التقرير الأسبوعي",
+      "monthly_report": "التقرير الشهري"
+    },
+    "ReturnPolicy": {
+      "title": "سياسة الإرجاع",
+      "return_policy": "سياسة الإرجاع",
+      "add_return_policy": "إضافة سياسة إرجاع",
+      "edit_return_policy": "تعديل سياسة الإرجاع",
+      "content_ar": "المحتوى بالعربية",
+      "content_en": "المحتوى بالانجليزية",
+      "title_ar": "العنوان بالعربية",
+      "title_en": "العنوان بالانجليزية"
+    },
+    "PrivacyPolicy": {
+      "title": "سياسة الخصوصية",
+      "privacy_policy": "سياسة الخصوصية",
+      "add_privacy_policy": "إضافة سياسة خصوصية",
+      "edit_privacy_policy": "تعديل سياسة الخصوصية"
+    },
+    "ContactUs": {
+      "title": " تواصل معنا",
+      "social_media_added": "وسائل التواصل المضافة",
+      "add_title": "أضافة عنوان تواصل جديد",
+      "edit_title": " تعديل  عنوان التواصل",
+      "title_var": "وسيلة التواصل {var}"
+    },
+    "Setting": {
+      "PermissionTitle": "مطلوب صلاحية",
+      "PermissionMessage": "يجب أن تمتلك الصلاحية المناسبة لعرض هذا القسم.",
+      "PermissionActivate": "يجب تفعيل صلاحية الاعدادات"
+    },
+    "DeliveryFees": {
+      "add_delivery_fee": "إضافة رسوم توصيل",
+      "this_delivery_fee": "رسوم التوصيل هذه",
+      "from_meter": "من متر",
+      "to_meter": "إلى متر",
+      "edit_delivery_fee": "تعديل رسوم التوصيل",
+      "city": "المدينة",
+      "fee": "الرسوم",
+      "meter": "متر",
+      "distance_from": "المسافة من",
+      "distance_to": "المسافة إلى"
+    }
+  }
+}

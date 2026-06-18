@@ -1,0 +1,688 @@
+{
+  "Metadata": {
+    "title": "Sinwan Store",
+    "description": "Sinwan Website description",
+    "Categories": {
+      "title": "Categories | Sinwan"
+    },
+    "SubCategories": {
+      "title": "Subcategories | Sinwan"
+    },
+    "Orders": {
+      "title": "Orders | Sinwan"
+    },
+    "Products": {
+      "title": "Products | Sinwan"
+    },
+    "Units": {
+      "title": "Units | Sinwan"
+    },
+    "ReturnedOrder": {
+      "title": "Returned Orders | Sinwan"
+    },
+    "Banners": {
+      "title": "Banners"
+    },
+    "Coupons": {
+      "title": "Discount codes"
+    },
+    "Offers": {
+      "title": "Offers | Sinwan"
+    },
+    "Notifications": {
+      "title": "Notifications | Sinwan"
+    },
+    "Drivers": {
+      "title": "Drivers | Sinwan"
+    },
+    "ReturnPolicy": {
+      "title": "Return Policy | Sinwan"
+    },
+    "PrivacyPolicy": {
+      "title": "Privacy Policy | Sinwan"
+    },
+    "ContactUs": {
+      "title": "Contact Us | Sinwan"
+    },
+    "Clients": {
+      "title": "Clients | Sinwan"
+    },
+    "WorksArea": {
+      "title": "Works Area | Sinwan"
+    },
+    "Reports": {
+      "title": "Reports | Sinwan"
+    },
+    "DeliveryFees": {
+      "title": "Delivery Fees | Sinwan"
+    }
+  },
+  "Nav": {
+    "main": "Main",
+    "users": "Users Management",
+    "commissions": "Commissions Management",
+    "financial": "Financial Reports",
+    "content": "Content Management",
+    "about-us": "About Us",
+    "terms": "Terms & Conditions",
+    "notifications": "Notifications Management",
+    "categories": "Categories",
+    "subcategories": "Subcategories",
+    "products": "Products",
+    "orders": "Orders",
+    "units": "Units",
+    "return-orders": "Returned Orders",
+    "Marketing": {
+      "title": "Offers and Marketings",
+      "offers": "Offers",
+      "banners": "Banners",
+      "coupons": "Discount codes",
+      "notifications": "Notifications"
+    },
+    "Users": {
+      "title": "Users",
+      "drivers": "Drivers",
+      "clients": "Clients",
+      "employees": "Employees"
+    },
+    "clients": "Clients",
+    "reports": "Reports",
+    "return-policy": "Return Policy",
+    "privacy-policy": "Privacy Policy",
+    "contact-us": "Contact Us",
+    "Work-area": "Works Area",
+    "delivery-fees": "Delivery Fees",
+    "setting": "setting"
+  },
+  "Global": {
+    "title": "Sinwan",
+    "comma": ",",
+    "Date": {
+      "sunday": "Sunday",
+      "monday": "Monday",
+      "tuesday": "Tuesday",
+      "wednesday": "Wednesday",
+      "thursday": "Thursday",
+      "friday": "Friday",
+      "saturday": "Saturday",
+      "am": "AM",
+      "pm": "PM",
+      "jan": "Jan",
+      "feb": "Feb",
+      "mar": "Mar",
+      "apr": "Apr",
+      "may": "May",
+      "jun": "Jun",
+      "jul": "Jul",
+      "aug": "Aug",
+      "sep": "Sep",
+      "oct": "Oct",
+      "nov": "Nov",
+      "dec": "Dec"
+    },
+    "Server": {
+      "not_found": "Request is not found",
+      "internal_server_error": "Internal server error",
+      "service_not_available": "Service is not available",
+      "unauthorized": "You need to login first",
+      "unexpected_error": "An unexpected error occurred",
+      "no_permission": "You don't have permission to perform this action ",
+      "Success": {
+        "var_updated": "{var} updated successfully",
+        "var_created": "{var} created successfully",
+        "var_deleted": "{var} deleted successfully"
+      }
+    },
+    "Label": {
+      "name_ar": "Name in Arabic",
+      "name_en": "Name in English",
+      "description_ar": "Description in Arabic",
+      "description_en": "Description in English",
+      "min_selection": "Min Selection",
+      "max_selection": "Max Selection",
+      "email": "Email Address",
+      "phone": "Phone Number",
+      "password": "Password",
+      "confirm_password": "Confirm Password",
+      "address_ar": "Address in Arabic",
+      "address_en": "Address in English",
+      "location": "Location",
+      "upload_photo": "Upload Photo",
+      "update_photo": "Update Photo",
+      "drop_or_select": "Drop or Select File",
+      "otp": "OTP Code",
+      "status": "Status",
+      "order": "Order",
+      "image": "Image",
+      "images": "Images",
+      "search": "Search",
+      "active": "Active",
+      "inactive": "Inactive",
+      "category": "Main Category",
+      "subcategory": "Subcategory",
+      "barcode": "Barcode",
+      "price": "Price",
+      "quantity": "Quantity",
+      "unit": "Unit",
+      "main_unit": "Main Unit",
+      "sub_unit": "Sub Unit",
+      "conversion_rate": "Conversion Rate",
+      "product": "Product",
+      "unit_price": "Unit Price",
+      "discount_type": "Discount Type",
+      "discount_amount": "Discount Amount",
+      "new_price": "New Price",
+      "start_date": "Start Date",
+      "end_date": "End Date",
+      "min_quantity": "Min Quantity",
+      "max_quantity": "Max Quantity",
+      "stock_quantity": "Stock Quantity",
+      "fixed": "Fixed Value",
+      "percentage": "Percentage",
+      "offer": "Offer",
+      "social_icon": "Social Icon",
+      "name": "Name",
+      "content": "Content",
+      "page": "Page",
+      "save_data": "Save Data",
+      "profile_image": "Profile Image",
+      "current_password": " Current Password",
+      "new_password": "New Password",
+      "confirm_new_password": "Confirm New Password",
+      "basic_data": "Basic Data",
+      "change_password": "Change Password"
+    },
+    "Helper": {
+      "drop_or_select": "Drop files here or click <browse>browse</browse> through your machine",
+      "allowed_image": "Allowed {formate} <br></br> Max Size: {size}",
+      "multi_text": "Accepts multiple values. Press (Enter) to add a new value"
+    },
+    "Action": {
+      "add": "Add",
+      "view": "View",
+      "edit": "Edit",
+      "new": "New",
+      "cancel": "Cancel",
+      "create": "Create",
+      "delete": "Delete",
+      "save": "Save",
+      "close": "Close",
+      "confirm": "Confirm",
+      "verify": "Verify",
+      "reset": "Reset",
+      "back": "Back",
+      "remove": "Remove",
+      "remove_all": "Remove All",
+      "upload": "Upload",
+      "block": "Block",
+      "print": "Print",
+      "active": "Active",
+      "next": "Next",
+      "finish": "Finish",
+      "register": "Register"
+    },
+    "Validation": {
+      "var_required": "{var} is Required",
+      "var_exists": "{var} already exists",
+      "var_invalid": "{var} is Invalid",
+      "var_email": "{var} must be a valid email address",
+      "var_url": "{var} must be a valid URL",
+      "var_phone": "{var} must be a valid phone number",
+      "var_digits_count": "{var} must be {count} digits",
+      "var_start_with": "{var} must start with {start}",
+      "var_only_digits": "{var} must be only digits",
+      "var_length": "{var} must be {length} characters",
+      "var_min": "{var} must be at least {min}",
+      "var_max": "{var} must be at most {max}",
+      "var_min_lowercase": "{var} must contain at least {min} lowercase letter",
+      "var_max_lowercase": "{var} must contain at most {max} lowercase letter",
+      "var_min_uppercase": "{var} must contain at least {min} uppercase letter",
+      "var_max_uppercase": "{var} must contain at most {max} uppercase letter",
+      "var_min_number": "{var} must contain at least {min} number",
+      "var_max_number": "{var} must contain at most {max} number",
+      "var_min_special": "{var} must contain at least {min} special character",
+      "var_max_special": "{var} must contain at most {max} special character",
+      "passwords_not_match": "Passwords must match",
+      "file_is_larger_than": "File is larger than {size}",
+      "file_required": "{var} File is required",
+      "valid_date": "Please enter a valid date",
+      "end_date_after_start": "End date must be after start date",
+      "var1_before_var2": "{var1} must be before {var2}",
+      "var1_after_var2": "{var1} must be after {var2}",
+      "password_validate": "Password must contain at least 8 characters, one uppercase letter, one lowercase letter, one number, and one special character",
+      "validated_number": "Number must contain only digits",
+      "must_be_positive": "Must be greater than or equal to zero",
+      "end_distance_greater": "Distance To must be greater than Distance From",
+      "required": "This field is required",
+      "vat_min": "VAT must be at least 0.01",
+      "vat_max": "VAT cannot exceed 1.00",
+      "vat_invalid": "Please enter a valid VAT percentage between 0.01 and 1.00"
+    },
+    "Sections": {
+      "DeleteDialog": {
+        "title": "Delete {item}",
+        "content": "Are you sure you want to delete this {item}?",
+        "action": "Delete",
+        "all_sections": "All Sections"
+      },
+      "Table": {
+        "rows_per_page": "Rows per page:",
+        "of": "of",
+        "more_than": "more than",
+        "dense": "Dense"
+      }
+    }
+  },
+  "Pages": {
+    "Error404": {
+      "title": "Sorry, Page Not Found!",
+      "message": "Sorry, we couldn't find the page you're looking for. Perhaps you've mistyped the URL? Be sure to check your spelling.",
+      "button": "Go to Home"
+    },
+    "Error403": {
+      "title": "No permission",
+      "message": " The page you&apos;re trying access has restricted access.",
+      "message2": "Please refer to your system administrator",
+      "button": "Go to Home"
+    },
+    "Error500": {
+      "title": "500 Internal Server Error",
+      "message": "There was an error, please try again later.",
+      "button": "Go to Home"
+    },
+    "RoleBasedGuard": {
+      "title": "Permission Denied",
+      "message": "You do not have permission to access this page"
+    },
+    "Auth": {
+      "login_title": "Sign In",
+      "forgot_password": "Forgot Password?",
+      "login_submit": "Sign In",
+      "verify_otp": "Verify OTP",
+      "reset_password": "Reset Password",
+      "otp_sent_to": "Enter the OTP code sent to the email: {email}",
+      "resend_otp": "Resend OTP",
+      "login_redirect": "Sign in instead"
+    },
+    "Home": {
+      "min_free_shipping": "Minimum free shipping",
+      "free_shipping_threshold": "Free Shipping Threshold",
+      "vat_percentage": "VAT Percentage",
+      "best_sellers": "Best Sellers",
+      "revenue": "Revenue",
+      "sales": "Sales",
+      "free_shipping_orders": "Total Shipping Orders",
+      "total_orders": "Total Orders",
+      "sales_by_day": "Sales By Day",
+      "edit_free_shipping_vat": "Edit Free Shipping & VAT & Minimum Order Amount",
+      "minimum_order_amount": "Minimum Order Amount"
+    },
+    "Categories": {
+      "categories_title": "Main Categories",
+      "subcategories_title": "Subcategories",
+      "add_category": "Add Category",
+      "add_subcategory": "Add Subcategory",
+      "edit_category_title": "Edit Category",
+      "add_category_title": "Add Main Category",
+      "add_subcategory_title": "Add Subcategory",
+      "edit_subcategory_title": "Edit Subcategory",
+      "category_name_ar": "Main Category Name in Arabic",
+      "category_name_en": "Main Category Name in English"
+    },
+    "Products": {
+      "product_title": "Products",
+      "add_product": "Add Product",
+      "main_section": "Main Section",
+      "sub_section": "Sub Section",
+      "unit": "Unit",
+      "barcode": "Barcode",
+      "edit_product": "Edit Product",
+      "add_subunit": "Add Sub Unit",
+      "remove_subunit": "Remove Sub Unit",
+      "out_of_stock": "Out of Stock"
+    },
+    "Units": {
+      "units_title": "Units",
+      "add_unit": "Add Unit",
+      "edit_unit_title": "Edit Unit",
+      "add_unit_title": "Add Unit"
+    },
+    "Orders": {
+      "title": "Orders",
+      "order_number": "Order Number",
+      "client_name": "Client Name",
+      "creation_time": "Creation Time",
+      "total_order_amount": "Total Order Amount",
+      "payment_method_name": "Payment Method Name",
+      "is_paid": "Is Paid",
+      "driver_name": "Driver Name",
+      "status": "Status",
+      "paied_type": "paiedType",
+      "all_dates": "All Dates",
+      "done": "Done",
+      "not_done": "Not Done",
+      "not_limited": "Not Limited",
+      "display_order": "View Order",
+      "display_payment": "View Payment",
+      "update_status_order": "Update Order Status",
+      "order_canceled": "Canceled Order",
+      "change_order_status": "Change Order Status",
+      "order_status": "Order Status",
+      "order_value": "Order Value",
+      "currency": "SAR",
+      "payment_method": "Payment Method",
+      "payment_status": "Payment Status",
+      "driver": "Driver",
+      "not_assigned": "Not Assigned",
+      "client_phone": "Client Phone",
+      "client_email": "Client Email",
+      "client_address": "Address",
+      "order_date": "Order Date",
+      "last_update": "Last Update",
+      "barcode": "Barcode",
+      "quantity": "Quantity",
+      "prdcts": " Products ",
+      "unit_price": "Unit Price",
+      "cancel_order": "Cancel Order",
+      "reason": "ٌReason",
+      "reason_returned": "Return Reason",
+      "cancel_reason_placeholder": " Cancel Reason",
+      "total_price": "Total Price",
+      "delivery_fee": "Delivery Fee",
+      "vat_15": "VAT 15%",
+      "vat_rate": "VAT {var}%",
+      "discount": "Discount",
+      "final_total": "Final Total",
+      "notes": "Notes",
+      "no_notes": "No notes available",
+      "add_notes_placeholder": "Add your notes here",
+      "assign_driver": "Assign Driver",
+      "order_canceled_success": "Order Canceled Successfully",
+      "single_order": "Order",
+      "returned_number": "Returned Number",
+      "returned_time": "Returned Time",
+      "products_count_returned": "Products Count Returned",
+      "returned_value": "Returned Value",
+      "returned_refused": "Returned Refused",
+      "delivery_fee_with_shipping_cost": "Delivery Fee (Including VAT)",
+      "add_notes_client": " Add Notes For Client",
+      "add_not": "Add Note",
+      "purchasesvalue": "Purchases Value",
+      "order_success": "Order status updated successfully",
+      "OrderStatus": {
+        "all": "All",
+        "new_order": "New Orders",
+        "in_progress": "In Progress",
+        "out_for_delivery": "Out for Delivery",
+        "canceled": "Canceled",
+        "completed": "Completed",
+        "returned": "Returned",
+        "reviwed": " Reviewed",
+        "acceptable": "Acceptable",
+        "non_acceptable": "Not Acceptable",
+        "success": "Success",
+        "PartiallyReturned": "PartiallyReturned",
+        "0": 0,
+        "1": "1"
+      },
+      "PaymentStatus": {
+        "success": "Paid",
+        "failed": "Payment Failed"
+      }
+    },
+    "Offers": {
+      "title": "Offers",
+      "offer": "Offer",
+      "add_offer": "Add New Offer",
+      "edit_offer": "Edit Offer",
+      "delete_offer": "Delete Offer"
+    },
+    "Banners": {
+      "start_date": "Start Date",
+      "end_date": "End Date",
+      "add_banner": "Add Banner",
+      "edit_banner": "Edit Banner",
+      "this_banner": "This Is Banner "
+    },
+    "DiscountCodes": {
+      "code": "Code",
+      "start_date": "Start Date",
+      "end_date": "End Date",
+      "type_discount": "Discount Type",
+      "this_discount": "This Code",
+      "add_discount": "Add Discount Code",
+      "discount_type": "Discount Type",
+      "discount_value": "Discount Value",
+      "maximum_value": "Maximum Value",
+      "current_uses": "Current Uses",
+      "status": "Status",
+      "this_codes": "This Codes",
+      "new_coupon": "Add New Coupon",
+      "percantage": "Percantage",
+      "values": "Values",
+      "discount_reset_percentage": "Discount reset because percentage cannot exceed 100%",
+      "percentage_validation": "Percentage discount (1-100%)",
+      "fixed_amount_validation": "Fixed amount discount (any positive number)",
+      "percentage_limit_validation": "Percentage discount cannot exceed 100%",
+      "discount_must_be_greater_than_0": "Discount must be greater than 0"
+    },
+    "Notification": {
+      "all": "All",
+      "title": "Notifications Title",
+      "body": "Notification Body",
+      "date": "Date",
+      "user_id": "User ID",
+      "order_number": "Order Number",
+      "order_id": "Order ID",
+      "device_token": "Device Token",
+      "add_notification": "Add New Notification",
+      "notification": "Notification",
+      "client": "Client",
+      "driver": "Driver",
+      "send_to": "Send To",
+      "send_to_all": "Send To All",
+      "send_to_specific": "Send To Specific",
+      "notification_type": "Notification Type",
+      "select_users": "Select Users",
+      "select_order": "Select Order",
+      "select_drivers": "Select Driver",
+      "status": {
+        "notification_type": "Notification Type",
+        "system_maintenance": "System Maintenance",
+        "system_update": "System Update",
+        "system_alert": "System Alert",
+        "account_update": "Account Update",
+        "logout": "Logout",
+        "order_placed": "Order Placed",
+        "order_confirmed": "Order Confirmed",
+        "order_processing": "Order Processing",
+        "order_shipped": "Order Shipped",
+        "order_delivered": "Order Delivered",
+        "order_cancelled": "Order Cancelled",
+        "order_delayed": "Order Delayed",
+        "return_requested": "Return Requested",
+        "return_accepted": "Return Accepted",
+        "return_rejected": "Return Rejected",
+        "information": "Information",
+        "warning": "Warning",
+        "error": "Error",
+        "success": "Success"
+      },
+      "send_notification": " Send Notification",
+      "ar_title_notification": " Arabic Title Notifications",
+      "eng_title_notification": " English Title Notifications",
+      "ar_content": " Arabic Content",
+      "eng_content": " English Content",
+      "limited_client": " Assigned Client",
+      "limited_driver": " Assigned Driver",
+      "select_at_least_one_user": "Select At Least One User",
+      "failed_to_send_notification": "Failed To Send Notification",
+      "creation_time": "Creation Time"
+    },
+    "Drivers": {
+      "driver_title": "Drivers",
+      "add_driver": "Add Driver",
+      "select_date": "Select Date",
+      "display_info": "Display Driver Information",
+      "change_driver_status": "Change Driver Status",
+      "edit_driver": "Edit Driver",
+      "new_driver": "New Driver",
+      "edit_info": "Edit  Information",
+      "main_info": "Main Information",
+      "info_of_vehicle": " Vehicle Information",
+      "display_orders": "Display Orders",
+      "this_driver": " Driver {var} ",
+      "table": {
+        "status": "Account Status",
+        "registrationDate": "Registration Date",
+        "workArea": "Work Area",
+        "idNumber": "ID Number",
+        "phoneNumber": "Phone Number",
+        "email": "Email",
+        "name": "Driver Name",
+        "profile_picture": "Profile Picture",
+        "birth_date": "Birth Date"
+      },
+      "status": {
+        "all": "All",
+        "active": "Activation",
+        "waiting": "Waiting for Approval",
+        "blocked": "Be Blocked",
+        "disabled": "Disabled"
+      },
+      "actions": {
+        "edit": "Edit Driver",
+        "close": "Close",
+        "viewDocuments": "View Documents"
+      },
+      "personal": {
+        "address": "Address",
+        "city": "City",
+        "birthDate": "Birth Date"
+      },
+      "vehicle": {
+        "type": "Vehicle Type",
+        "color": "Vehicle Color",
+        "licenseNumber": "License Plate",
+        "model": "Vehicle Model",
+        "vehicle_info": " Vehicle Information"
+      },
+      "images": {
+        "idPhoto": "ID Photo",
+        "profilePhoto": "Profile Photo",
+        "licensePhoto": "License Photo"
+      }
+    },
+    "Clients": {
+      "client_name": "Client Name",
+      "client_phone": " Phone Number",
+      "gender": "Gender",
+      "account_date": "Account Date",
+      "account_status": "Account Status",
+      "this_client": " Client {var}",
+      "client_address": "Address",
+      "birth_date": "Birth Date"
+    },
+    "Employee": {
+      "title": "employee",
+      "department": "Department",
+      "old_password": "Old Password",
+      "new_password": "New Password",
+      "permissions": "Permissions",
+      "edit_employee": "Edit Employee",
+      "add_employee": "Add Employee",
+      "this_employee": " Employee {var}",
+      "elements": "Elements",
+      "leave_empty_to_keep": "Enter Password"
+    },
+    "ReturnPolicy": {
+      "title": "Return Policy",
+      "return_policy": "Return Policy",
+      "add_return_policy": "Add Return Policy",
+      "edit_return_policy": "Edit Return Policy",
+      "content_ar": "Content With Arabic",
+      "content_en": "Content With English",
+      "title_ar": "Title in Arabic",
+      "title_en": "Title in English"
+    },
+    "PrivacyPolicy": {
+      "title": "Privacy Policy",
+      "privacy_policy": "Privacy Policy",
+      "add_privacy_policy": "Add Privacy Policy",
+      "edit_privacy_policy": "Edit Privacy Policy"
+    },
+    "ContactUs": {
+      "title": "Contact Us",
+      "social_media_added": " Social Media Added ",
+      "add_title": "Add new contact address",
+      "edit_title": "Edit contact address",
+      "title_var": " Social Media {var}",
+      "this_client": " Client {var}",
+      "client_address": "Address",
+      "birth_date": "Birth Date"
+    },
+    "WorkArea": {
+      "work_area": "Work Area",
+      "area": "Area",
+      "city": "City",
+      "this_area": "This Area",
+      "add_work_area": " Add Work Area",
+      "edit_work_area": "Edit Work Area",
+      "name_area": " Area Name",
+      "avaliable_space": "Avaliable Space",
+      "shopping_price": "Shopping Price"
+    },
+    "Currency": {
+      "symbol": "SAR"
+    },
+    "Reports": {
+      "title": "Reports",
+      "salesReports": "Sales Reports",
+      "vat_amount": "Vat Amount",
+      "discount": "Discount",
+      "net_revenue": "netRevenue",
+      "shipping_fees": "Shipping Fees",
+      "returns": "Returns",
+      "coins": "",
+      "Sales": {
+        "title": "Sales Reports",
+        "totalSales": "Total Sales",
+        "deliveryFees": "Delivery Fees",
+        "paymentFees": "Payment Fees",
+        "discounts": "Discounts",
+        "netRevenue": "Net Revenue"
+      },
+      "orders": "Orders",
+      "drivers": "Drivers",
+      "clients": "Clients",
+      "banners": "Banners",
+      "products": "Products",
+      "select_date_range": "Select Date Range",
+      "dateFilter": {
+        "day": "Today",
+        "week": "This Week",
+        "month": "This Month"
+      },
+      "daily_report": "Daily Report",
+      "weekly_report": "Weekly Report",
+      "monthly_report": "Monthly Report"
+    },
+    "Setting": {
+      "PermissionTitle": "Permission Required",
+      "PermissionMessage": "You must have the correct permission to be able to view this section.",
+      "PermissionActivate": "Settings permission must be activated"
+    },
+    "DeliveryFees": {
+      "add_delivery_fee": "Add Delivery Fee",
+      "this_delivery_fee": "This Delivery Fee",
+      "from_meter": "From Meter",
+      "to_meter": "To Meter",
+      "edit_delivery_fee": "Edit Delivery Fee",
+      "city": "City",
+      "fee": "Fee",
+      "meter": "Meter",
+      "distance_from": "Distance From",
+      "distance_to": "Distance To"
+    }
+  }
+}
