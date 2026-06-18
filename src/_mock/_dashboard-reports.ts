@@ -29,6 +29,61 @@ export const _statisticsSummary = {
   averageOrderValue: 54200,
 };
 
+export const _reportsSummary = {
+  totalSales: 184250,
+  deliveryFees: 12840,
+  valueAddedTax: 27637.5,
+  discounts: 9450,
+  netRevenue: 175800,
+};
+
+export const _reportPaymentMethods = [
+  {
+    id: 'cash',
+    name: 'الدفع عند الاستلام',
+    description: 'الدفع نقدا عند استلام الطلب',
+    isActive: true,
+    processingFee: 0,
+    image: '',
+  },
+  {
+    id: 'card',
+    name: 'بطاقة بنكية',
+    description: 'الدفع بواسطة بطاقة بنكية',
+    isActive: true,
+    processingFee: 2.5,
+    image: '',
+  },
+  {
+    id: 'wallet',
+    name: 'المحفظة الرقمية',
+    description: 'الدفع من رصيد المحفظة',
+    isActive: true,
+    processingFee: 1,
+    image: '',
+  },
+];
+
+export const _reportOrders = [...Array(18)].map((_, index) => {
+  const orderAmount = 180 + index * 37;
+  const vatAmount = Number((orderAmount * 0.15).toFixed(2));
+  const shippingCost = [18, 22, 28, 35][index % 4];
+  const discount = index % 3 === 0 ? 25 : index % 4 === 0 ? 15 : 0;
+
+  return {
+    id: _mock.id(index),
+    orderNumber: `ORD-${String(2400 + index).padStart(5, '0')}`,
+    creationTime: new Date(2026, 5, 18 - index, 10 + (index % 8), 15).toISOString(),
+    paymentMethodName: _reportPaymentMethods[index % _reportPaymentMethods.length].name,
+    totalOrderAmount: orderAmount,
+    vatAmount,
+    discount,
+    shippingCost,
+    totalPrice: Number((orderAmount + vatAmount + shippingCost - discount).toFixed(2)),
+    isReturned: index % 5 === 0,
+  };
+});
+
 // User Activity Report
 export const _userActivityReport = [...Array(12)].map((_, index) => ({
   month: [

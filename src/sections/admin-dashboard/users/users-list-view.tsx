@@ -13,23 +13,82 @@ import {
   Button,
   TextField,
   Chip,
+  IconButton,
+  MenuItem,
+  ListItemIcon,
+  ListItemText,
   Dialog,
   DialogTitle,
   DialogContent,
   DialogActions,
-  Stack,
   Card,
   CardHeader,
 } from '@mui/material';
-import { useTranslations } from 'next-intl';
 import Iconify from 'src/components/iconify';
+import CustomPopover, { usePopover } from 'src/components/custom-popover';
 import { USER_STATUS_OPTIONS, _dashboardUsers } from 'src/_mock/_dashboard-users';
 
+type DashboardUser = (typeof _dashboardUsers)[number];
+
+type UserActionsProps = {
+  user: DashboardUser;
+  onAdd: VoidFunction;
+  onEdit: (user: DashboardUser) => void;
+  onDelete: (userId: string) => void;
+};
+
+function UserActions({ user, onAdd, onEdit, onDelete }: UserActionsProps) {
+  const popover = usePopover();
+
+  const handleAction = (callback: VoidFunction) => {
+    callback();
+    popover.onClose();
+  };
+
+  return (
+    <>
+      <IconButton color={popover.open ? 'inherit' : 'default'} onClick={popover.onOpen}>
+        <Iconify icon="eva:more-vertical-fill" />
+      </IconButton>
+
+      <CustomPopover
+        open={popover.open}
+        onClose={popover.onClose}
+        arrow="right-top"
+        sx={{ minWidth: 150 }}
+      >
+        <MenuItem onClick={() => handleAction(onAdd)}>
+          <ListItemIcon>
+            <Iconify icon="solar:add-circle-bold" />
+          </ListItemIcon>
+          <ListItemText>إضافة</ListItemText>
+        </MenuItem>
+
+        <MenuItem onClick={() => handleAction(() => onEdit(user))}>
+          <ListItemIcon>
+            <Iconify icon="solar:pen-bold" />
+          </ListItemIcon>
+          <ListItemText>تعديل</ListItemText>
+        </MenuItem>
+
+        <MenuItem
+          onClick={() => handleAction(() => onDelete(user.id))}
+          sx={{ color: 'error.main' }}
+        >
+          <ListItemIcon>
+            <Iconify icon="solar:trash-bin-trash-bold" />
+          </ListItemIcon>
+          <ListItemText>حذف</ListItemText>
+        </MenuItem>
+      </CustomPopover>
+    </>
+  );
+}
+
 export default function UsersListView() {
-  const t = useTranslations();
   const [users, setUsers] = useState(_dashboardUsers);
   const [searchTerm, setSearchTerm] = useState('');
-  const [selectedUser, setSelectedUser] = useState<any>(null);
+  const [selectedUser, setSelectedUser] = useState<DashboardUser | null>(null);
   const [openDialog, setOpenDialog] = useState(false);
   const [newStatus, setNewStatus] = useState('');
 
@@ -43,10 +102,29 @@ export default function UsersListView() {
       user.email.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
-  const handleStatusChange = (user: any) => {
+  const handleStatusChange = (user: DashboardUser) => {
     setSelectedUser(user);
     setNewStatus(user.status);
     setOpenDialog(true);
+  };
+
+  const handleAddUser = () => {
+    const newUser: DashboardUser = {
+      ..._dashboardUsers[0],
+      id: Date.now().toString(),
+      name: 'مستخدم جديد',
+      email: `new-user-${Date.now()}@example.com`,
+      phone: '0500000000',
+      status: 'active',
+      totalOrders: 0,
+      totalSpent: 0,
+    };
+
+    setUsers((prevUsers) => [newUser, ...prevUsers]);
+  };
+
+  const handleDeleteUser = (userId: string) => {
+    setUsers((prevUsers) => prevUsers.filter((user) => user.id !== userId));
   };
 
   const handleConfirmStatusChange = () => {
@@ -121,15 +199,12 @@ export default function UsersListView() {
                   <TableCell align="right">{user.totalOrders}</TableCell>
                   <TableCell align="right">{(user.totalSpent ?? 0).toLocaleString()}</TableCell>
                   <TableCell align="right">
-                    <Stack direction="row" spacing={1}>
-                      <Button
-                        size="small"
-                        variant="outlined"
-                        onClick={() => handleStatusChange(user)}
-                      >
-                        تغيير الحالة
-                      </Button>
-                    </Stack>
+                    <UserActions
+                      user={user}
+                      onAdd={handleAddUser}
+                      onEdit={handleStatusChange}
+                      onDelete={handleDeleteUser}
+                    />
                   </TableCell>
                 </TableRow>
               ))}

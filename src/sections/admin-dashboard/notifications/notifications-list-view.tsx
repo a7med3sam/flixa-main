@@ -16,6 +16,9 @@ import {
   Chip,
   Button,
   Stack,
+  IconButton,
+  ListItemIcon,
+  ListItemText,
   TextField,
   Dialog,
   DialogTitle,
@@ -35,21 +38,116 @@ import {
 } from 'src/_mock/_dashboard-notifications';
 import { useState } from 'react';
 import Iconify from 'src/components/iconify';
+import CustomPopover, { usePopover } from 'src/components/custom-popover';
+
+type DashboardNotification = (typeof _notificationsList)[number];
+
+type NotificationFormData = {
+  titleAr: string;
+  titleEn: string;
+  descriptionAr: string;
+  descriptionEn: string;
+  type: string;
+  recipients: string;
+  language: string;
+};
+
+type NotificationActionsProps = {
+  notification: DashboardNotification;
+  onAdd: VoidFunction;
+  onView: (notification: DashboardNotification) => void;
+  onEdit: (notification: DashboardNotification) => void;
+  onSend: (notificationId: string) => void;
+  onDelete: (notificationId: string) => void;
+};
+
+function NotificationActions({
+  notification,
+  onAdd,
+  onView,
+  onEdit,
+  onSend,
+  onDelete,
+}: NotificationActionsProps) {
+  const popover = usePopover();
+
+  const handleAction = (callback: VoidFunction) => {
+    callback();
+    popover.onClose();
+  };
+
+  return (
+    <>
+      <IconButton color={popover.open ? 'inherit' : 'default'} onClick={popover.onOpen}>
+        <Iconify icon="eva:more-vertical-fill" />
+      </IconButton>
+
+      <CustomPopover
+        open={popover.open}
+        onClose={popover.onClose}
+        arrow="right-top"
+        sx={{ minWidth: 150 }}
+      >
+        <MenuItem onClick={() => handleAction(onAdd)}>
+          <ListItemIcon>
+            <Iconify icon="solar:add-circle-bold" />
+          </ListItemIcon>
+          <ListItemText>إضافة</ListItemText>
+        </MenuItem>
+
+        <MenuItem onClick={() => handleAction(() => onView(notification))}>
+          <ListItemIcon>
+            <Iconify icon="solar:eye-bold" />
+          </ListItemIcon>
+          <ListItemText>عرض</ListItemText>
+        </MenuItem>
+
+        <MenuItem onClick={() => handleAction(() => onEdit(notification))}>
+          <ListItemIcon>
+            <Iconify icon="solar:pen-bold" />
+          </ListItemIcon>
+          <ListItemText>تعديل</ListItemText>
+        </MenuItem>
+
+        {notification.status === 'draft' && (
+          <MenuItem onClick={() => handleAction(() => onSend(notification.id))}>
+            <ListItemIcon>
+              <Iconify icon="solar:plain-bold" />
+            </ListItemIcon>
+            <ListItemText>إرسال</ListItemText>
+          </MenuItem>
+        )}
+
+        <MenuItem
+          onClick={() => handleAction(() => onDelete(notification.id))}
+          sx={{ color: 'error.main' }}
+        >
+          <ListItemIcon>
+            <Iconify icon="solar:trash-bin-trash-bold" />
+          </ListItemIcon>
+          <ListItemText>حذف</ListItemText>
+        </MenuItem>
+      </CustomPopover>
+    </>
+  );
+}
+
+const defaultFormData: NotificationFormData = {
+  titleAr: '',
+  titleEn: '',
+  descriptionAr: '',
+  descriptionEn: '',
+  type: 'announcement',
+  recipients: 'all',
+  language: 'both',
+};
 
 export default function NotificationsListView() {
   const [notifications, setNotifications] = useState(_notificationsList);
   const [searchTerm, setSearchTerm] = useState('');
   const [openDialog, setOpenDialog] = useState(false);
-  const [selectedNotif, setSelectedNotif] = useState<any>(null);
-  const [formData, setFormData] = useState({
-    titleAr: '',
-    titleEn: '',
-    descriptionAr: '',
-    descriptionEn: '',
-    type: 'announcement',
-    recipients: 'all',
-    language: 'both',
-  });
+  const [selectedNotif, setSelectedNotif] = useState<DashboardNotification | null>(null);
+  const [formData, setFormData] = useState<NotificationFormData>(defaultFormData);
 
   const filteredNotifications = notifications.filter((n) =>
     n.titleAr.toLowerCase().includes(searchTerm.toLowerCase())
@@ -71,14 +169,21 @@ export default function NotificationsListView() {
   };
 
   const handleOpenDialog = () => {
+    setSelectedNotif(null);
+    setFormData(defaultFormData);
+    setOpenDialog(true);
+  };
+
+  const handleEditNotification = (notification: DashboardNotification) => {
+    setSelectedNotif(notification);
     setFormData({
-      titleAr: '',
-      titleEn: '',
-      descriptionAr: '',
-      descriptionEn: '',
-      type: 'announcement',
-      recipients: 'all',
-      language: 'both',
+      titleAr: notification.titleAr,
+      titleEn: notification.titleEn,
+      descriptionAr: notification.descriptionAr,
+      descriptionEn: notification.descriptionEn,
+      type: notification.type,
+      recipients: notification.recipients,
+      language: notification.language,
     });
     setOpenDialog(true);
   };
@@ -89,9 +194,59 @@ export default function NotificationsListView() {
   };
 
   const handleCreateNotification = () => {
-    // In a real app, this would call an API
-    console.log('Creating notification:', formData);
+    if (selectedNotif) {
+      setNotifications((prevNotifications) =>
+        prevNotifications.map((notification) =>
+          notification.id === selectedNotif.id ? { ...notification, ...formData } : notification
+        )
+      );
+    } else {
+      const newNotification: DashboardNotification = {
+        ..._notificationsList[0],
+        ...formData,
+        id: Date.now().toString(),
+        status: 'draft',
+        recipientCount: 0,
+        successCount: 0,
+        failureCount: 0,
+        createdAt: new Date(),
+        sentAt: null,
+      };
+
+      setNotifications((prevNotifications) => [newNotification, ...prevNotifications]);
+    }
+
     handleCloseDialog();
+  };
+
+  const handleViewNotification = (notification: DashboardNotification) => {
+    setSelectedNotif(notification);
+    setFormData({
+      titleAr: notification.titleAr,
+      titleEn: notification.titleEn,
+      descriptionAr: notification.descriptionAr,
+      descriptionEn: notification.descriptionEn,
+      type: notification.type,
+      recipients: notification.recipients,
+      language: notification.language,
+    });
+    setOpenDialog(true);
+  };
+
+  const handleSendNotification = (notificationId: string) => {
+    setNotifications((prevNotifications) =>
+      prevNotifications.map((notification) =>
+        notification.id === notificationId
+          ? { ...notification, status: 'sent', sentAt: new Date() }
+          : notification
+      )
+    );
+  };
+
+  const handleDeleteNotification = (notificationId: string) => {
+    setNotifications((prevNotifications) =>
+      prevNotifications.filter((notification) => notification.id !== notificationId)
+    );
   };
 
   return (
@@ -214,16 +369,14 @@ export default function NotificationsListView() {
                         {new Date(notif.createdAt).toLocaleDateString('ar-SA')}
                       </TableCell>
                       <TableCell align="right">
-                        <Stack direction="row" spacing={1}>
-                          <Button size="small" variant="outlined">
-                            عرض
-                          </Button>
-                          {notif.status === 'draft' && (
-                            <Button size="small" variant="outlined" color="success">
-                              إرسال
-                            </Button>
-                          )}
-                        </Stack>
+                        <NotificationActions
+                          notification={notif}
+                          onAdd={handleOpenDialog}
+                          onView={handleViewNotification}
+                          onEdit={handleEditNotification}
+                          onSend={handleSendNotification}
+                          onDelete={handleDeleteNotification}
+                        />
                       </TableCell>
                     </TableRow>
                   ))}
@@ -236,7 +389,7 @@ export default function NotificationsListView() {
 
       {/* Create Notification Dialog */}
       <Dialog open={openDialog} onClose={handleCloseDialog} maxWidth="sm" fullWidth>
-        <DialogTitle>إنشاء إشعار جديد</DialogTitle>
+        <DialogTitle>{selectedNotif ? 'تعديل الإشعار' : 'إنشاء إشعار جديد'}</DialogTitle>
         <DialogContent sx={{ pt: 2, display: 'flex', flexDirection: 'column', gap: 2 }}>
           <TextField
             fullWidth
@@ -296,7 +449,7 @@ export default function NotificationsListView() {
         <DialogActions>
           <Button onClick={handleCloseDialog}>إلغاء</Button>
           <Button onClick={handleCreateNotification} variant="contained">
-            إنشاء
+            {selectedNotif ? 'حفظ' : 'إنشاء'}
           </Button>
         </DialogActions>
       </Dialog>

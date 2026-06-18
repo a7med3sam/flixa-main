@@ -12,8 +12,10 @@ import {
   Box,
   TextField,
   Chip,
-  Button,
-  Stack,
+  IconButton,
+  MenuItem,
+  ListItemIcon,
+  ListItemText,
   Card,
   CardHeader,
 } from '@mui/material';
@@ -23,6 +25,64 @@ import {
   COMMISSION_STATUS_OPTIONS,
 } from 'src/_mock/_dashboard-commissions';
 import Iconify from 'src/components/iconify';
+import CustomPopover, { usePopover } from 'src/components/custom-popover';
+
+type DashboardCommission = (typeof _commissionsList)[number];
+
+type CommissionActionsProps = {
+  commission: DashboardCommission;
+  onAdd: VoidFunction;
+  onEdit: (commission: DashboardCommission) => void;
+  onDelete: (commissionId: string) => void;
+};
+
+function CommissionActions({ commission, onAdd, onEdit, onDelete }: CommissionActionsProps) {
+  const popover = usePopover();
+
+  const handleAction = (callback: VoidFunction) => {
+    callback();
+    popover.onClose();
+  };
+
+  return (
+    <>
+      <IconButton color={popover.open ? 'inherit' : 'default'} onClick={popover.onOpen}>
+        <Iconify icon="eva:more-vertical-fill" />
+      </IconButton>
+
+      <CustomPopover
+        open={popover.open}
+        onClose={popover.onClose}
+        arrow="right-top"
+        sx={{ minWidth: 150 }}
+      >
+        <MenuItem onClick={() => handleAction(onAdd)}>
+          <ListItemIcon>
+            <Iconify icon="solar:add-circle-bold" />
+          </ListItemIcon>
+          <ListItemText>إضافة</ListItemText>
+        </MenuItem>
+
+        <MenuItem onClick={() => handleAction(() => onEdit(commission))}>
+          <ListItemIcon>
+            <Iconify icon="solar:pen-bold" />
+          </ListItemIcon>
+          <ListItemText>تعديل</ListItemText>
+        </MenuItem>
+
+        <MenuItem
+          onClick={() => handleAction(() => onDelete(commission.id))}
+          sx={{ color: 'error.main' }}
+        >
+          <ListItemIcon>
+            <Iconify icon="solar:trash-bin-trash-bold" />
+          </ListItemIcon>
+          <ListItemText>حذف</ListItemText>
+        </MenuItem>
+      </CustomPopover>
+    </>
+  );
+}
 
 export default function CommissionsListView() {
   const [commissions, setCommissions] = useState(_commissionsList);
@@ -43,6 +103,40 @@ export default function CommissionsListView() {
       default:
         return 'default';
     }
+  };
+
+  const handleAddCommission = () => {
+    const newCommission: DashboardCommission = {
+      ..._commissionsList[0],
+      id: Date.now().toString(),
+      name: 'عمولة جديدة',
+      type: 'percentage',
+      rate: '0',
+      minAmount: 0,
+      maxAmount: 0,
+      status: 'pending',
+      totalTransactions: 0,
+      totalAmount: 0,
+      totalCommission: 0,
+    };
+
+    setCommissions((prevCommissions) => [newCommission, ...prevCommissions]);
+  };
+
+  const handleEditCommission = (commission: DashboardCommission) => {
+    setCommissions((prevCommissions) =>
+      prevCommissions.map((item) =>
+        item.id === commission.id
+          ? { ...item, status: item.status === 'active' ? 'inactive' : 'active' }
+          : item
+      )
+    );
+  };
+
+  const handleDeleteCommission = (commissionId: string) => {
+    setCommissions((prevCommissions) =>
+      prevCommissions.filter((commission) => commission.id !== commissionId)
+    );
   };
 
   return (
@@ -103,11 +197,12 @@ export default function CommissionsListView() {
                   </TableCell>
                   <TableCell align="right">{commission.totalCommission.toLocaleString()}</TableCell>
                   <TableCell align="right">
-                    <Stack direction="row" spacing={1}>
-                      <Button size="small" variant="outlined">
-                        تعديل
-                      </Button>
-                    </Stack>
+                    <CommissionActions
+                      commission={commission}
+                      onAdd={handleAddCommission}
+                      onEdit={handleEditCommission}
+                      onDelete={handleDeleteCommission}
+                    />
                   </TableCell>
                 </TableRow>
               ))}
