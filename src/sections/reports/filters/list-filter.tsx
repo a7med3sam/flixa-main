@@ -1,7 +1,6 @@
 'use client';
 import React from 'react';
 import dayjs from 'dayjs';
-import { ICONS } from 'src/config-icons';
 import { useDebounce } from 'use-debounce';
 import { useTranslations } from 'next-intl';
 import { useState, useEffect } from 'react';
@@ -9,7 +8,8 @@ import { ReportOrder } from 'src/types/report';
 import { PaymentMethod } from 'src/types/order';
 import { DatePicker } from '@mui/x-date-pickers';
 import { useQuery } from 'src/components/use-query';
-import { Grid2, TextField, IconButton, Autocomplete } from '@mui/material';
+import { TextField, Autocomplete } from '@mui/material';
+import Iconify from 'src/components/iconify';
 
 interface Props {
   items: ReportOrder[];
@@ -32,36 +32,32 @@ export default function ListFilterReportOrders({ paymentMethodItems = [] }: Prop
   }, [debouncedSearch]);
 
   return (
-    <Grid2 container spacing={1} py={3} px={2}>
-      <Grid2 size={{ xs: 12, sm: 7 }}>
-        <TextField
-          variant="outlined"
-          placeholder={t('Global.Label.search') + '...'}
-          fullWidth
-          onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-            setSearch(e.target.value);
-          }}
-          value={search || ''}
-          slotProps={{
-            input: {
-              endAdornment: search ? (
-                <IconButton
-                  onClick={() => {
-                    setSearch('');
-                  }}
-                  sx={{ '& .svg-color': { width: '1rem', height: '1rem' } }}
-                >
-                  {ICONS.global.x}
-                </IconButton>
-              ) : null,
-            },
-          }}
-        />
-      </Grid2>
+    <div className="grid grid-cols-1 sm:grid-cols-12 gap-2 py-4 px-3">
+      {/* Search input */}
+      <div className="sm:col-span-7">
+        <div className="relative">
+          <input
+            type="text"
+            placeholder={t('Global.Label.search') + '...'}
+            value={search || ''}
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) => setSearch(e.target.value)}
+            className="w-full px-4 py-2.5 rounded-xl border border-solid border-grey-300 dark:border-grey-700 bg-white dark:bg-grey-800 text-sm text-grey-800 dark:text-grey-200 placeholder:text-grey-400 focus:outline-none focus:ring-2 focus:ring-primary transition pe-10"
+          />
+          {search && (
+            <button
+              onClick={() => setSearch('')}
+              className="absolute inset-y-0 end-0 flex items-center pe-3 text-grey-500 dark:text-grey-400 hover:text-grey-700 dark:hover:text-grey-200 transition-colors"
+            >
+              <Iconify icon="mingcute:close-line" className="w-4 h-4" />
+            </button>
+          )}
+        </div>
+      </div>
 
-      <Grid2 size={{ xs: 12, sm: 5 }}>
-        <Grid2 container spacing={1}>
-          <Grid2 size={{ xs: 12, sm: 5 }}>
+      {/* Payment method + Date */}
+      <div className="sm:col-span-5">
+        <div className="grid grid-cols-1 sm:grid-cols-12 gap-2">
+          <div className="sm:col-span-5">
             <Autocomplete
               value={
                 paymentMethodItems.find((item) => item.name === queries.PaymentMethodName) || null
@@ -69,14 +65,19 @@ export default function ListFilterReportOrders({ paymentMethodItems = [] }: Prop
               options={paymentMethodItems}
               getOptionLabel={(option) => option.name || ''}
               renderInput={(params) => (
-                <TextField {...params} variant="outlined" label={t('Pages.Orders.paied_type')} />
+                <TextField
+                  {...params}
+                  variant="outlined"
+                  label={t('Pages.Orders.paied_type')}
+                  size="small"
+                />
               )}
               onChange={(_, value) => {
                 changeQueries({ PaymentMethodName: value?.name || '', page: '1' });
               }}
             />
-          </Grid2>
-          <Grid2 size={{ xs: 12, sm: 5 }}>
+          </div>
+          <div className="sm:col-span-5">
             <DatePicker
               label={t('Pages.Orders.creation_time')}
               slotProps={{
@@ -84,17 +85,17 @@ export default function ListFilterReportOrders({ paymentMethodItems = [] }: Prop
                   clearable: true,
                   onClear: () => changeQueries({ RegistrationDate: undefined, page: '1' }),
                 },
-                textField: { fullWidth: true },
+                textField: { fullWidth: true, size: 'small' },
               }}
               value={queries.RegistrationDate ? dayjs(queries.RegistrationDate) : undefined}
               onChange={(value) => {
                 changeQueries({ RegistrationDate: value?.format('YYYY-MM-DD'), page: '1' });
               }}
             />
-          </Grid2>
-          <Grid2 size={{ xs: 12, sm: 2 }}></Grid2>
-        </Grid2>
-      </Grid2>
-    </Grid2>
+          </div>
+          <div className="sm:col-span-2" />
+        </div>
+      </div>
+    </div>
   );
 }

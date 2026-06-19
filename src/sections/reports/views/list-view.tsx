@@ -2,7 +2,6 @@
 import React from 'react';
 import { useTranslations } from 'next-intl';
 import { PaymentMethod } from 'src/types/order';
-import { Card, Stack, Container } from '@mui/material';
 import { Report, ReportOrder } from 'src/types/report';
 import CustomBreadcrumbs from 'src/components/custom-breadcrumbs';
 
@@ -18,24 +17,21 @@ interface Props {
   totalCount: number;
 }
 
-export default function ReportsView({ reports, orderReports,paymentMethod, totalCount }: Props) {
+export default function ReportsView({ reports, orderReports, paymentMethod, totalCount }: Props) {
   const t = useTranslations();
-  
+
   return (
-    <Container>
-      <Stack direction={'row'} justifyContent={'space-between'} alignItems={'center'}>
-      <CustomBreadcrumbs
-        heading={t('Nav.reports')}
-        links={[]}
-      />
-      <DateRangeFilter />
-      </Stack>
+    <div className="max-w-full px-4 sm:px-6 lg:px-8 mx-auto">
+      <div className="flex flex-row justify-between items-center">
+        <CustomBreadcrumbs heading={t('Nav.reports')} links={[]} />
+        <DateRangeFilter />
+      </div>
 
       <CardInfoSquare items={reports} />
-      <Card sx={{ my: 2 }}>
+      <div className="bg-white dark:bg-[#212B36] rounded-2xl shadow-sm my-4 overflow-hidden">
         <ListFilterReportOrders items={orderReports} paymentMethodItems={paymentMethod} />
         <ReportsOrderTable items={orderReports} totalCount={totalCount} />
-      </Card>
-    </Container>
+      </div>
+    </div>
   );
 }

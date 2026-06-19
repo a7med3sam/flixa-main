@@ -1,9 +1,7 @@
-
-
+'use client';
 import React from 'react';
 import { Report } from 'src/types/report';
 import { useTranslations } from 'next-intl';
-import { Box, Card, Typography } from '@mui/material';
 
 interface Props {
   items: Report;
@@ -16,65 +14,55 @@ export default function CardInfoSquare({ items }: Props) {
     {
       title: t('Pages.Reports.Sales.totalSales'),
       value: items.totalSales,
-      bgColor: '#C2E7F2', // Light blue
+      bgColor: '#C2E7F2',
     },
     {
       title: t('Pages.Reports.Sales.deliveryFees'),
       value: items.deliveryFees,
-      bgColor: '#E4E4E4', // Light gray
+      bgColor: '#E4E4E4',
     },
     {
       title: t('Pages.Reports.Sales.paymentFees'),
       value: items.valueAddedTax,
-      bgColor: '#E3D8D2', // Light brown/peach
+      bgColor: '#E3D8D2',
     },
     {
       title: t('Pages.Reports.Sales.discounts'),
       value: items.discounts,
-      bgColor: '#FBE7E7', // Light red
+      bgColor: '#FBE7E7',
     },
     {
       title: t('Pages.Reports.Sales.netRevenue'),
       value: items.netRevenue,
-      bgColor: '#D8EFDA', // Light green
+      bgColor: '#D8EFDA',
     },
   ];
 
   return (
-    <Box
-      display="flex"
-      flexWrap="wrap"
-      justifyContent="space-between"
-      gap={2}
-      dir="rtl"
-      sx={{ width: '100%', mt: 2 }}
-    >
+    <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 w-full mt-3" dir="rtl">
       {reportItems.map((item, index) => (
-        <Card
+        <div
           key={index}
-          sx={{
-            flex: '1 1 18%',
-            minWidth: '180px',
+          className="relative rounded-2xl px-5 py-4 flex flex-col gap-1.5 overflow-hidden"
+          style={{
             backgroundColor: item.bgColor,
-            borderRadius: 3,
-            boxShadow: '0 2px 6px rgba(0,0,0,0.08)',
-            textAlign: 'center',
-            p: 2.5,
+            boxShadow: '0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04)',
           }}
         >
-          <Typography variant="subtitle2" fontWeight={600}>
-            {item.title}
-          </Typography>
-          <Typography
-            variant="h6"
-            fontWeight="bold"
-            mt={1}
-            sx={{ direction: 'ltr', fontSize: '1.25rem' }}
-          >
-            {item.value} <span style={{ fontSize: '0.85rem' }}>{t('Pages.Currency.symbol')}</span>
-          </Typography>
-        </Card>
+          <div
+            className="absolute inset-x-0 top-0 h-1"
+            style={{
+              backgroundColor: item.bgColor,
+              filter: 'brightness(0.8)',
+            }}
+          />
+          <div className="text-xs font-medium opacity-70">{item.title}</div>
+          <div className="text-xl font-bold tracking-tight text-start" dir="ltr">
+            {item.value}{' '}
+            <span className="text-xs font-medium opacity-60">{t('Pages.Currency.symbol')}</span>
+          </div>
+        </div>
       ))}
-    </Box>
+    </div>
   );
 }
