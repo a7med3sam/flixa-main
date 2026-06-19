@@ -2,7 +2,6 @@
 
 import type { ApexOptions } from 'apexcharts';
 
-import { Box, Typography } from '@mui/material';
 import ApexChart from 'src/components/ApexChart';
 import DashboardCard from 'src/components/DashboardCard';
 
@@ -16,11 +15,8 @@ import {
   MONTH_LABELS,
 } from './constants';
 
-const CHART_FONT = 'inherit';
-
 const baseChartOptions: ApexOptions = {
   chart: {
-    fontFamily: CHART_FONT,
     toolbar: { show: false },
     zoom: { enabled: false },
   },
@@ -48,12 +44,10 @@ const baseChartOptions: ApexOptions = {
 
 function ChartHeader({ title, subtitle }: { title: string; subtitle: string }) {
   return (
-    <Box sx={{ mb: 2 }}>
-      <Typography sx={{ fontSize: 18, fontWeight: 700, color: '#111827', mb: 0.5 }}>
-        {title}
-      </Typography>
-      <Typography sx={{ fontSize: 13, color: '#6B7280' }}>{subtitle}</Typography>
-    </Box>
+    <div className="mb-2">
+      <h2 className="text-lg font-bold text-[#111827] mb-0.5">{title}</h2>
+      <p className="text-[13px] text-[#6B7280]">{subtitle}</p>
+    </div>
   );
 }
 
@@ -88,7 +82,7 @@ export function DailyCouponUsageChart() {
   ];
 
   return (
-    <DashboardCard sx={{ height: { xs: 'auto', md: 420 } }}>
+    <DashboardCard className="h-auto md:h-[420px]">
       <ChartHeader title="استخدام الأكواد اليومي" subtitle="(+43%) أعلى من الأسبوع الماضي" />
       <ApexChart options={options} series={series} type="line" height={340} />
     </DashboardCard>
@@ -119,7 +113,7 @@ export function MonthlyPerformanceChart() {
   ];
 
   return (
-    <DashboardCard sx={{ height: { xs: 'auto', md: 420 } }}>
+    <DashboardCard className="h-auto md:h-[420px]">
       <ChartHeader title="الأداء الشهري" subtitle="(+43%) أعلى من الشهر الماضي" />
       <ApexChart options={options} series={series} type="area" height={340} />
     </DashboardCard>
@@ -130,7 +124,6 @@ export function BranchPerformanceChart() {
   const options: ApexOptions = {
     chart: {
       type: 'bar',
-      fontFamily: CHART_FONT,
       toolbar: { show: false },
       height: 260,
     },
@@ -174,10 +167,8 @@ export function BranchPerformanceChart() {
   ];
 
   return (
-    <DashboardCard sx={{ height: { xs: 'auto', md: 320 } }}>
-      <Typography sx={{ fontSize: 18, fontWeight: 700, color: '#111827', mb: 2 }}>
-        مقارنة أداء الفروع
-      </Typography>
+    <DashboardCard className="h-auto md:h-[320px]">
+      <h2 className="text-lg font-bold text-[#111827] mb-2">مقارنة أداء الفروع</h2>
       <ApexChart options={options} series={series} type="bar" height={260} />
     </DashboardCard>
   );
@@ -185,15 +176,9 @@ export function BranchPerformanceChart() {
 
 export function AnalyticsSection() {
   return (
-    <Box
-      sx={{
-        display: 'grid',
-        gridTemplateColumns: { xs: '1fr', lg: '65% 35%' },
-        gap: 3,
-      }}
-    >
+    <div className="grid grid-cols-1 lg:grid-cols-[55%_45%] gap-3">
       <DailyCouponUsageChart />
       <MonthlyPerformanceChart />
-    </Box>
+    </div>
   );
 }

@@ -1,27 +1,13 @@
-import type { ReactNode } from 'react';
-import Card from '@mui/material/Card';
-
 export default function DashboardCard({
   children,
-  sx,
-  ...other
+  className = '',
 }: {
-  children: ReactNode;
-  sx?: Record<string, unknown>;
+  children: React.ReactNode;
+  className?: string;
 }) {
   return (
-    <Card
-      sx={{
-        bgcolor: '#FFFFFF',
-        border: '1px solid #E5E7EB',
-        borderRadius: '16px',
-        boxShadow: 'none',
-        p: 2.5,
-        ...sx,
-      }}
-      {...other}
-    >
+    <div className={`bg-white border border-[#E5E7EB] rounded-2xl shadow-none p-2.5 ${className}`}>
       {children}
-    </Card>
+    </div>
   );
 }
