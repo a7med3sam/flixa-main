@@ -27,11 +27,11 @@ export default function SharedTableRow<T extends { id: string }>({
     return 'text-start';
   };
 
-  const paddingClass = dense ? 'px-6 py-2' : 'px-6 py-4';
+  const paddingClass = dense ? 'px-2 py-0.5' : 'px-2 py-1';
 
   return (
     <>
-      <tr className="hover:bg-grey-50 dark:hover:bg-grey-800/50 transition-colors border-b border-dashed border-grey-200 dark:border-grey-700">
+      <tr className="hover:bg-grey-50 dark:hover:bg-grey-800/50 transition-colors border-b border-solid border-grey-100 dark:border-grey-600">
         {headIds.map((x, index) => (
           <td
             key={index}
@@ -42,7 +42,7 @@ export default function SharedTableRow<T extends { id: string }>({
         ))}
 
         {!!actions?.length && (
-          <td className="px-2 py-4 whitespace-nowrap text-end">
+          <td className="px-2 py-1 whitespace-nowrap text-end">
             <IconButton color={popover.open ? 'inherit' : 'default'} onClick={popover.onOpen}>
               <Iconify icon="eva:more-vertical-fill" />
             </IconButton>
