@@ -77,11 +77,11 @@ export default function NavVertical({ openNav, onCloseNav }: Props) {
         <div className="flex-grow" />
       </Scrollbar>
 
-      <div className="px-4 py-3">
+      <div className=" px-4 py-3 mb-4">
         <button
           type="button"
           onClick={handleLogout}
-          className="flex w-full items-center gap-2.5 rounded-lg px-2 py-2 text-sm font-medium text-grey-600 transition-colors hover:bg-grey-100 hover:text-grey-800"
+          className="flex w-full items-center gap-2.5 rounded-lg border-0 px-2 py-2 text-sm font-medium text-grey-600 outline-none transition-colors hover:bg-red-50 hover:text-red-600"
         >
           <Iconify icon="solar:logout-2-bold-duotone" width={20} />
           {t('Pages.Notification.status.logout')}

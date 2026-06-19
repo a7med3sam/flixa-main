@@ -83,7 +83,7 @@ export default function Header({ onOpenNav }: Props) {
             <input
               type="search"
               placeholder={t('Global.Label.search')}
-              className="h-10 w-[140px] rounded-[20px] bg-[#f7f7f7] px-4 ps-10 text-sm font-medium text-grey-800 placeholder:text-grey-500 focus:outline-none sm:w-[220px]"
+              className="h-10 w-[140px] border-0 rounded-[20px] bg-[#f7f7f7] px-4 ps-10 text-sm font-medium text-grey-800 placeholder:text-grey-500 focus:outline-none sm:w-[220px]"
             />
           </div>
 
