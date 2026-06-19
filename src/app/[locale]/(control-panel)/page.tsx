@@ -8,11 +8,12 @@ import { AnalyticsSection, BranchPerformanceChart } from 'src/sections/charts/ch
 
 export default function DashboardPage() {
   return (
-    <div className="p-6">
-      <div className="grid grid-cols-12 gap-6">
+    <div className="bg-white rounded-3xl shadow-card dark:bg-[#212B36] dark:shadow-cardDark p-0 mt-5">
+      <div className="p-5">
+        <div className="grid grid-cols-12 gap-6">
         {/* Summary Cards */}
         <div className="col-span-12 sm:col-span-6 md:col-span-3">
-          <div className="bg-white dark:bg-[#212B36] rounded-2xl shadow-card dark:shadow-cardDark p-6">
+          <div className="bg-grey-200 dark:bg-[#212B36] rounded-2xl shadow-card dark:shadow-cardDark p-6">
             <span className="block text-sm font-medium text-grey-600 dark:text-grey-500 mb-2">
               إجمالي المستخدمين
             </span>
@@ -26,7 +27,7 @@ export default function DashboardPage() {
         </div>
 
         <div className="col-span-12 sm:col-span-6 md:col-span-3">
-          <div className="bg-white dark:bg-[#212B36] rounded-2xl shadow-card dark:shadow-cardDark p-6">
+          <div className="bg-grey-200 dark:bg-[#212B36] rounded-2xl shadow-card dark:shadow-cardDark p-6">
             <span className="block text-sm font-medium text-grey-600 dark:text-grey-500 mb-2">
               إجمالي الطلبات
             </span>
@@ -44,7 +45,7 @@ export default function DashboardPage() {
         </div>
 
         <div className="col-span-12 sm:col-span-6 md:col-span-3">
-          <div className="bg-white dark:bg-[#212B36] rounded-2xl shadow-card dark:shadow-cardDark p-6">
+          <div className="bg-grey-200 dark:bg-[#212B36] rounded-2xl shadow-card dark:shadow-cardDark p-6">
             <span className="block text-sm font-medium text-grey-600 dark:text-grey-500 mb-2">
               إجمالي الإيرادات
             </span>
@@ -56,7 +57,7 @@ export default function DashboardPage() {
         </div>
 
         <div className="col-span-12 sm:col-span-6 md:col-span-3">
-          <div className="bg-white dark:bg-[#212B36] rounded-2xl shadow-card dark:shadow-cardDark p-6">
+          <div className="bg-grey-200 dark:bg-[#212B36] rounded-2xl shadow-card dark:shadow-cardDark p-6">
             <span className="block text-sm font-medium text-grey-600 dark:text-grey-500 mb-2">
               صافي الربح
             </span>
@@ -79,7 +80,7 @@ export default function DashboardPage() {
         </div>
 
         <div className="col-span-12 lg:col-span-5">
-          <div className="bg-white dark:bg-[#212B36] rounded-2xl shadow-card dark:shadow-cardDark p-6">
+          <div className="bg-grey-200 dark:bg-[#212B36] rounded-2xl shadow-card dark:shadow-cardDark p-6">
             <h3 className="text-sm font-semibold text-[#263238] dark:text-white mb-4">
               حالة الطلبات
             </h3>
@@ -107,7 +108,7 @@ export default function DashboardPage() {
         {/* Quick Actions */}
         {/* 
         <div className="col-span-12">
-          <div className="bg-white dark:bg-[#212B36] rounded-2xl shadow-card dark:shadow-cardDark p-6">
+          <div className="bg-grey-200 dark:bg-[#212B36] rounded-2xl shadow-card dark:shadow-cardDark p-6">
             <h3 className="text-sm font-semibold text-[#263238] dark:text-white mb-4">
               روابط سريعة
             </h3>
@@ -120,31 +121,31 @@ export default function DashboardPage() {
               </Link>
               <Link 
                 href={paths.dashboard.commissions.list}
-                className="inline-flex items-center justify-center px-4 py-2 rounded-lg border border-solid border-grey-300 dark:border-grey-700 hover:bg-grey-100 dark:hover:bg-grey-800 text-grey-800 dark:text-white text-sm font-semibold transition-colors duration-200 no-underline"
+                className="inline-flex items-center justify-center px-4 py-2 rounded-lg border border-solid border-grey-300 dark:border-grey-700 hover:bg-grey-200 dark:hover:bg-grey-800 text-grey-800 dark:text-white text-sm font-semibold transition-colors duration-200 no-underline"
               >
                 العمولات
               </Link>
               <Link 
                 href={paths.dashboard.reports.list}
-                className="inline-flex items-center justify-center px-4 py-2 rounded-lg border border-solid border-grey-300 dark:border-grey-700 hover:bg-grey-100 dark:hover:bg-grey-800 text-grey-800 dark:text-white text-sm font-semibold transition-colors duration-200 no-underline"
+                className="inline-flex items-center justify-center px-4 py-2 rounded-lg border border-solid border-grey-300 dark:border-grey-700 hover:bg-grey-200 dark:hover:bg-grey-800 text-grey-800 dark:text-white text-sm font-semibold transition-colors duration-200 no-underline"
               >
                 التقارير
               </Link>
               <Link 
                 href={paths.dashboard.financial.list}
-                className="inline-flex items-center justify-center px-4 py-2 rounded-lg border border-solid border-grey-300 dark:border-grey-700 hover:bg-grey-100 dark:hover:bg-grey-800 text-grey-800 dark:text-white text-sm font-semibold transition-colors duration-200 no-underline"
+                className="inline-flex items-center justify-center px-4 py-2 rounded-lg border border-solid border-grey-300 dark:border-grey-700 hover:bg-grey-200 dark:hover:bg-grey-800 text-grey-800 dark:text-white text-sm font-semibold transition-colors duration-200 no-underline"
               >
                 الماليات
               </Link>
               <Link 
                 href={paths.dashboard.messages.list}
-                className="inline-flex items-center justify-center px-4 py-2 rounded-lg border border-solid border-grey-300 dark:border-grey-700 hover:bg-grey-100 dark:hover:bg-grey-800 text-grey-800 dark:text-white text-sm font-semibold transition-colors duration-200 no-underline"
+                className="inline-flex items-center justify-center px-4 py-2 rounded-lg border border-solid border-grey-300 dark:border-grey-700 hover:bg-grey-200 dark:hover:bg-grey-800 text-grey-800 dark:text-white text-sm font-semibold transition-colors duration-200 no-underline"
               >
                 الرسائل
               </Link>
               <Link 
                 href={paths.dashboard.notifications.list}
-                className="inline-flex items-center justify-center px-4 py-2 rounded-lg border border-solid border-grey-300 dark:border-grey-700 hover:bg-grey-100 dark:hover:bg-grey-800 text-grey-800 dark:text-white text-sm font-semibold transition-colors duration-200 no-underline"
+                className="inline-flex items-center justify-center px-4 py-2 rounded-lg border border-solid border-grey-300 dark:border-grey-700 hover:bg-grey-200 dark:hover:bg-grey-800 text-grey-800 dark:text-white text-sm font-semibold transition-colors duration-200 no-underline"
               >
                 الإشعارات
               </Link>
@@ -152,6 +153,7 @@ export default function DashboardPage() {
           </div>
         </div>
         */}
+      </div>
       </div>
     </div>
   );

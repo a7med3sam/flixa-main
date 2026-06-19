@@ -165,11 +165,11 @@ export const TOP_OFFERS = [
 ] as const;
 
 export const BRANCH_PERFORMANCE = [
-  { name: "فرع التحلية", value: 850 },
-  { name: "فرع العليا", value: 720 },
-  { name: "فرع النخيل", value: 580 },
-  { name: "فرع الياسمين", value: 420 },
-  { name: "فرع الملقا", value: 280 },
+  { name: "عمر", value: 850 },
+  { name: "أحمد", value: 720 },
+  { name: "سارة", value: 580 },
+  { name: "محمد", value: 420 },
+  { name: "فاطمة", value: 280 },
 ] as const;
 
 export const BRANCH_BAR_COLORS = [

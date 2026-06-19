@@ -83,7 +83,7 @@ export function DailyCouponUsageChart() {
 
   return (
     <DashboardCard className="h-auto md:h-[420px]">
-      <ChartHeader title="استخدام الأكواد اليومي" subtitle="(+43%) أعلى من الأسبوع الماضي" />
+      <ChartHeader title="معدل العمليات اليومية" subtitle="(+43%) أعلى من الأسبوع الماضي" />
       <ApexChart options={options} series={series} type="line" height={340} />
     </DashboardCard>
   );
@@ -168,7 +168,7 @@ export function BranchPerformanceChart() {
 
   return (
     <DashboardCard className="h-auto md:h-[320px]">
-      <h2 className="text-lg font-bold text-[#111827] mb-2">مقارنة أداء الفروع</h2>
+      <h2 className="text-lg font-bold text-[#111827] mb-2">مقارنة أداء المستخدمين</h2>
       <ApexChart options={options} series={series} type="bar" height={260} />
     </DashboardCard>
   );
