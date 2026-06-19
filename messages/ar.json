@@ -556,6 +556,20 @@
       "completed": "مكتمل",
       "pending": "قيد الانتظار"
     },
+    "Messages": {
+      "title": "إدارة الرسائل",
+      "subtitle": "إدارة رسائل اتصل بنا وقراءة الرسائل الواردة",
+      "status": "الحالة",
+      "sender_name": "المرسل",
+      "subject": "الموضوع",
+      "category": "الفئة",
+      "priority": "الأولوية",
+      "date": "التاريخ",
+      "actions": "الإجراءات",
+      "search_placeholder": "البحث...",
+      "view": "عرض",
+      "reply": "رد"
+    },
     "Drivers": {
       "driver_title": "السائقين",
       "add_driver": "إضافة سائق",

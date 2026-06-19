@@ -553,6 +553,20 @@
       "completed": "Completed",
       "pending": "Pending"
     },
+    "Messages": {
+      "title": "Messages Management",
+      "subtitle": "Manage contact us messages and read incoming messages",
+      "status": "Status",
+      "sender_name": "Sender",
+      "subject": "Subject",
+      "category": "Category",
+      "priority": "Priority",
+      "date": "Date",
+      "actions": "Actions",
+      "search_placeholder": "Search...",
+      "view": "View",
+      "reply": "Reply"
+    },
     "Drivers": {
       "driver_title": "Drivers",
       "add_driver": "Add Driver",
