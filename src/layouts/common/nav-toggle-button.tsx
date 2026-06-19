@@ -1,18 +1,18 @@
-import { bgBlur } from 'src/theme/css';
 import Iconify from 'src/components/iconify';
-import { useTheme } from '@mui/material/styles';
 import { useResponsive } from 'src/hooks/use-responsive';
 import { useCurrentLocale } from 'src/utils/locale-utils';
 import { useSettingsContext } from 'src/components/settings';
-import IconButton, { IconButtonProps } from '@mui/material/IconButton';
 
 import { NAV } from '../config-layout';
 
 // ----------------------------------------------------------------------
 
-export default function NavToggleButton({ sx, ...other }: IconButtonProps) {
-  const theme = useTheme();
+type Props = {
+  className?: string;
+  style?: React.CSSProperties;
+};
 
+export default function NavToggleButton({ className, style }: Props) {
   const { dir } = useCurrentLocale();
 
   const settings = useSettingsContext();
@@ -24,35 +24,31 @@ export default function NavToggleButton({ sx, ...other }: IconButtonProps) {
   }
 
   return (
-    <IconButton
-      size="small"
+    <button
+      type="button"
       onClick={() =>
         settings.onUpdate('themeLayout', settings.themeLayout === 'vertical' ? 'mini' : 'vertical')
       }
-      sx={{
-        p: 0.5,
-        top: 32,
-        position: 'fixed',
+      className={[
+        'fixed top-8 z-[1101] rounded-full border border-dashed border-grey-300 bg-white/80 p-1 backdrop-blur-md transition-colors hover:bg-grey-100',
+        className,
+      ]
+        .filter(Boolean)
+        .join(' ')}
+      style={{
         insetInlineStart: NAV.W_VERTICAL - 12,
-        zIndex: theme.zIndex.appBar + 1,
-        border: `dashed 1px ${theme.palette.divider}`,
-        ...bgBlur({ color: theme.palette.background.default }),
-        '&:hover': {
-          bgcolor: 'background.default',
-        },
-        ...sx,
+        ...style,
       }}
-      {...other}
     >
       <Iconify
         width={16}
-        sx={{ transform: dir === 'rtl' ? 'scale(-1, 1)' : 'scale(1, 1)' }}
+        className={dir === 'rtl' ? 'scale-x-[-1]' : undefined}
         icon={
           settings.themeLayout === 'vertical'
             ? 'eva:arrow-ios-back-fill'
             : 'eva:arrow-ios-forward-fill'
         }
       />
-    </IconButton>
+    </button>
   );
 }

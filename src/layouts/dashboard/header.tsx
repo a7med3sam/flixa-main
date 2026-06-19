@@ -1,18 +1,10 @@
 'use client';
 
 import Logo from 'src/components/logo';
-import Stack from '@mui/material/Stack';
-import AppBar from '@mui/material/AppBar';
-import Toolbar from '@mui/material/Toolbar';
 import SvgColor from 'src/components/svg-color';
-import IconButton from '@mui/material/IconButton';
-import InputBase from '@mui/material/InputBase';
-import { useTheme } from '@mui/material/styles';
-import InputAdornment from '@mui/material/InputAdornment';
 import { useOffSetTop } from 'src/hooks/use-off-set-top';
 import { useResponsive } from 'src/hooks/use-responsive';
 import { useSettingsContext } from 'src/components/settings';
-import { alpha } from '@mui/material/styles';
 import Iconify from 'src/components/iconify';
 import { useTranslations } from 'next-intl';
 
@@ -27,104 +19,79 @@ type Props = {
 };
 
 export default function Header({ onOpenNav }: Props) {
-  const theme = useTheme();
   const t = useTranslations();
   const settings = useSettingsContext();
 
   const isNavHorizontal = settings.themeLayout === 'horizontal';
-
   const isNavMini = settings.themeLayout === 'mini';
 
   const lgUp = useResponsive('up', 'lg');
 
   const offset = useOffSetTop(HEADER.H_DESKTOP);
-
   const offsetTop = offset && !isNavHorizontal;
 
-  const renderContent = (
-    <>
-      {lgUp && isNavHorizontal && <Logo sx={{ mr: 2.5 }} />}
+  const headerHeight = lgUp
+    ? offsetTop || isNavHorizontal
+      ? HEADER.H_DESKTOP_OFFSET
+      : HEADER.H_DESKTOP
+    : HEADER.H_MOBILE;
 
-      {!lgUp && (
-        <IconButton onClick={onOpenNav}>
-          <SvgColor src="/assets/icons/navbar/ic_menu_item.svg" sx={{ color: '#454F5B' }} />
-        </IconButton>
-      )}
-
-      <Stack
-        flexGrow={1}
-        direction="row"
-        alignItems="center"
-        justifyContent="flex-end"
-        spacing={{ xs: 0.5, sm: 1 }}
-      >
-        <InputBase
-          placeholder={t('Global.Label.search')}
-          startAdornment={
-            <InputAdornment position="start" sx={{ ml: 0.5, mr: 0, p: 1 }}>
-              <Iconify icon="eva:search-fill" width={20} sx={{ color: 'grey.600' }} />
-            </InputAdornment>
-          }
-          sx={{
-            width: { xs: 140, sm: 220, md: 220 },
-            height: 40,
-            px: 1,
-            borderRadius: '20px',
-            bgcolor: '#f7f7f7',
-            color: 'text.primary',
-            '& input': {
-              p: 0,
-              typography: 'body2',
-              fontWeight: 500,
-              color: 'grey.800',
-              '&::placeholder': {
-                color: 'grey.500',
-                opacity: 1,
-              },
-            },
-          }}
-        />
-
-        <LanguagePopover />
-
-        <AccountPopover />
-      </Stack>
-    </>
-  );
+  const headerStyle: React.CSSProperties = {
+    height: headerHeight,
+    ...(lgUp &&
+      !isNavHorizontal && {
+        width: `calc(100% - ${isNavMini ? NAV.W_MINI + 1 : NAV.W_VERTICAL}px)`,
+        insetInlineStart: isNavMini ? NAV.W_MINI : NAV.W_VERTICAL,
+      }),
+  };
 
   return (
-    <AppBar
-      sx={{
-        height: HEADER.H_MOBILE,
-        zIndex: theme.zIndex.appBar + 1,
-        bgcolor: '#ffffff',
-        ...(lgUp && {
-          width: `calc(100% - ${NAV.W_VERTICAL}px)`,
-          height: HEADER.H_DESKTOP,
-          ...(offsetTop && {
-            height: HEADER.H_DESKTOP_OFFSET,
-          }),
-          ...(isNavHorizontal && {
-            width: 1,
-            bgcolor: '#ffffff',
-            height: HEADER.H_DESKTOP_OFFSET,
-            borderBottom: `1px solid ${alpha('#919EAB', 0.16)}`,
-          }),
-          ...(isNavMini && {
-            width: `calc(100% - ${NAV.W_MINI + 1}px)`,
-          }),
-        }),
-      }}
+    <header
+      className={[
+        'fixed top-0 z-[1101] w-full bg-white',
+        lgUp && isNavHorizontal && 'border-b border-[rgba(145,158,171,0.16)]',
+      ]
+        .filter(Boolean)
+        .join(' ')}
+      style={headerStyle}
     >
-      <Toolbar
-        sx={{
-          height: 1,
-          px: { lg: 5 },
-          bgcolor: '#ffffff',
-        }}
-      >
-        {renderContent}
-      </Toolbar>
-    </AppBar>
+      <div className="flex h-full items-center bg-white px-0 lg:px-10">
+        {lgUp && isNavHorizontal && (
+          <div className="me-5">
+            <Logo />
+          </div>
+        )}
+
+        {!lgUp && (
+          <button
+            type="button"
+            onClick={onOpenNav}
+            className="inline-flex items-center justify-center rounded-full p-2 hover:bg-grey-500/[0.08]"
+          >
+            <SvgColor
+              src="/assets/icons/navbar/ic_menu_item.svg"
+              className="text-[#454F5B]"
+            />
+          </button>
+        )}
+
+        <div className="flex flex-1 flex-row items-center justify-end gap-1 sm:gap-2">
+          <div className="relative">
+            <span className="pointer-events-none absolute start-1 top-1/2 flex -translate-y-1/2 items-center p-2">
+              <Iconify icon="eva:search-fill" width={20} className="text-grey-600" />
+            </span>
+            <input
+              type="search"
+              placeholder={t('Global.Label.search')}
+              className="h-10 w-[140px] rounded-[20px] bg-[#f7f7f7] px-4 ps-10 text-sm font-medium text-grey-800 placeholder:text-grey-500 focus:outline-none sm:w-[220px]"
+            />
+          </div>
+
+          <LanguagePopover />
+
+          <AccountPopover />
+        </div>
+      </div>
+    </header>
   );
 }

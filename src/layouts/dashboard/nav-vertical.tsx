@@ -1,16 +1,12 @@
 'use client';
 
 import { useEffect } from 'react';
-import Box from '@mui/material/Box';
 import Logo from 'src/components/logo';
-import Stack from '@mui/material/Stack';
-import Drawer from '@mui/material/Drawer';
-import { usePathname } from 'src/routes/hooks';
 import Scrollbar from 'src/components/scrollbar';
+import { usePathname } from 'src/routes/hooks';
 import { useAuthStore } from 'src/auth/auth-store';
 import { useResponsive } from 'src/hooks/use-responsive';
 import { NavSectionVertical } from 'src/components/nav-section';
-import { alpha } from '@mui/material/styles';
 import { useTranslations } from 'next-intl';
 
 import { NAV } from '../config-layout';
@@ -41,24 +37,8 @@ export default function NavVertical({ openNav, onCloseNav }: Props) {
   }, [pathname]);
 
   const renderContent = (
-    <Stack
-      sx={{
-        height: 1,
-        display: 'flex',
-        flexDirection: 'column',
-        bgcolor: '#ffffff',
-      }}
-    >
-      <Box
-        sx={{
-          px: 3,
-          py: 2,
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          // borderBottom: `1px solid ${alpha('#919EAB', 0.2)}`,
-        }}
-      >
+    <div className="flex h-full flex-col bg-white">
+      <div className="flex items-center justify-center px-6 py-4">
         <Logo
           enableText
           title={t('Metadata.title')}
@@ -70,7 +50,7 @@ export default function NavVertical({ openNav, onCloseNav }: Props) {
             letterSpacing: 0.5,
           }}
         />
-      </Box>
+      </div>
 
       <Scrollbar
         sx={{
@@ -89,86 +69,49 @@ export default function NavVertical({ openNav, onCloseNav }: Props) {
             userModules: user?.modules,
           }}
         />
-        <Box sx={{ flexGrow: 1 }} />
+        <div className="flex-grow" />
       </Scrollbar>
 
-      <Box
-        sx={{
-          px: 2,
-          py: 2,
-          borderTop: `1px solid ${alpha('#919EAB', 0.2)}`,
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-        }}
-      >
-        <Box
-          sx={{
-            borderRadius: 2,
-            px: 2,
-            py: 1,
-            width: 1,
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            gap: 1.5,
-          }}
-        >
-          <Box
-            sx={{
-              width: 8,
-              height: 8,
-              borderRadius: '50%',
-              bgcolor: '#22C55E',
-            }}
-          />
-          <Box
-            component="span"
-            sx={{
-              color: alpha('#212B36', 0.5),
-              fontSize: '0.8rem',
-              fontWeight: 500,
-              letterSpacing: 0.3,
-            }}
-          >
+      <div className="flex items-center justify-center border-t border-[rgba(145,158,171,0.2)] px-4 py-4">
+        <div className="flex w-full items-center justify-center gap-3 rounded-2xl px-4 py-2">
+          <span className="h-2 w-2 rounded-full bg-success" />
+          <span className="text-[0.8rem] font-medium tracking-wide text-grey-800/50">
             فليكسا
-          </Box>
-        </Box>
-      </Box>
-    </Stack>
+          </span>
+        </div>
+      </div>
+    </div>
   );
 
   return (
-    <Box
-      sx={{
-        flexShrink: { lg: 0 },
-        width: { lg: NAV.W_VERTICAL },
-      }}
-    >
+    <div className="shrink-0 lg:w-[280px]">
       {lgUp ? (
-        <Stack
-          sx={{
-            height: 1,
-            position: 'fixed',
-            width: NAV.W_VERTICAL,
-          }}
-        >
+        <div className="fixed h-full" style={{ width: NAV.W_VERTICAL }}>
           {renderContent}
-        </Stack>
+        </div>
       ) : (
-        <Drawer
-          open={openNav}
-          onClose={onCloseNav}
-          PaperProps={{
-            sx: {
-              width: NAV.W_VERTICAL,
-              bgcolor: '#ffffff',
-            },
-          }}
-        >
-          {renderContent}
-        </Drawer>
+        <>
+          {openNav && (
+            <div
+              className="fixed inset-0 z-[1200] bg-black/50 lg:hidden"
+              onClick={onCloseNav}
+              aria-hidden="true"
+            />
+          )}
+
+          <div
+            className={[
+              'fixed top-0 bottom-0 z-[1201] bg-white transition-transform duration-300 ease-in-out lg:hidden',
+              openNav
+                ? 'translate-x-0'
+                : '-translate-x-full pointer-events-none rtl:translate-x-full',
+            ].join(' ')}
+            style={{ width: NAV.W_VERTICAL, insetInlineStart: 0 }}
+          >
+            {renderContent}
+          </div>
+        </>
       )}
-    </Box>
+    </div>
   );
 }

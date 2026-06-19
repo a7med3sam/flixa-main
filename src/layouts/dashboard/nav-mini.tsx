@@ -1,12 +1,8 @@
 'use client';
 
-import Box from '@mui/material/Box';
 import Logo from 'src/components/logo';
-import Stack from '@mui/material/Stack';
-import { hideScroll } from 'src/theme/css';
 import { useMockedUser } from 'src/hooks/use-mocked-user';
 import { NavSectionMini } from 'src/components/nav-section';
-import { alpha } from '@mui/material/styles';
 
 import { NAV } from '../config-layout';
 import { useNavData } from './config-navigation';
@@ -20,34 +16,16 @@ export default function NavMini() {
   const navData = useNavData();
 
   return (
-    <Box
-      sx={{
-        bgcolor: '#FAFBFC',
-        flexShrink: { lg: 0 },
-        width: { lg: NAV.W_MINI },
-      }}
-    >
-      <NavToggleButton
-        sx={{
-          insetInlineStart: NAV.W_MINI - 12,
-        }}
-      />
+    <div className="shrink-0 lg:w-[88px]">
+      <NavToggleButton style={{ insetInlineStart: NAV.W_MINI - 12 }} />
 
-      <Stack
-        sx={{
-          pb: 2,
-          height: 1,
-          position: 'fixed',
-          width: NAV.W_MINI,
-          borderRight: `1px solid ${alpha('#919EAB', 0.16)}`,
-          ...hideScroll.x,
-          minHeight: '100%',
-          bgcolor: '#ffffff',
-        }}
+      <div
+        className="fixed min-h-full w-[88px] overflow-x-hidden bg-white pb-4 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
+        style={{ borderInlineEnd: '1px solid rgba(145, 158, 171, 0.16)' }}
       >
-        <Box width={50} mx={'auto'}>
+        <div className="mx-auto w-[50px]">
           <Logo sx={{ my: 2, maxWidth: '100%', color: '#212B36' }} />
-        </Box>
+        </div>
 
         <NavSectionMini
           data={navData}
@@ -55,7 +33,7 @@ export default function NavMini() {
             currentRole: user?.role,
           }}
         />
-      </Stack>
-    </Box>
+      </div>
+    </div>
   );
 }

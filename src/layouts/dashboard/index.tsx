@@ -1,6 +1,5 @@
 'use client';
 
-import Box from '@mui/material/Box';
 import { useBoolean } from 'src/hooks/use-boolean';
 import { useResponsive } from 'src/hooks/use-responsive';
 import { useSettingsContext } from 'src/components/settings';
@@ -51,18 +50,11 @@ export default function DashboardLayout({ children }: Props) {
       <>
         <Header onOpenNav={nav.onTrue} />
 
-        <Box
-          sx={{
-            minHeight: '100vh',
-            display: 'flex',
-            flexDirection: { xs: 'column', lg: 'row' },
-            alignItems: 'stretch',
-          }}
-        >
+        <div className="flex min-h-screen flex-col items-stretch lg:flex-row">
           {lgUp ? renderNavMini : renderNavVertical}
 
           <Main>{children}</Main>
-        </Box>
+        </div>
       </>
     );
   }
@@ -71,18 +63,11 @@ export default function DashboardLayout({ children }: Props) {
     <>
       <Header onOpenNav={nav.onTrue} />
 
-      <Box
-        sx={{
-          minHeight: '100vh',
-          display: 'flex',
-          flexDirection: { xs: 'column', lg: 'row' },
-          alignItems: 'stretch',
-        }}
-      >
+      <div className="flex min-h-screen flex-col items-stretch lg:flex-row">
         {renderNavVertical}
 
         <Main>{children}</Main>
-      </Box>
+      </div>
     </>
   );
 }
