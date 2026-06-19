@@ -1,109 +1,34 @@
 'use client';
 
-import { useState } from 'react';
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableHead,
-  TableRow,
-  Paper,
-  Box,
-  TextField,
-  Chip,
-  IconButton,
-  MenuItem,
-  ListItemIcon,
-  ListItemText,
-  Card,
-  CardHeader,
-} from '@mui/material';
+import { useState, useMemo } from 'react';
+import { useTranslations } from 'next-intl';
 import {
   _commissionsList,
   COMMISSION_TYPE_OPTIONS,
   COMMISSION_STATUS_OPTIONS,
 } from 'src/_mock/_dashboard-commissions';
 import Iconify from 'src/components/iconify';
-import CustomPopover, { usePopover } from 'src/components/custom-popover';
+import SharedTable from 'src/components/SharedTable/SharedTable';
 
 type DashboardCommission = (typeof _commissionsList)[number];
 
-type CommissionActionsProps = {
-  commission: DashboardCommission;
-  onAdd: VoidFunction;
-  onEdit: (commission: DashboardCommission) => void;
-  onDelete: (commissionId: string) => void;
+const STATUS_BADGE_CLASSES: Record<string, string> = {
+  active:
+    'bg-success/10 text-success-dark dark:text-success-light border border-solid border-success/30',
+  inactive:
+    'bg-grey-100 dark:bg-grey-800 text-grey-600 dark:text-grey-400 border border-solid border-grey-300 dark:border-grey-700',
+  pending:
+    'bg-warning/10 text-warning-dark dark:text-warning-light border border-solid border-warning/30',
 };
 
-function CommissionActions({ commission, onAdd, onEdit, onDelete }: CommissionActionsProps) {
-  const popover = usePopover();
-
-  const handleAction = (callback: VoidFunction) => {
-    callback();
-    popover.onClose();
-  };
-
-  return (
-    <>
-      <IconButton color={popover.open ? 'inherit' : 'default'} onClick={popover.onOpen}>
-        <Iconify icon="eva:more-vertical-fill" />
-      </IconButton>
-
-      <CustomPopover
-        open={popover.open}
-        onClose={popover.onClose}
-        arrow="right-top"
-        sx={{ minWidth: 150 }}
-      >
-        <MenuItem onClick={() => handleAction(onAdd)}>
-          <ListItemIcon>
-            <Iconify icon="solar:add-circle-bold" />
-          </ListItemIcon>
-          <ListItemText>إضافة</ListItemText>
-        </MenuItem>
-
-        <MenuItem onClick={() => handleAction(() => onEdit(commission))}>
-          <ListItemIcon>
-            <Iconify icon="solar:pen-bold" />
-          </ListItemIcon>
-          <ListItemText>تعديل</ListItemText>
-        </MenuItem>
-
-        <MenuItem
-          onClick={() => handleAction(() => onDelete(commission.id))}
-          sx={{ color: 'error.main' }}
-        >
-          <ListItemIcon>
-            <Iconify icon="solar:trash-bin-trash-bold" />
-          </ListItemIcon>
-          <ListItemText>حذف</ListItemText>
-        </MenuItem>
-      </CustomPopover>
-    </>
-  );
-}
-
 export default function CommissionsListView() {
+  const t = useTranslations();
   const [commissions, setCommissions] = useState(_commissionsList);
   const [searchTerm, setSearchTerm] = useState('');
 
   const filteredCommissions = commissions.filter((c) =>
     c.name.toLowerCase().includes(searchTerm.toLowerCase())
   );
-
-  const getStatusColor = (status: string) => {
-    switch (status) {
-      case 'active':
-        return 'success';
-      case 'inactive':
-        return 'default';
-      case 'pending':
-        return 'warning';
-      default:
-        return 'default';
-    }
-  };
 
   const handleAddCommission = () => {
     const newCommission: DashboardCommission = {
@@ -139,77 +64,103 @@ export default function CommissionsListView() {
     );
   };
 
+  const actions = useMemo(
+    () => [
+      {
+        label: 'إضافة',
+        icon: <Iconify icon="solar:add-circle-bold" />,
+        onClick: () => handleAddCommission(),
+      },
+      {
+        label: 'تعديل',
+        icon: <Iconify icon="solar:pen-bold" />,
+        onClick: (row: DashboardCommission) => handleEditCommission(row),
+      },
+      {
+        label: 'حذف',
+        icon: <Iconify icon="solar:trash-bin-trash-bold" />,
+        onClick: (row: DashboardCommission) => handleDeleteCommission(row.id),
+        sx: { color: 'error.main' },
+      },
+    ],
+    []
+  );
+
+  const customRender = useMemo(
+    () => ({
+      type: (commission: DashboardCommission) => (
+        <span>{COMMISSION_TYPE_OPTIONS.find((t) => t.value === commission.type)?.label}</span>
+      ),
+      rate: (commission: DashboardCommission) => (
+        <span>
+          {commission.type === 'percentage' ? `${commission.rate}%` : `${commission.rate} ريال`}
+        </span>
+      ),
+      status: (commission: DashboardCommission) => {
+        const label = COMMISSION_STATUS_OPTIONS.find((s) => s.value === commission.status)?.label;
+        const cls = STATUS_BADGE_CLASSES[commission.status] ?? STATUS_BADGE_CLASSES.inactive;
+        return (
+          <span
+            className={`inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-semibold ${cls}`}
+          >
+            {label}
+          </span>
+        );
+      },
+    }),
+    []
+  );
+
   return (
-    <Box sx={{ p: 3 }}>
-      <Card>
-        <CardHeader
-          title="إدارة العمولات"
-          subheader="إدارة العمولات على المدفوعات المنفذة"
-          sx={{ mb: 2 }}
-          action={
-            <TextField
+    <div className="p-6">
+      <div className="bg-white dark:bg-[#212B36] rounded-2xl shadow-card dark:shadow-cardDark overflow-hidden">
+        {/* Header */}
+        <div className="flex flex-wrap items-start justify-between gap-4 px-6 py-5 border-b border-solid border-grey-200 dark:border-grey-700">
+          <div>
+            <h2 className="text-base font-bold text-[#263238] dark:text-white">
+              {t('Pages.Commissions.title')}
+            </h2>
+            <p className="mt-0.5 text-sm text-grey-600 dark:text-grey-400">
+              {t('Pages.Commissions.subtitle')}
+            </p>
+          </div>
+
+          {/* Search */}
+          <div className="relative">
+            <span className="absolute inset-y-0 start-3 flex items-center pointer-events-none text-grey-500 dark:text-grey-400">
+              <Iconify icon="mdi:magnify" className="w-5 h-5" />
+            </span>
+            <input
+              type="text"
               placeholder="البحث..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              size="small"
-              InputProps={{
-                startAdornment: <Iconify icon="mdi:magnify" sx={{ mr: 1 }} />,
-              }}
+              className="ps-10 pe-4 py-2 rounded-xl border border-solid border-grey-300 dark:border-grey-700 bg-grey-100 dark:bg-grey-800 text-sm text-grey-800 dark:text-grey-200 placeholder:text-grey-400 focus:outline-none focus:ring-2 focus:ring-primary transition"
             />
-          }
+          </div>
+        </div>
+
+        {/* Table */}
+        <SharedTable<DashboardCommission>
+          tableHead={[
+            { id: 'name', label: 'Pages.Commissions.name', align: 'right' as any },
+            { id: 'type', label: 'Pages.Commissions.type', align: 'right' as any },
+            { id: 'rate', label: 'Pages.Commissions.rate', align: 'right' as any },
+            { id: 'minAmount', label: 'Pages.Commissions.min_amount', align: 'right' as any },
+            { id: 'maxAmount', label: 'Pages.Commissions.max_amount', align: 'right' as any },
+            { id: 'status', label: 'Pages.Commissions.status', align: 'right' as any },
+            {
+              id: 'totalCommission',
+              label: 'Pages.Commissions.total_commission',
+              align: 'right' as any,
+            },
+          ]}
+          data={filteredCommissions}
+          count={filteredCommissions.length}
+          customRender={customRender}
+          actions={actions}
         />
-        <TableContainer component={Paper} sx={{ overflow: 'auto' }}>
-          <Table>
-            <TableHead sx={{ bgcolor: 'background.neutral' }}>
-              <TableRow>
-                <TableCell align="right">الاسم</TableCell>
-                <TableCell align="right">النوع</TableCell>
-                <TableCell align="right">النسبة/المبلغ</TableCell>
-                <TableCell align="right">الحد الأدنى</TableCell>
-                <TableCell align="right">الحد الأقصى</TableCell>
-                <TableCell align="right">الحالة</TableCell>
-                <TableCell align="right">إجمالي العمولات</TableCell>
-                <TableCell align="right">الإجراءات</TableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {filteredCommissions.map((commission) => (
-                <TableRow key={commission.id} hover>
-                  <TableCell align="right">{commission.name}</TableCell>
-                  <TableCell align="right">
-                    {COMMISSION_TYPE_OPTIONS.find((t) => t.value === commission.type)?.label}
-                  </TableCell>
-                  <TableCell align="right">
-                    {commission.type === 'percentage'
-                      ? `${commission.rate}%`
-                      : `${commission.rate} ريال`}
-                  </TableCell>
-                  <TableCell align="right">{commission.minAmount}</TableCell>
-                  <TableCell align="right">{commission.maxAmount}</TableCell>
-                  <TableCell align="right">
-                    <Chip
-                      label={
-                        COMMISSION_STATUS_OPTIONS.find((s) => s.value === commission.status)?.label
-                      }
-                      color={getStatusColor(commission.status) as any}
-                      size="small"
-                    />
-                  </TableCell>
-                  <TableCell align="right">{commission.totalCommission.toLocaleString()}</TableCell>
-                  <TableCell align="right">
-                    <CommissionActions
-                      commission={commission}
-                      onAdd={handleAddCommission}
-                      onEdit={handleEditCommission}
-                      onDelete={handleDeleteCommission}
-                    />
-                  </TableCell>
-                </TableRow>
-              ))}
-            </TableBody>
-          </Table>
-        </TableContainer>
-      </Card>
-    </Box>
+      </div>
+    </div>
   );
 }

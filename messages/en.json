@@ -522,6 +522,18 @@
       "failed_to_send_notification": "Failed To Send Notification",
       "creation_time": "Creation Time"
     },
+    "Commissions": {
+      "title": "Commissions Management",
+      "subtitle": "Manage commissions on executed payments",
+      "name": "Name",
+      "type": "Type",
+      "rate": "Rate / Amount",
+      "min_amount": "Min Amount",
+      "max_amount": "Max Amount",
+      "status": "Status",
+      "total_commission": "Total Commission",
+      "actions": "Actions"
+    },
     "Drivers": {
       "driver_title": "Drivers",
       "add_driver": "Add Driver",

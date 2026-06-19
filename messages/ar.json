@@ -525,6 +525,18 @@
       "failed_to_send_notification": "فشل في ارسال الإشعار",
       "creation_time": "تاريخ الانشاء"
     },
+    "Commissions": {
+      "title": "إدارة العمولات",
+      "subtitle": "إدارة العمولات على المدفوعات المنفذة",
+      "name": "الاسم",
+      "type": "النوع",
+      "rate": "النسبة/المبلغ",
+      "min_amount": "الحد الأدنى",
+      "max_amount": "الحد الأقصى",
+      "status": "الحالة",
+      "total_commission": "إجمالي العمولات",
+      "actions": "الإجراءات"
+    },
     "Drivers": {
       "driver_title": "السائقين",
       "add_driver": "إضافة سائق",
