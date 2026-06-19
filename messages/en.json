@@ -269,7 +269,9 @@
         "rows_per_page": "Rows per page:",
         "of": "of",
         "more_than": "more than",
-        "dense": "Dense"
+        "dense": "Dense",
+        "previous_page": "Previous page",
+        "next_page": "Next page"
       }
     }
   },
@@ -313,6 +315,7 @@
       "sales": "Sales",
       "free_shipping_orders": "Total Shipping Orders",
       "total_orders": "Total Orders",
+      "total_spent": "Total Spent",
       "sales_by_day": "Sales By Day",
       "edit_free_shipping_vat": "Edit Free Shipping & VAT & Minimum Order Amount",
       "minimum_order_amount": "Minimum Order Amount"

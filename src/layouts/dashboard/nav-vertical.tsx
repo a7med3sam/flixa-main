@@ -11,6 +11,7 @@ import { useAuthStore } from 'src/auth/auth-store';
 import { useResponsive } from 'src/hooks/use-responsive';
 import { NavSectionVertical } from 'src/components/nav-section';
 import { alpha } from '@mui/material/styles';
+import { useTranslations } from 'next-intl';
 
 import { NAV } from '../config-layout';
 import { useNavData } from './config-navigation';
@@ -24,6 +25,7 @@ type Props = {
 
 export default function NavVertical({ openNav, onCloseNav }: Props) {
   const { user } = useAuthStore();
+  const t = useTranslations();
 
   const pathname = usePathname();
 
@@ -59,6 +61,7 @@ export default function NavVertical({ openNav, onCloseNav }: Props) {
       >
         <Logo
           enableText
+          title={t('Metadata.title')}
           sx={{ width: 130, height: 44, color: '#212B36' }}
           textProps={{
             sx: { color: '#212B36' },

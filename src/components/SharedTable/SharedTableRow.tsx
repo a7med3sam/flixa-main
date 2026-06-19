@@ -1,45 +1,54 @@
 import { IconButton } from '@mui/material';
-import { useTranslations } from 'next-intl';
 import Iconify from 'src/components/iconify';
-import TableRow from '@mui/material/TableRow';
-import TableCell from '@mui/material/TableCell';
 import { MenuItem, ListItemIcon, ListItemText } from '@mui/material';
 
 import CustomPopover from '../custom-popover';
 import { usePopover } from '../custom-popover';
-import { SxStyle, SharedTableRowProps } from './types';
+import { SharedTableRowProps } from './types';
 
 export default function SharedTableRow<T extends { id: string }>({
   row,
   actions,
   customRender,
   headIds,
+  headLabel,
+  dense,
 }: SharedTableRowProps<T>) {
-  const t = useTranslations();
-  let rowStyle: SxStyle = {};
-
-  if (Object.hasOwn(row, 'rowSx')) {
-    rowStyle = (row as any).rowSx as SxStyle;
-  }
   const popover = usePopover();
+
+  const getAlignment = (id: keyof T) => {
+    const cell = headLabel.find((h) => h.id === id);
+    return cell?.align || 'left';
+  };
+
+  const getAlignClass = (align?: string) => {
+    if (align === 'right') return 'text-end';
+    if (align === 'center') return 'text-center';
+    return 'text-start';
+  };
+
+  const paddingClass = dense ? 'px-6 py-2' : 'px-6 py-4';
 
   return (
     <>
-      <TableRow hover sx={rowStyle}>
+      <tr className="hover:bg-grey-50 dark:hover:bg-grey-800/50 transition-colors border-b border-dashed border-grey-200 dark:border-grey-700">
         {headIds.map((x, index) => (
-          <TableCell key={index} sx={{ whiteSpace: 'nowrap' }}>
+          <td
+            key={index}
+            className={`${paddingClass} whitespace-nowrap ${getAlignClass(getAlignment(x))}`}
+          >
             {customRender && x in customRender ? customRender[x]!(row) : (row as any)[x]}
-          </TableCell>
+          </td>
         ))}
 
         {!!actions?.length && (
-          <TableCell align="right" sx={{ px: 1, whiteSpace: 'nowrap' }}>
+          <td className="px-2 py-4 whitespace-nowrap text-end">
             <IconButton color={popover.open ? 'inherit' : 'default'} onClick={popover.onOpen}>
               <Iconify icon="eva:more-vertical-fill" />
             </IconButton>
-          </TableCell>
+          </td>
         )}
-      </TableRow>
+      </tr>
 
       <CustomPopover
         open={popover.open}
@@ -59,7 +68,7 @@ export default function SharedTableRow<T extends { id: string }>({
               sx={action.sx}
             >
               <ListItemIcon>{action.icon}</ListItemIcon>
-              <ListItemText>{t(action.label)}</ListItemText>
+              <ListItemText>{action.label}</ListItemText>
             </MenuItem>
           ))}
       </CustomPopover>

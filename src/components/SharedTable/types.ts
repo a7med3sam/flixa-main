@@ -24,7 +24,7 @@ export interface SharedTableProps<T> {
   tableHead: headCellType[];
   data: T[];
   actions?: Action<T>[];
-  disablePagination?: boolean;
+  showPagination?: boolean;
   customRender?: Partial<Record<keyof T, (row: T) => ReactNode>>;
   count: number;
 }
@@ -35,8 +35,10 @@ export interface SharedTableRowProps<T> {
     | Partial<Record<keyof T, (row: T) => ReactNode>>
     | Record<keyof T, (row: T) => ReactNode>;
   headIds: (keyof T)[];
+  headLabel: headCellType[];
+  dense?: boolean;
 }
-export type SxStyle = SxProps<Theme>;
+export type SxStyle = any;
 
 // ----------------------------------------------------------------------
 

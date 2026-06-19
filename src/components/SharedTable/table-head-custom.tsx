@@ -1,11 +1,5 @@
 import { useTranslations } from 'next-intl';
-import TableRow from '@mui/material/TableRow';
-import TableCell from '@mui/material/TableCell';
-import TableHead from '@mui/material/TableHead';
-
 import { headCellType } from './types';
-
-// ----------------------------------------------------------------------
 
 type Props = {
   headLabel: headCellType[];
@@ -14,23 +8,29 @@ type Props = {
 
 export default function TableHeadCustom({ headLabel, enableActions = false }: Props) {
   const t = useTranslations();
+
+  const getAlignmentClass = (align?: string) => {
+    if (align === 'right') return 'text-end';
+    if (align === 'center') return 'text-center';
+    return 'text-start';
+  };
+
   return (
-    <TableHead>
-      <TableRow>
+    <thead className="bg-grey-100 dark:bg-grey-800 border-b border-solid border-grey-200 dark:border-grey-700">
+      <tr>
         {headLabel.map((headCell) => (
-          <TableCell
+          <th
             key={headCell.id}
-            align={headCell.align || 'left'}
-            sx={{
-              width: headCell.width,
-              whiteSpace: 'nowrap',
-            }}
+            className={`px-6 py-4 text-xs font-semibold text-grey-500 dark:text-grey-400 tracking-wider whitespace-nowrap uppercase ${getAlignmentClass(
+              headCell.align
+            )}`}
+            style={{ width: headCell.width }}
           >
             {headCell?.label ? t(headCell?.label) : ''}
-          </TableCell>
+          </th>
         ))}
-        {enableActions && <TableCell sx={{ whiteSpace: 'nowrap' }} />}
-      </TableRow>
-    </TableHead>
+        {enableActions && <th className="px-6 py-4 whitespace-nowrap" />}
+      </tr>
+    </thead>
   );
 }
