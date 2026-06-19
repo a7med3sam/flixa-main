@@ -41,7 +41,7 @@ function Group({ subheader, items, slotProps }: NavGroupProps) {
   ));
 
   return (
-    <Stack sx={{ px: 2 }}>
+    <Stack sx={{ px: 1.5 }}>
       {subheader ? (
         <>
           <ListSubheader
@@ -54,8 +54,8 @@ function Group({ subheader, items, slotProps }: NavGroupProps) {
               typography: 'overline',
               display: 'inline-flex',
               color: 'text.disabled',
-              mb: `${slotProps?.gap || 4}px`,
-              p: (theme) => theme.spacing(2, 1, 1, 1.5),
+              mb: `${slotProps?.gap || 2}px`,
+              p: (theme) => theme.spacing(1.5, 0.75, 0.5, 1),
               transition: (theme) =>
                 theme.transitions.create(['color'], {
                   duration: theme.transitions.duration.shortest,

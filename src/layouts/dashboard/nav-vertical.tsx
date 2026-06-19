@@ -3,6 +3,7 @@
 import { useEffect } from 'react';
 import Logo from 'src/components/logo';
 import Scrollbar from 'src/components/scrollbar';
+import Iconify from 'src/components/iconify';
 import { usePathname } from 'src/routes/hooks';
 import { useAuthStore } from 'src/auth/auth-store';
 import { useResponsive } from 'src/hooks/use-responsive';
@@ -20,7 +21,7 @@ type Props = {
 };
 
 export default function NavVertical({ openNav, onCloseNav }: Props) {
-  const { user } = useAuthStore();
+  const { user, logout } = useAuthStore();
   const t = useTranslations();
 
   const pathname = usePathname();
@@ -36,13 +37,17 @@ export default function NavVertical({ openNav, onCloseNav }: Props) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pathname]);
 
+  const handleLogout = async () => {
+    await logout();
+  };
+
   const renderContent = (
     <div className="flex h-full flex-col bg-white">
-      <div className="flex items-center justify-center px-6 py-4">
+      <div className="flex items-center justify-center px-5 py-3">
         <Logo
           enableText
           title={t('Metadata.title')}
-          sx={{ width: 130, height: 44, color: '#212B36' }}
+          sx={{ width: 120, height: 40, color: '#212B36' }}
           textProps={{
             sx: { color: '#212B36' },
             variant: 'h5',
@@ -55,7 +60,7 @@ export default function NavVertical({ openNav, onCloseNav }: Props) {
       <Scrollbar
         sx={{
           flex: 1,
-          py: 1,
+          py: 0.5,
           '& .simplebar-content': {
             height: 1,
             display: 'flex',
@@ -72,13 +77,15 @@ export default function NavVertical({ openNav, onCloseNav }: Props) {
         <div className="flex-grow" />
       </Scrollbar>
 
-      <div className="flex items-center justify-center border-t border-[rgba(145,158,171,0.2)] px-4 py-4">
-        <div className="flex w-full items-center justify-center gap-3 rounded-2xl px-4 py-2">
-          <span className="h-2 w-2 rounded-full bg-success" />
-          <span className="text-[0.8rem] font-medium tracking-wide text-grey-800/50">
-            فليكسا
-          </span>
-        </div>
+      <div className="px-4 py-3">
+        <button
+          type="button"
+          onClick={handleLogout}
+          className="flex w-full items-center gap-2.5 rounded-lg px-2 py-2 text-sm font-medium text-grey-600 transition-colors hover:bg-grey-100 hover:text-grey-800"
+        >
+          <Iconify icon="solar:logout-2-bold-duotone" width={20} />
+          {t('Pages.Notification.status.logout')}
+        </button>
       </div>
     </div>
   );

@@ -144,6 +144,7 @@ const StyledNavItem = styled(ListItemButton, {
   const subItem = depth !== 1;
   const opened = open && !active;
   const deepSubItem = Number(depth) > 2;
+  const primaryColor = theme.palette.primary.main;
 
   const noWrapStyles = {
     width: '100%',
@@ -156,16 +157,19 @@ const StyledNavItem = styled(ListItemButton, {
 
   const baseStyles = {
     item: {
-      marginBottom: 4,
-      borderRadius: 12,
+      marginBottom: 2,
+      borderRadius: 10,
       color: '#454F5B',
-      padding: theme.spacing(0.75, 1.5, 0.75, 1.5),
+      padding: theme.spacing(0.5, 1.25, 0.5, 1.25),
       position: 'relative',
+      display: 'flex',
+      alignItems: 'center',
+      gap: theme.spacing(1.5),
       '&::before': {
         content: '""',
         position: 'absolute',
-        top: 8,
-        bottom: 8,
+        top: 6,
+        bottom: 6,
         insetInlineStart: 0,
         width: 3,
         borderRadius: 4,
@@ -179,17 +183,18 @@ const StyledNavItem = styled(ListItemButton, {
       },
     },
     icon: {
-      width: 28,
-      height: 28,
+      width: 24,
+      height: 24,
+      minWidth: 24,
       flexShrink: 0,
-      marginRight: theme.spacing(2),
-      opacity: 0.6,
+      opacity: 1,
+      color: alpha('#454F5B', 0.55),
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
       '& > .svg-color': {
-        width: 26,
-        height: 26,
+        width: 22,
+        height: 22,
       },
       transition: theme.transitions.create(['opacity'], {
         duration: theme.transitions.duration.shorter,
@@ -199,8 +204,8 @@ const StyledNavItem = styled(ListItemButton, {
       ...noWrapStyles,
       ...theme.typography.body1,
       fontWeight: theme.typography.fontWeightMedium,
-      fontSize: '0.95rem',
-      letterSpacing: 0.3,
+      fontSize: '0.875rem',
+      letterSpacing: 0.2,
       opacity: 0.8,
       transition: theme.transitions.create(['opacity'], {
         duration: theme.transitions.duration.shorter,
@@ -225,8 +230,8 @@ const StyledNavItem = styled(ListItemButton, {
   return {
     ...(!subItem && {
       ...baseStyles.item,
-      minHeight: 48,
-      marginX: theme.spacing(1),
+      minHeight: 42,
+      marginX: theme.spacing(0.75),
       '& .icon': {
         ...baseStyles.icon,
       },
@@ -246,20 +251,23 @@ const StyledNavItem = styled(ListItemButton, {
         ...baseStyles.arrow,
       },
       ...(active && {
-        backgroundColor: alpha('#2065D1', 0.08),
-        color: '#2065D1',
+        backgroundColor: alpha(primaryColor, 0.12),
+        color: primaryColor,
+        gap: theme.spacing(1.5),
         '&::before': {
-          backgroundColor: '#2065D1',
+          backgroundColor: primaryColor,
         },
         '& .icon': {
           opacity: 1,
+          flexShrink: 0,
+          color: primaryColor,
         },
         '& .label': {
           opacity: 1,
           fontWeight: theme.typography.fontWeightSemiBold,
         },
         '&:hover': {
-          backgroundColor: alpha('#2065D1', 0.12),
+          backgroundColor: alpha(primaryColor, 0.16),
         },
       }),
       ...(opened && {
@@ -269,6 +277,7 @@ const StyledNavItem = styled(ListItemButton, {
         marginBottom: 0,
         '& .icon': {
           opacity: 1,
+          color: alpha('#454F5B', 0.85),
         },
         '& .label': {
           opacity: 1,
@@ -280,11 +289,11 @@ const StyledNavItem = styled(ListItemButton, {
       ...baseStyles.item,
       marginBottom: 0,
       borderRadius: 0,
-      minHeight: 40,
-      padding: theme.spacing(0.5, 1.5, 0.5, 1.5),
-      backgroundColor: alpha('#2065D1', active ? 0.06 : 0),
-      borderRight: active ? `2px solid #2065D1` : '2px solid transparent',
-      color: active ? '#2065D1' : alpha('#454F5B', 0.75),
+      minHeight: 36,
+      padding: theme.spacing(0.375, 1.25, 0.375, 1.25),
+      backgroundColor: alpha(primaryColor, active ? 0.08 : 0),
+      borderInlineEnd: active ? `2px solid ${primaryColor}` : '2px solid transparent',
+      color: active ? primaryColor : alpha('#454F5B', 0.75),
       '&:hover': {
         backgroundColor: alpha('#919EAB', 0.06),
       },
@@ -297,13 +306,13 @@ const StyledNavItem = styled(ListItemButton, {
         justifyContent: 'center',
         width: 18,
         height: 18,
-        marginRight: theme.spacing(1.5),
+        flexShrink: 0,
         '&::before': {
           content: '""',
           width: 4,
           height: 4,
           borderRadius: '50%',
-          backgroundColor: active ? '#2065D1' : alpha('#454F5B', 0.35),
+          backgroundColor: active ? primaryColor : alpha('#454F5B', 0.35),
           transition: theme.transitions.create(['transform', 'background-color'], {
             duration: theme.transitions.duration.shorter,
           }),
@@ -312,7 +321,7 @@ const StyledNavItem = styled(ListItemButton, {
       '& .label': {
         ...baseStyles.label,
         opacity: active ? 1 : 0.75,
-        fontSize: '0.9rem',
+        fontSize: '0.85rem',
       },
       '& .caption': {
         ...baseStyles.caption,
