@@ -1,6 +1,6 @@
 'use client';
 
-import { useMemo } from 'react';
+import { useMemo, useEffect } from 'react';
 import merge from 'lodash/merge';
 import CssBaseline from '@mui/material/CssBaseline';
 import { useSettingsContext } from 'src/components/settings';
@@ -26,6 +26,14 @@ type Props = {
 
 export default function ThemeProvider({ children }: Props) {
   const settings = useSettingsContext();
+
+  useEffect(() => {
+    if (settings.themeMode === 'dark') {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+  }, [settings.themeMode]);
 
   const presets = createPresets(settings.themeColorPresets);
 

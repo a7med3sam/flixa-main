@@ -1,4 +1,3 @@
-import DeliveryFeesView from "src/sections/delivery-fees/views/list-view";
 
 export const endpoints = {
   home:{
