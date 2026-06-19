@@ -42,7 +42,7 @@ export default function NavMini() {
           borderRight: `1px solid ${alpha('#919EAB', 0.16)}`,
           ...hideScroll.x,
           minHeight: '100%',
-          bgcolor: '#D5DAE3',
+          bgcolor: '#ffffff',
         }}
       >
         <Box width={50} mx={'auto'}>

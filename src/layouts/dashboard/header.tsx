@@ -6,11 +6,15 @@ import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import SvgColor from 'src/components/svg-color';
 import IconButton from '@mui/material/IconButton';
+import InputBase from '@mui/material/InputBase';
 import { useTheme } from '@mui/material/styles';
+import InputAdornment from '@mui/material/InputAdornment';
 import { useOffSetTop } from 'src/hooks/use-off-set-top';
 import { useResponsive } from 'src/hooks/use-responsive';
 import { useSettingsContext } from 'src/components/settings';
 import { alpha } from '@mui/material/styles';
+import Iconify from 'src/components/iconify';
+import { useTranslations } from 'next-intl';
 
 import { NAV, HEADER } from '../config-layout';
 import AccountPopover from '../common/account-popover';
@@ -24,7 +28,7 @@ type Props = {
 
 export default function Header({ onOpenNav }: Props) {
   const theme = useTheme();
-
+  const t = useTranslations();
   const settings = useSettingsContext();
 
   const isNavHorizontal = settings.themeLayout === 'horizontal';
@@ -54,6 +58,33 @@ export default function Header({ onOpenNav }: Props) {
         justifyContent="flex-end"
         spacing={{ xs: 0.5, sm: 1 }}
       >
+        <InputBase
+          placeholder={t('Global.Label.search')}
+          startAdornment={
+            <InputAdornment position="start" sx={{ ml: 0.5, mr: 0, p: 1 }}>
+              <Iconify icon="eva:search-fill" width={20} sx={{ color: 'grey.600' }} />
+            </InputAdornment>
+          }
+          sx={{
+            width: { xs: 140, sm: 220, md: 220 },
+            height: 40,
+            px: 1,
+            borderRadius: '20px',
+            bgcolor: '#f7f7f7',
+            color: 'text.primary',
+            '& input': {
+              p: 0,
+              typography: 'body2',
+              fontWeight: 500,
+              color: 'grey.800',
+              '&::placeholder': {
+                color: 'grey.500',
+                opacity: 1,
+              },
+            },
+          }}
+        />
+
         <LanguagePopover />
 
         <AccountPopover />
@@ -66,16 +97,16 @@ export default function Header({ onOpenNav }: Props) {
       sx={{
         height: HEADER.H_MOBILE,
         zIndex: theme.zIndex.appBar + 1,
-        bgcolor: '#D5DAE3',
+        bgcolor: '#ffffff',
         ...(lgUp && {
-          width: `calc(100% - ${NAV.W_VERTICAL + 1}px)`,
+          width: `calc(100% - ${NAV.W_VERTICAL}px)`,
           height: HEADER.H_DESKTOP,
           ...(offsetTop && {
             height: HEADER.H_DESKTOP_OFFSET,
           }),
           ...(isNavHorizontal && {
             width: 1,
-            bgcolor: '#D5DAE3',
+            bgcolor: '#ffffff',
             height: HEADER.H_DESKTOP_OFFSET,
             borderBottom: `1px solid ${alpha('#919EAB', 0.16)}`,
           }),
@@ -89,7 +120,7 @@ export default function Header({ onOpenNav }: Props) {
         sx={{
           height: 1,
           px: { lg: 5 },
-          bgcolor: '#D5DAE3',
+          bgcolor: '#ffffff',
         }}
       >
         {renderContent}

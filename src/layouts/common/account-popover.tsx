@@ -25,33 +25,32 @@ export default function AccountPopover() {
 
   return (
     <>
-      <IconButton
-        component={m.button}
-        whileTap="tap"
-        whileHover="hover"
-        onClick={popover.onOpen}
-        sx={{
-          width: 40,
-          height: 40,
-          background: (theme) => alpha(theme.palette.grey[500], 0.08),
-          ...(popover.open && {
-            background: (theme) =>
-              `linear-gradient(135deg, ${theme.palette.primary.light} 0%, ${theme.palette.primary.main} 100%)`,
-          }),
-        }}
-      >
-        <Avatar
-          src={user?.image}
-          alt={user?.name}
-          sx={{
-            width: 36,
-            height: 36,
-            border: (theme) => `solid 2px ${theme.palette.background.default}`,
-          }}
-        >
-          {user?.name?.charAt(0).toUpperCase()}
-        </Avatar>
-      </IconButton>
+      <Button
+  onClick={popover.onOpen}
+  sx={{
+    px: 1,
+    py: 0.5,
+    borderRadius: '20px',
+    bgcolor: '#f7f7f7',
+    color: 'text.primary',
+    textTransform: 'none',
+    gap: 1,
+  }}
+>
+  <Typography variant="body2" sx={{ fontWeight: 500, color: 'grey.700' }}>
+    Admin
+  </Typography>
+
+  <Avatar
+    src={"/customer.png"}
+    alt={user?.name}
+    sx={{ width: 32, height: 32 }}
+  >
+    {/* {user?.name?.charAt(0).toUpperCase()} */}
+  </Avatar>
+
+  
+</Button>
 
       <CustomPopover
         open={popover.open}

@@ -44,17 +44,17 @@ export default function NavVertical({ openNav, onCloseNav }: Props) {
         height: 1,
         display: 'flex',
         flexDirection: 'column',
-        bgcolor: '#D5DAE3',
+        bgcolor: '#ffffff',
       }}
     >
       <Box
         sx={{
           px: 3,
-          py: 3,
+          py: 2,
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          borderBottom: `1px solid ${alpha('#919EAB', 0.2)}`,
+          // borderBottom: `1px solid ${alpha('#919EAB', 0.2)}`,
         }}
       >
         <Logo
@@ -159,7 +159,7 @@ export default function NavVertical({ openNav, onCloseNav }: Props) {
           PaperProps={{
             sx: {
               width: NAV.W_VERTICAL,
-              bgcolor: '#D5DAE3',
+              bgcolor: '#ffffff',
             },
           }}
         >

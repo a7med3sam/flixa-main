@@ -1,24 +1,24 @@
 {
   "Metadata": {
-    "title": "Sinwan Store",
-    "description": "Sinwan Website description",
+    "title": "flixa",
+    "description": "flixa Website description",
     "Categories": {
-      "title": "Categories | Sinwan"
+      "title": "Categories | flixa"
     },
     "SubCategories": {
-      "title": "Subcategories | Sinwan"
+      "title": "Subcategories | flixa"
     },
     "Orders": {
-      "title": "Orders | Sinwan"
+      "title": "Orders | flixa"
     },
     "Products": {
-      "title": "Products | Sinwan"
+      "title": "Products | flixa"
     },
     "Units": {
-      "title": "Units | Sinwan"
+      "title": "Units | flixa"
     },
     "ReturnedOrder": {
-      "title": "Returned Orders | Sinwan"
+      "title": "Returned Orders | flixa"
     },
     "Banners": {
       "title": "Banners"
@@ -27,34 +27,34 @@
       "title": "Discount codes"
     },
     "Offers": {
-      "title": "Offers | Sinwan"
+      "title": "Offers | flixa"
     },
     "Notifications": {
-      "title": "Notifications | Sinwan"
+      "title": "Notifications | flixa"
     },
     "Drivers": {
-      "title": "Drivers | Sinwan"
+      "title": "Drivers | flixa"
     },
     "ReturnPolicy": {
-      "title": "Return Policy | Sinwan"
+      "title": "Return Policy | flixa"
     },
     "PrivacyPolicy": {
-      "title": "Privacy Policy | Sinwan"
+      "title": "Privacy Policy | flixa"
     },
     "ContactUs": {
-      "title": "Contact Us | Sinwan"
+      "title": "Contact Us | flixa"
     },
     "Clients": {
-      "title": "Clients | Sinwan"
+      "title": "Clients | flixa"
     },
     "WorksArea": {
-      "title": "Works Area | Sinwan"
+      "title": "Works Area | flixa"
     },
     "Reports": {
-      "title": "Reports | Sinwan"
+      "title": "Reports | flixa"
     },
     "DeliveryFees": {
-      "title": "Delivery Fees | Sinwan"
+      "title": "Delivery Fees | flixa"
     }
   },
   "Nav": {
@@ -95,7 +95,7 @@
     "setting": "setting"
   },
   "Global": {
-    "title": "Sinwan",
+    "title": "flixa",
     "comma": ",",
     "Date": {
       "sunday": "Sunday",
