@@ -93,7 +93,7 @@ function EmailStep({ onNextStep, setEmail }: StepProps & { setEmail: (email: str
 
   const methods = useForm({
     defaultValues: {
-      email: 'admin@sanwan.com',
+      email: 'admin@flixa.com',
     },
   });
 

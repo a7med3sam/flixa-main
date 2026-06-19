@@ -73,7 +73,7 @@ export default function AccountPopover() {
           </Typography>
 
           <Typography variant="body2" sx={{ color: 'text.secondary' }} noWrap>
-            {user?.email || 'test@senwan.com'}
+            {user?.email || 'test@flixa.com'}
           </Typography>
         </Stack>
 

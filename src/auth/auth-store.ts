@@ -12,7 +12,7 @@ type AuthStore = {
 const mockUser = {
   id: '1',
   name: 'Admin User',
-  email: 'admin@sanwan.com',
+  email: 'admin@flixa.com',
   phoneNumber: '+966501234567',
   image: null,
   role: 'admin',
