@@ -534,6 +534,25 @@
       "total_commission": "Total Commission",
       "actions": "Actions"
     },
+    "Financial": {
+      "title": "Financial Reports",
+      "total_revenue": "Total Revenue",
+      "total_expenses": "Total Expenses",
+      "net_profit": "Net Profit",
+      "profit_ratio": "Profit Ratio",
+      "total_commissions": "Total Commissions",
+      "title_col": "Title",
+      "period": "Period",
+      "revenue": "Revenue",
+      "expenses": "Expenses",
+      "profit": "Profit",
+      "profit_margin": "Profit Margin",
+      "status": "Status",
+      "actions": "Actions",
+      "view": "View",
+      "completed": "Completed",
+      "pending": "Pending"
+    },
     "Drivers": {
       "driver_title": "Drivers",
       "add_driver": "Add Driver",

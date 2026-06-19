@@ -537,6 +537,25 @@
       "total_commission": "إجمالي العمولات",
       "actions": "الإجراءات"
     },
+    "Financial": {
+      "title": "التقارير المالية",
+      "total_revenue": "إجمالي الإيرادات",
+      "total_expenses": "إجمالي المصروفات",
+      "net_profit": "صافي الربح",
+      "profit_ratio": "نسبة الربح",
+      "total_commissions": "إجمالي العمولات",
+      "title_col": "العنوان",
+      "period": "الفترة",
+      "revenue": "الإيرادات",
+      "expenses": "المصروفات",
+      "profit": "الربح",
+      "profit_margin": "نسبة الربح",
+      "status": "الحالة",
+      "actions": "الإجراءات",
+      "view": "عرض",
+      "completed": "مكتمل",
+      "pending": "قيد الانتظار"
+    },
     "Drivers": {
       "driver_title": "السائقين",
       "add_driver": "إضافة سائق",
