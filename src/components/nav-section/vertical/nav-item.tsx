@@ -251,23 +251,23 @@ const StyledNavItem = styled(ListItemButton, {
         ...baseStyles.arrow,
       },
       ...(active && {
-        backgroundColor: alpha(primaryColor, 0.12),
-        color: primaryColor,
+        backgroundColor: primaryColor,
+        color: '#FFFFFF',
         gap: theme.spacing(1.5),
         '&::before': {
-          backgroundColor: primaryColor,
+          backgroundColor: '#FFFFFF',
         },
         '& .icon': {
           opacity: 1,
           flexShrink: 0,
-          color: primaryColor,
+          color: '#FFFFFF',
         },
         '& .label': {
           opacity: 1,
           fontWeight: theme.typography.fontWeightSemiBold,
         },
         '&:hover': {
-          backgroundColor: alpha(primaryColor, 0.16),
+          backgroundColor: theme.palette.primary.dark,
         },
       }),
       ...(opened && {
@@ -291,9 +291,9 @@ const StyledNavItem = styled(ListItemButton, {
       borderRadius: 0,
       minHeight: 36,
       padding: theme.spacing(0.375, 1.25, 0.375, 1.25),
-      backgroundColor: alpha(primaryColor, active ? 0.08 : 0),
-      borderInlineEnd: active ? `2px solid ${primaryColor}` : '2px solid transparent',
-      color: active ? primaryColor : alpha('#454F5B', 0.75),
+      backgroundColor: active ? primaryColor : 'transparent',
+      borderInlineEnd: active ? `2px solid #FFFFFF` : '2px solid transparent',
+      color: active ? '#FFFFFF' : alpha('#454F5B', 0.75),
       '&:hover': {
         backgroundColor: alpha('#919EAB', 0.06),
       },
@@ -312,7 +312,7 @@ const StyledNavItem = styled(ListItemButton, {
           width: 4,
           height: 4,
           borderRadius: '50%',
-          backgroundColor: active ? primaryColor : alpha('#454F5B', 0.35),
+          backgroundColor: active ? '#FFFFFF' : alpha('#454F5B', 0.35),
           transition: theme.transitions.create(['transform', 'background-color'], {
             duration: theme.transitions.duration.shorter,
           }),

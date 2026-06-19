@@ -187,10 +187,10 @@ const StyledNavItem = styled(ListItemButton, {
       },
       ...(active && {
         fontWeight: theme.typography.fontWeightBold,
-        backgroundColor: alpha('#2065D1', 0.08),
-        color: '#2065D1',
+        backgroundColor: theme.palette.primary.main,
+        color: '#FFFFFF',
         '&:hover': {
-          backgroundColor: alpha('#2065D1', 0.12),
+          backgroundColor: theme.palette.primary.dark,
         },
       }),
       ...(opened && {
@@ -227,8 +227,8 @@ const StyledNavItem = styled(ListItemButton, {
         marginRight: theme.spacing(-0.5),
       },
       ...(active && {
-        color: '#2065D1',
-        backgroundColor: alpha('#2065D1', 0.06),
+        color: '#FFFFFF',
+        backgroundColor: theme.palette.primary.main,
         fontWeight: theme.typography.fontWeightSemiBold,
       }),
       ...(opened && {
