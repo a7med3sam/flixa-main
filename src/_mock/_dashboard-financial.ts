@@ -9,10 +9,10 @@ export const FINANCIAL_STATUS_OPTIONS = [
 
 // Financial reports summary
 export const _financialSummary = {
-  totalRevenue: 2450000,
+  totalRevenue: 200,
   totalExpenses: 650000,
   totalCommissions: 87500,
-  netProfit: 1712500,
+  netProfit: 100,
   profitMargin: 69.9,
   paymentMethodBreakdown: [
     { method: 'بطاقة ائتمان', amount: 1200000, percentage: 49 },

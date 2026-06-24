@@ -18,13 +18,13 @@ export const REPORT_PERIOD_OPTIONS = [
 
 // Statistics Dashboard Data
 export const _statisticsSummary = {
-  totalUsers: 15420,
+  totalUsers: 12480,
   activeUsers: 8950,
   newUsers: 245,
-  totalOrders: 45230,
+  totalOrders: 349000,
   completedOrders: 43200,
   pendingOrders: 1850,
-  totalRevenue: 2450000,
+  totalRevenue: 200,
   totalCommissions: 87500,
   averageOrderValue: 54200,
 };

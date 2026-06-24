@@ -13,60 +13,46 @@ export default function DashboardPage() {
         <div className="grid grid-cols-12 gap-6">
         {/* Summary Cards */}
         <div className="col-span-12 sm:col-span-6 md:col-span-3">
-          <div className="bg-grey-200 dark:bg-[#212B36] rounded-2xl shadow-card dark:shadow-cardDark p-6">
+          <div className="bg-grey-200 dark:bg-[#212B36] rounded-2xl shadow-card dark:shadow-cardDark p-5">
             <span className="block text-sm font-medium text-grey-600 dark:text-grey-500 mb-2">
-              إجمالي المستخدمين
+              Total Transaction Volume
             </span>
             <h4 className="text-xl md:text-2xl font-bold text-[#263238] dark:text-white mb-1">
-              {_statisticsSummary.totalUsers.toLocaleString()}
+              {_statisticsSummary.totalUsers.toLocaleString()} SAR
             </h4>
-            <span className="text-sm font-medium text-success">
-              ↑ {_statisticsSummary.newUsers} مستخدم جديد
-            </span>
           </div>
         </div>
 
         <div className="col-span-12 sm:col-span-6 md:col-span-3">
-          <div className="bg-grey-200 dark:bg-[#212B36] rounded-2xl shadow-card dark:shadow-cardDark p-6">
+          <div className="bg-grey-200 dark:bg-[#212B36] rounded-2xl shadow-card dark:shadow-cardDark p-5">
             <span className="block text-sm font-medium text-grey-600 dark:text-grey-500 mb-2">
-              إجمالي الطلبات
+              Platform Revenue
             </span>
             <h4 className="text-xl md:text-2xl font-bold text-[#263238] dark:text-white mb-1">
-              {_statisticsSummary.totalOrders.toLocaleString()}
+              {_statisticsSummary.totalOrders.toLocaleString()} SAR
             </h4>
-            <span className="text-sm font-medium text-success">
-              {(
-                (_statisticsSummary.completedOrders / _statisticsSummary.totalOrders) *
-                100
-              ).toFixed(1)}
-              % مكتمل
-            </span>
           </div>
         </div>
 
         <div className="col-span-12 sm:col-span-6 md:col-span-3">
-          <div className="bg-grey-200 dark:bg-[#212B36] rounded-2xl shadow-card dark:shadow-cardDark p-6">
+          <div className="bg-grey-200 dark:bg-[#212B36] rounded-2xl shadow-card dark:shadow-cardDark p-5">
             <span className="block text-sm font-medium text-grey-600 dark:text-grey-500 mb-2">
-              إجمالي الإيرادات
+              New Customer Signups
             </span>
             <h4 className="text-xl md:text-2xl font-bold text-[#263238] dark:text-white mb-1">
-              {_financialSummary.totalRevenue.toLocaleString()} ريال
+              {_financialSummary.totalRevenue.toLocaleString()} SAR
             </h4>
-            <span className="text-sm font-medium text-success">↑ نمو إيجابي</span>
           </div>
         </div>
 
         <div className="col-span-12 sm:col-span-6 md:col-span-3">
-          <div className="bg-grey-200 dark:bg-[#212B36] rounded-2xl shadow-card dark:shadow-cardDark p-6">
+          <div className="bg-grey-200 dark:bg-[#212B36] rounded-2xl shadow-card dark:shadow-cardDark p-5">
             <span className="block text-sm font-medium text-grey-600 dark:text-grey-500 mb-2">
-              صافي الربح
+              New Merchant Applications
             </span>
             <h4 className="text-xl md:text-2xl font-bold text-success mb-1">
-              {_financialSummary.netProfit.toLocaleString()} ريال
+              {_financialSummary.netProfit.toLocaleString()} SAR
             </h4>
-            <span className="text-sm font-medium text-grey-600 dark:text-grey-500">
-              {_financialSummary.profitMargin}% نسبة الربح
-            </span>
           </div>
         </div>
 
