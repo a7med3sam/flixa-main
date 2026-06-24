@@ -90,7 +90,8 @@
     "contact-us": "تواصل معنا",
     "Work-area": " مناطق العمل",
     "delivery-fees": "رسوم التوصيل",
-    "setting": "الاعدادات"
+    "setting": "الاعدادات",
+    "content_title": "المحتوى"
   },
   "Global": {
     "title": "فليكسا",
@@ -601,7 +602,10 @@
       "arabic": "العربية",
       "english": "الإنجليزية",
       "char_count": "{count} / 160 حرف",
-      "manage_content": "إدارة المحتوى"
+      "manage_content": "إدارة المحتوى",
+      "description_col": "الوصف",
+      "english_desc_label": "الوصف (الإنجليزية)",
+      "arabic_desc_label": "الوصف (العربية)"
     },
     "Commissions": {
       "title": "إدارة العمولات",

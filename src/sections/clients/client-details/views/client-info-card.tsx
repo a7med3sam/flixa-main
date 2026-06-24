@@ -30,10 +30,12 @@ export default function ClientInfoCard({ client }: Props) {
   const isDeleting = useBoolean();
 
   const handleStatusChange = useCallback(
-    async (id: string, newStatus: 'Active' | 'Blocked') => {
-      const res = await editData(endpoints.clients.editStatus(id), 'PATCH', {
-        status: newStatus,
-      });
+    async (id: string, newIsActive: boolean) => {
+      const res = await editData(
+        `${endpoints.clients.editStatus(id)}?isActive=${newIsActive}`,
+        'PUT',
+        {}
+      );
 
       if ('error' in res) {
         enqueueSnackbar(res.error, { variant: 'error' });
@@ -54,8 +56,7 @@ export default function ClientInfoCard({ client }: Props) {
 
   const handleToggleStatus = useCallback(
     (item: ClientItemDetails) => {
-      const newStatus = item.isActive ? 'Blocked' : 'Active';
-      handleStatusChange(item.id, newStatus);
+      handleStatusChange(item.id, !item.isActive);
     },
     [handleStatusChange]
   );
@@ -92,7 +93,7 @@ export default function ClientInfoCard({ client }: Props) {
       text: t('Global.Action.delete'),
     },
     {
-      icon: client.status === 'Active' ? 'mdi:block-helper' : 'mdi:check-circle-outline',
+      icon: client.isActive ? 'mdi:block-helper' : 'mdi:check-circle-outline',
       onClick: () => handleToggleStatus(client),
       expandable: true,
       text: client.isActive ? t('Global.Action.block') : t('Global.Action.active'),
@@ -102,16 +103,18 @@ export default function ClientInfoCard({ client }: Props) {
   const fields = useMemo(
     () => [
       { label: t('Pages.Clients.client_name'), value: client.name },
-      { label:  t('Pages.Clients.client_phone'), value: client.phoneNumber },
-      { label: t('Pages.Clients.client_address'), value: client.addressDescription || '-' },
+      { label: t('Global.Label.email'), value: client.email },
+      { label: t('Pages.Clients.client_phone'), value: client.phoneNumber },
     ],
-    [client,t]
+    [client, t]
   );
 
   const fields1 = useMemo(
     () => [
-      { label:  t('Pages.Clients.account_date'), value: new Date(client.creationTime).toLocaleDateString() },
-      { label:  t('Pages.Clients.account_status'), value: client.status=="Active" ? t('Global.Label.active') : t('Global.Label.inactive'),},
+      {
+        label: t('Pages.Clients.account_status'),
+        value: client.isActive ? t('Global.Label.active') : t('Global.Label.inactive'),
+      },
     ],
     [client, t]
   );
@@ -123,7 +126,7 @@ export default function ClientInfoCard({ client }: Props) {
           <Stack direction={{ xs: 'column', sm: 'row' }} spacing={2} alignItems="flex-start">
             <ImageLink href={client.profileImage || ''}>
               <BrokenImage
-                src={client.profileImage}
+                src={client.profileImage ?? undefined}
                 sx={{
                   width: 120,
                   height: 120,

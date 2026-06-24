@@ -4,7 +4,6 @@ import { ICONS } from 'src/config-icons';
 import { paths } from 'src/routes/paths';
 import Switch from '@mui/material/Switch';
 import { useRouter } from 'next/navigation';
-import { fDate } from 'src/utils/format-time';
 import { endpoints } from 'src/utils/endpoints';
 import { useBoolean } from 'src/hooks/use-boolean';
 import { useLocale, useTranslations } from 'next-intl';
@@ -36,8 +35,8 @@ export default function ClientsTable({ items, totalCount }: Props) {
   const tableHead = [
     { id: 'name', label: 'Pages.Clients.client_name' },
     { id: 'phoneNumber', label: 'Pages.Clients.client_phone' },
-    { id: 'registrationDate', label: 'Pages.Clients.account_date' },
-    { id: 'status', label: 'Pages.Clients.account_status' },
+    { id: 'email', label: 'Global.Label.email' },
+    { id: 'isActive', label: 'Pages.Clients.account_status' },
   ];
 
   const moveFirstToLastIfArabic = (text: string) => {
@@ -48,11 +47,11 @@ export default function ClientsTable({ items, totalCount }: Props) {
 };
 
   const handleStatusChange = useCallback(
-    async (id: string, newStatus: 'Active' | 'Blocked') => {
+    async (id: string, newIsActive: boolean) => {
       const res = await editData(
-        endpoints.clients.editStatus(id),
-        'PATCH',
-        { status: newStatus }
+        `${endpoints.clients.editStatus(id)}?isActive=${newIsActive}`,
+        'PUT',
+        {}
       );
 
       if ('error' in res) {
@@ -73,8 +72,7 @@ export default function ClientsTable({ items, totalCount }: Props) {
 
   const handleToggleStatus = useCallback(
     (item: Clients) => {
-      const newStatus = item.status === 'Active' ? 'Blocked' : 'Active';
-      handleStatusChange(item.id, newStatus);
+      handleStatusChange(item.id, !item.isActive);
     },
     [handleStatusChange]
   );
@@ -139,11 +137,10 @@ export default function ClientsTable({ items, totalCount }: Props) {
             {fixedPhoneNumber}
           </Box>
         );
-      }, registrationDate: (item) =>
-        item.creationTime && fDate(item.creationTime, 'dd-MM-yyyy'),
-      status: (item) => (
+      },
+      isActive: (item) => (
         <Switch
-          checked={item.status === 'Active'}
+          checked={item.isActive}
           onChange={() => handleToggleStatus(item)}
           inputProps={{ 'aria-label': 'controlled' }}
         />
@@ -168,13 +165,13 @@ export default function ClientsTable({ items, totalCount }: Props) {
             },
           },
           {
-            hide: (item) => item.status === 'Blocked',
+            hide: (item) => !item.isActive,
             label: 'Global.Action.block',
             icon: ICONS.global.block,
             onClick: handleToggleStatus,
           },
           {
-            hide: (item) => item.status === 'Active',
+            hide: (item) => item.isActive,
             label: 'Global.Action.active',
             icon: ICONS.global.active,
             onClick: handleToggleStatus,

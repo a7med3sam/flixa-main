@@ -42,6 +42,10 @@ export function useNavData() {
             icon: ICONS.navbar.policy,
             children: [
               {
+                title: 'content_title',
+                path: paths.dashboard.content.aboutUs,
+              },
+              {
                 title: 'about-us',
                 path: paths.dashboard.content.aboutUs,
               },

@@ -16,6 +16,8 @@ import { PATH_AFTER_LOGIN } from 'src/config-global';
 import InputAdornment from '@mui/material/InputAdornment';
 import { useRouter } from 'src/routes/hooks';
 import FormProvider, { RHFTextField } from 'src/components/hook-form';
+import { useSnackbar } from 'notistack';
+import { useAuthStore } from 'src/auth/auth-store';
 
 import { EMAIL_REGEX } from './config-auth';
 
@@ -31,15 +33,30 @@ export default function LoginView() {
 
   const showPassword = useBoolean();
 
-  const methods = useForm();
+  const methods = useForm({
+    defaultValues: {
+      email: 'admin@flexa.com',
+      password: 'Secret@1234',
+    },
+  });
 
   const {
     handleSubmit,
     formState: { isSubmitting },
   } = methods;
 
-  const onSubmit = handleSubmit(async () => {
-    router.push(PATH_AFTER_LOGIN);
+  const { enqueueSnackbar } = useSnackbar();
+  const login = useAuthStore((state) => state.login);
+
+  const onSubmit = handleSubmit(async (data: any) => {
+    try {
+      await login({ email: data.email, password: data.password });
+      router.push(PATH_AFTER_LOGIN);
+      enqueueSnackbar(t('Global.Action.success') || 'Login successful', { variant: 'success' });
+    } catch (error: any) {
+      console.error(error);
+      enqueueSnackbar(error?.message || t('Global.Action.error') || 'Login failed', { variant: 'error' });
+    }
   });
 
   const renderHead = (
@@ -60,6 +77,7 @@ export default function LoginView() {
       <RHFTextField
         name="email"
         label={LABELS.email}
+        
         variant="filled"
         color="primary"
         formLabelProps={{
@@ -72,6 +90,7 @@ export default function LoginView() {
       <Box>
         <RHFTextField
           name="password"
+          
           label={LABELS.password}
           type={showPassword.value ? 'text' : 'password'}
           variant="filled"
@@ -108,11 +127,11 @@ export default function LoginView() {
       <LoadingButton
         fullWidth
         color="primary"
-        size="large"
+        size="medium"
         type="submit"
         variant="soft"
         loading={isSubmitting}
-        sx={{ mt: -1 }}
+        sx={{ mt: -1, color: 'primary.contrastText' }}
       >
         {t('Pages.Auth.login_submit')}
       </LoadingButton>

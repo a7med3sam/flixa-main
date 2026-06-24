@@ -97,6 +97,7 @@ export const paths = {
       details: (id: string) => `/financial-reports/${id}`,
     },
     content: {
+      content: '/content/about-us',
       aboutUs: '/content/about-us',
       termsConditions: '/content/terms-conditions',
       privacyPolicy: '/content/privacy-policy',

@@ -39,6 +39,7 @@ export default function UploadAvatar({
     <Image
       alt="avatar"
       src={imgUrl}
+      disabledEffect
       sx={{
         width: 1,
         height: 1,

@@ -1,27 +1,40 @@
-export interface Clients{
-    id: string;
-    profileImage: string | null;
-    name: string;
-    phoneNumber: string;
-    email: string;
-    status: string;
-    creationTime: string; 
-    gender: string;
+// Matches GET /api/v1/admin/customers response
+export interface Clients {
+  id: string;
+  name: string;
+  email: string;
+  phoneNumber: string;
+  isActive: boolean;
+  profileImage: string | null;
 }
+
+// Matches GET /api/v1/admin/customers/{id}
 export interface ClientItemDetails {
-    id: string;
-    profileImage: string;
-    name: string;
-    phoneNumber: string;
-    email: string;
-    isActive: boolean;
-    creationTime: string; // or Date, depending on how you handle it
-    addressDescription: string | null;
-    gender: string;
-    status: string;
-  }
-  export interface TotalStatus{
-    totalCount: number;
-    totalBlocked:number;
-    totalActive:number;
-   }
+  id: string;
+  name: string;
+  email: string;
+  phoneNumber: string;
+  isActive: boolean;
+  profileImage: string | null;
+  nationalId?: string;
+}
+
+// Matches POST /api/v1/admin/customers request body
+export interface CreateClientPayload {
+  name: string;
+  email: string;
+  phoneNumber: string;
+  nationalId: string;
+}
+
+export interface TotalStatus {
+  totalCount: number;
+  totalBlocked: number;
+  totalActive: number;
+}
+
+// API list response wrapper
+export interface CustomersListResponse {
+  items: Clients[];
+  totalCount: number;
+}

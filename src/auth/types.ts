@@ -3,18 +3,15 @@ import { Profile } from "src/types/prof";
 export interface User {
   id: string;
   name: string;
-  avatar: string;
-  username: string;
+  phoneNumber: string;
   email: string;
-  email_verified_at: null;
-  phone: string;
-  phone_verified_at: null;
-  roles: string[];
-  modules: string[];
+  role: string;
+  isVerified: boolean;
+  avatar?: string; // Optional if we still need an avatar field
+  modules?: any[];
 }
 
-
-export interface LoginCretentials {
+export interface LoginCredentials {
   email: string;
   password: string;
 }
@@ -22,16 +19,16 @@ export interface LoginCretentials {
 export interface AuthStore {
   loading: boolean;
   authenticated: boolean;
-  user: User  | null;
-  login: (creds: LoginCretentials) => Promise<void | { error: string }>;
+  user: User | null;
+  login: (creds: LoginCredentials) => Promise<void>;
   verifyOtp: (otp: string) => Promise<void | { error: string }>;
-   init: () => Promise<void | { accessTokenExp: number } | undefined>;
+  init: () => Promise<void>;
   logout: () => Promise<void>;
   updateProfile: (updates: Partial<Profile>) => void;
 }
 
 export interface UserSession {
   user: User;
-  accessToken: { value: string; expire: Date };
-  refreshToken: { value: string; expire: Date };
+  accessToken: string;
+  refreshToken: string;
 }

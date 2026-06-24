@@ -8,13 +8,20 @@ export const endpoints = {
     editFreeShipping:(id:string)=>`/admin/settings/${id}`
   },
   auth: {
-    login: '/auth/login',
-    refreshToken: '/auth/refresh-token',
+    login: '/api/v1/admin/auth/login',
+    refreshToken: '/api/v1/admin/auth/refresh-token',
+    logout: '/api/v1/admin/auth/logout',
     sendOtp: '/otps/resend-otp',
     verifyOtp: '/otps/verify-otp',
     changePassword: '/auth/change-password',
-    viewProf:"/admin/profile/get-profile",
-    editProf:"/admin/profile/update-profile"
+  },
+  profile: {
+    get: '/api/v1/admin/profile',
+    update: '/api/v1/admin/profile/update',
+    phoneOtp: '/api/v1/admin/profile/phone/send-otp',
+    phoneVerify: '/api/v1/admin/profile/phone/verify-otp',
+    emailOtp: '/api/v1/admin/profile/email/send-otp',
+    emailVerify: '/api/v1/admin/profile/email/verify-otp',
   },
   categories: {
     single: (id: string) => `/admin/categories/${id}`,
@@ -102,13 +109,12 @@ export const endpoints = {
     delete: (id: string) => `/admin/drivers/${id}`,
   },
   clients: {
-    list: '/admin/clients',
-    single: (id: string) => `/admin/clients/${id}`,
-    editStatus: (id: string) => `/admin/clients/${id}`,
-    delete: (id: string) => `/admin/clients/${id}`,
-    patch: (id: string) => `/admin/clients/${id}`,
-    count: '/admin/clients/count',
-    orderClient:(id: string) =>`/admin/clients/${id}/orders`
+    list: '/api/v1/admin/customers',
+    single: (id: string) => `/api/v1/admin/customers/${id}`,
+    create: '/api/v1/admin/customers',
+    editStatus: (id: string) => `/api/v1/admin/customers/${id}/status`,
+    delete: (id: string) => `/api/v1/admin/customers/${id}`,
+    patch: (id: string) => `/api/v1/admin/customers/${id}`,
   },
   reports:{
     listReports:'/admin/reports',
@@ -140,5 +146,10 @@ employee:{
     patch:(id:string)=>`/admin/shoping-costs/${id}`,
     create:'/admin/shoping-costs',
     delete:(id:string)=>`/admin/shoping-costs/${id}`,
-  }
+  },
+  pages: {
+    list: '/api/v1/admin/pages',
+    single: (id: string) => `/api/v1/admin/pages/${id}`,
+    update: (id: string) => `/api/v1/admin/pages/${id}`,
+  },
 };

@@ -92,7 +92,8 @@
     "contact-us": "Contact Us",
     "Work-area": "Works Area",
     "delivery-fees": "Delivery Fees",
-    "setting": "setting"
+    "setting": "setting",
+    "content_title": "Content"
   },
   "Global": {
     "title": "flixa",
@@ -598,7 +599,10 @@
       "arabic": "Arabic",
       "english": "English",
       "char_count": "{count} / 160 characters",
-      "manage_content": "Manage Content"
+      "manage_content": "Manage Content",
+      "description_col": "Description",
+      "english_desc_label": "Description (English)",
+      "arabic_desc_label": "Description (Arabic)"
     },
     "Commissions": {
       "title": "Commissions Management",

@@ -64,7 +64,7 @@ export default function AccountPopover() {
         }}
       >
         <Stack alignItems="center" spacing={1}>
-          <Avatar src={user?.image} alt={user?.name} sx={{ width: 80, height: 80 }}>
+          <Avatar src={user?.avatar} alt={user?.name} sx={{ width: 80, height: 80 }}>
             {user?.name?.charAt(0).toUpperCase()}
           </Avatar>
 
