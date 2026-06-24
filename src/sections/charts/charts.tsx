@@ -176,8 +176,12 @@ export function BranchPerformanceChart() {
 
 export function AnalyticsSection() {
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-[55%_45%] gap-3">
-      <DailyCouponUsageChart />
+    // <div className="grid grid-cols-1 lg:grid-cols-[55%_45%] gap-3">
+    //   <DailyCouponUsageChart />
+    //   <MonthlyPerformanceChart />
+    // </div>
+    <div>
+      {/* <DailyCouponUsageChart /> */}
       <MonthlyPerformanceChart />
     </div>
   );
