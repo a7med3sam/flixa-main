@@ -181,13 +181,13 @@ export default function UsersListView() {
             </div>
 
             {/* Add customer button */}
-            <button
+            {/* <button
               onClick={() => setOpenCreate(true)}
               className="flex items-center gap-2 px-4 py-2 rounded-xl bg-primary hover:bg-primary-dark text-white text-sm font-bold shadow-sm transition-colors"
             >
               <Iconify icon="solar:add-circle-bold" className="w-4 h-4" />
               إضافة عميل
-            </button>
+            </button> */}
           </div>
         </div>
 

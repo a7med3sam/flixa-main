@@ -31,18 +31,18 @@ export default function SharedTableRow<T extends { id: string }>({
 
   return (
     <>
-      <tr className="hover:bg-grey-50 dark:hover:bg-grey-800/50 transition-colors border-b border-solid border-grey-100 dark:border-grey-600">
+      <tr className="group hover:bg-grey-50 dark:hover:bg-grey-800/50 transition-colors">
         {headIds.map((x, index) => (
           <td
             key={index}
-            className={`${paddingClass} whitespace-nowrap ${getAlignClass(getAlignment(x))}`}
+            className={`${paddingClass} whitespace-nowrap border-b border-l-0 border-r-0 border-t-0 border-solid border-grey-100 group-last:border-b-0 dark:border-grey-700 ${getAlignClass(getAlignment(x))}`}
           >
             {customRender && x in customRender ? customRender[x]!(row) : (row as any)[x]}
           </td>
         ))}
 
         {!!actions?.length && (
-          <td className="px-2 py-1 whitespace-nowrap text-end">
+          <td className="px-2 py-1 whitespace-nowrap text-end border-b border-l-0 border-r-0 border-t-0 border-solid border-grey-100 group-last:border-b-0 dark:border-grey-700">
             <IconButton color={popover.open ? 'inherit' : 'default'} onClick={popover.onOpen}>
               <Iconify icon="eva:more-vertical-fill" />
             </IconButton>

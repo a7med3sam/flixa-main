@@ -16,12 +16,12 @@ export default function TableHeadCustom({ headLabel, enableActions = false }: Pr
   };
 
   return (
-    <thead className="bg-grey-100 dark:bg-grey-800 border-b border-solid border-grey-200 dark:border-grey-700">
+    <thead>
       <tr>
         {headLabel.map((headCell) => (
           <th
             key={headCell.id}
-            className={`px-6 py-4 text-xs font-semibold text-grey-500 dark:text-grey-400 tracking-wider whitespace-nowrap uppercase ${getAlignmentClass(
+            className={`px-6 py-4 text-xs font-semibold text-grey-500 dark:text-grey-400 tracking-wider whitespace-nowrap uppercase border-b border-l-0 border-r-0 border-t-0 border-solid border-grey-200 dark:border-grey-700 ${getAlignmentClass(
               headCell.align
             )}`}
             style={{ width: headCell.width }}
@@ -29,7 +29,9 @@ export default function TableHeadCustom({ headLabel, enableActions = false }: Pr
             {headCell?.label ? t(headCell?.label) : ''}
           </th>
         ))}
-        {enableActions && <th className="px-6 py-4 whitespace-nowrap" />}
+        {enableActions && (
+          <th className="px-6 py-4 whitespace-nowrap border-b border-l-0 border-r-0 border-t-0 border-solid border-grey-200 dark:border-grey-700" />
+        )}
       </tr>
     </thead>
   );
