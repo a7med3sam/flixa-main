@@ -13,45 +13,79 @@ export default function DashboardPage() {
         <div className="grid grid-cols-12 gap-6">
         {/* Summary Cards */}
         <div className="col-span-12 sm:col-span-6 md:col-span-3">
-          <div className="bg-grey-200 dark:bg-[#212B36] rounded-2xl shadow-card dark:shadow-cardDark p-5">
-            <span className="block text-sm font-medium text-grey-600 dark:text-grey-500 mb-2">
-              Total Transaction Volume
-            </span>
-            <h4 className="text-xl md:text-2xl font-bold text-[#263238] dark:text-white mb-1">
+          <div className="bg-[#F8F8F8] rounded-2xl shadow-card dark:shadow-cardDark p-5">
+            <div className="flex items-start justify-between gap-3 mb-2">
+              <span className="block text-sm font-medium text-[#0F172A]">
+                Total Transaction <br /> Volume
+              </span>
+              <img
+                src="/assets/icons/home/cart.svg"
+                alt=""
+                className="h-10 w-10 shrink-0"
+                aria-hidden="true"
+                width={44}
+                height={44}
+              />
+            </div>
+            <h4 className="text-xl md:text-2xl font-semibold text-[#0F172A] mb-1">
               {_statisticsSummary.totalUsers.toLocaleString()} SAR
             </h4>
           </div>
         </div>
 
         <div className="col-span-12 sm:col-span-6 md:col-span-3">
-          <div className="bg-grey-200 dark:bg-[#212B36] rounded-2xl shadow-card dark:shadow-cardDark p-5">
-            <span className="block text-sm font-medium text-grey-600 dark:text-grey-500 mb-2">
-              Platform Revenue
-            </span>
-            <h4 className="text-xl md:text-2xl font-bold text-[#263238] dark:text-white mb-1">
+          <div className="bg-[#E5FFEE] rounded-2xl shadow-card dark:shadow-cardDark p-5">
+            <div className="flex items-start justify-between gap-3 mb-2">
+              <span className="block text-sm font-medium text-[#0F172A]">
+                Platform Revenue
+              </span>
+              <img
+                src="/assets/icons/home/send_money.svg"
+                alt=""
+                className="h-10 w-10 shrink-0"
+                aria-hidden="true"
+              />
+            </div>
+            <h4 className="text-xl md:text-2xl font-semibold text-[#34C759] mb-1">
               {_statisticsSummary.totalOrders.toLocaleString()} SAR
             </h4>
           </div>
         </div>
 
         <div className="col-span-12 sm:col-span-6 md:col-span-3">
-          <div className="bg-grey-200 dark:bg-[#212B36] rounded-2xl shadow-card dark:shadow-cardDark p-5">
-            <span className="block text-sm font-medium text-grey-600 dark:text-grey-500 mb-2">
-              New Customer Signups
-            </span>
-            <h4 className="text-xl md:text-2xl font-bold text-[#263238] dark:text-white mb-1">
-              {_financialSummary.totalRevenue.toLocaleString()} SAR
+          <div className="bg-[#EDF4FF] rounded-2xl shadow-card dark:shadow-cardDark p-5">
+            <div className="flex items-start justify-between gap-3 mb-2">
+              <span className="block text-sm font-medium text-[#0F172A]">
+                New Customer Signups
+              </span>
+              <img
+                src="/assets/icons/home/plus_user.svg"
+                alt=""
+                className="h-10 w-10 shrink-0"
+                aria-hidden="true"
+              />
+            </div>
+            <h4 className="text-xl md:text-2xl font-semibold text-[#2077FF] mb-1">
+              {_financialSummary.totalRevenue.toLocaleString()}
             </h4>
           </div>
         </div>
 
         <div className="col-span-12 sm:col-span-6 md:col-span-3">
-          <div className="bg-grey-200 dark:bg-[#212B36] rounded-2xl shadow-card dark:shadow-cardDark p-5">
-            <span className="block text-sm font-medium text-grey-600 dark:text-grey-500 mb-2">
-              New Merchant Applications
-            </span>
-            <h4 className="text-xl md:text-2xl font-bold text-success mb-1">
-              {_financialSummary.netProfit.toLocaleString()} SAR
+          <div className="bg-[#F4EDFF] rounded-2xl shadow-card dark:shadow-cardDark p-5">
+            <div className="flex items-start justify-between gap-3 mb-2">
+              <span className="block text-sm font-medium text-[#0F172A]">
+                New Merchant Applications
+              </span>
+              <img
+                src="/assets/icons/home/plus_user_2.svg"
+                alt=""
+                className="h-10 w-10 shrink-0"
+                aria-hidden="true"
+              />
+            </div>
+            <h4 className="text-xl md:text-2xl font-semibold text-[#8E4AFF] mb-1">
+              {_financialSummary.netProfit.toLocaleString()}
             </h4>
           </div>
         </div>
@@ -75,7 +109,7 @@ export default function DashboardPage() {
                 <div key={i} className="mb-2">
                   <div className="flex justify-between items-center mb-1">
                     <span className="text-sm text-[#263238] dark:text-white">{item.status}</span>
-                    <span className="text-sm font-bold text-[#263238] dark:text-white">
+                    <span className="text-sm font-semibold text-[#263238] dark:text-white">
                       {item.value.toLocaleString()}
                     </span>
                   </div>
@@ -101,7 +135,7 @@ export default function DashboardPage() {
             <div className="flex flex-wrap gap-4">
               <Link 
                 href={paths.dashboard.users.list}
-                className="inline-flex items-center justify-center px-4 py-2 rounded-lg bg-primary hover:bg-primary-light text-white text-sm font-bold shadow-sm transition-colors duration-200 no-underline"
+                className="inline-flex items-center justify-center px-4 py-2 rounded-lg bg-primary hover:bg-primary-light text-white text-sm font-semibold shadow-sm transition-colors duration-200 no-underline"
               >
                 إدارة المستخدمين
               </Link>

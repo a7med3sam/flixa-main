@@ -45,7 +45,7 @@ export default async function RootLayout({
             themeStretch: false,
           }}
         >
-          <ThemeProvider>
+          <ThemeProvider locale={locale}>
             <LocalizationProvider>
               <MotionLazy>
                 <SnackbarProvider>

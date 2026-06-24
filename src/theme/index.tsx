@@ -9,7 +9,7 @@ import { createTheme, ThemeOptions, ThemeProvider as MuiThemeProvider } from '@m
 // system
 import { palette } from './palette';
 import { shadows } from './shadows';
-import { typography } from './typography';
+import { createTypography } from './typography';
 // options
 import RTL from './options/right-to-left';
 import { customShadows } from './custom-shadows';
@@ -22,9 +22,10 @@ import NextAppDirEmotionCacheProvider from './next-emotion-cache';
 
 type Props = {
   children: React.ReactNode;
+  locale?: string;
 };
 
-export default function ThemeProvider({ children }: Props) {
+export default function ThemeProvider({ children, locale = 'ar' }: Props) {
   const settings = useSettingsContext();
 
   useEffect(() => {
@@ -53,9 +54,10 @@ export default function ThemeProvider({ children }: Props) {
       direction: settings.themeDirection,
       shadows: shadows(settings.themeMode),
       shape: { borderRadius: 8 },
-      typography,
+      typography: createTypography(locale),
     }),
     [
+      locale,
       settings.themeMode,
       settings.themeDirection,
       presets.palette,

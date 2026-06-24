@@ -1,4 +1,4 @@
-import { Cairo, Kufam } from 'next/font/google';
+import { Kufam, Poppins } from 'next/font/google';
 
 // ----------------------------------------------------------------------
 
@@ -31,7 +31,7 @@ declare module '@mui/material/styles' {
   }
 }
 
-export const enPrimaryFont = Cairo({
+export const enPrimaryFont = Poppins({
   weight: ['400', '500', '600', '700', '800', '900'],
   subsets: ['latin'],
   display: 'swap',
@@ -50,8 +50,11 @@ export const secondaryFont = Kufam({
 // LEARN MORE
 // https://nextjs.org/docs/basic-features/font-optimization#google-fonts
 
-export const typography = {
-  fontFamily: `DINNextLTArabic, ${enPrimaryFont.style.fontFamily}`,
+export const createTypography = (locale = 'ar') => ({
+  fontFamily:
+    locale === 'en'
+      ? `${enPrimaryFont.style.fontFamily}, DINNextLTArabic`
+      : `DINNextLTArabic, ${enPrimaryFont.style.fontFamily}`,
   fontSecondaryFamily: secondaryFont.style.fontFamily,
   fontWeightRegular: 400,
   fontWeightMedium: 500,
@@ -127,4 +130,6 @@ export const typography = {
     fontSize: pxToRem(14),
     textTransform: 'unset',
   },
-} as const;
+} as const);
+
+export const typography = createTypography();
