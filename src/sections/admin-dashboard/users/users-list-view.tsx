@@ -8,6 +8,8 @@ import SharedTable from 'src/components/SharedTable/SharedTable';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { Clients, CreateClientPayload, CustomersListResponse } from 'src/types/clients';
 import Switch from '@mui/material/Switch';
+import Avatar from '@mui/material/Avatar';
+import Divider from '@mui/material/Divider';
 import {
   Dialog,
   DialogTitle,
@@ -27,6 +29,7 @@ const TABLE_HEAD = [
   { id: 'email', label: 'Global.Label.email' },
   { id: 'phoneNumber', label: 'Global.Label.phone' },
   { id: 'isActive', label: 'Global.Label.status' },
+  { id: 'actions', label: 'Global.Label.actions' },
 ];
 
 export default function UsersListView() {
@@ -47,6 +50,11 @@ export default function UsersListView() {
     nationalId: '',
   });
   const [formErrors, setFormErrors] = useState<Partial<CreateClientPayload>>({});
+
+  // View dialog state
+  const [openView, setOpenView] = useState(false);
+  const [viewUser, setViewUser] = useState<any>(null);
+  const [viewLoading, setViewLoading] = useState(false);
 
   // ──────────────────────────────────────────────
   // Fetch customers from API
@@ -83,6 +91,26 @@ export default function UsersListView() {
         enqueueSnackbar('تم تحديث الحالة بنجاح', { variant: 'success' });
       } catch (err: any) {
         enqueueSnackbar(err?.message || 'Failed to update status', { variant: 'error' });
+      }
+    },
+    [enqueueSnackbar]
+  );
+
+  // ──────────────────────────────────────────────
+  // View single user
+  // ──────────────────────────────────────────────
+  const handleViewUser = useCallback(
+    async (user: Clients) => {
+      setOpenView(true);
+      setViewLoading(true);
+      try {
+        const res = await axios.get(endpoints.clients.single(user.id));
+        setViewUser(res.data);
+      } catch (err: any) {
+        enqueueSnackbar(err?.message || 'فشل تحميل بيانات العميل', { variant: 'error' });
+        setOpenView(false);
+      } finally {
+        setViewLoading(false);
       }
     },
     [enqueueSnackbar]
@@ -142,15 +170,104 @@ export default function UsersListView() {
   const customRender = useMemo(
     () => ({
       isActive: (user: Clients) => (
-        <Switch
-          checked={user.isActive}
-          onChange={() => handleToggleStatus(user)}
-          color="primary"
-          inputProps={{ 'aria-label': 'toggle status' }}
-        />
+        <Box
+          sx={{
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: 0.75,
+            px: 1.5,
+            py: 0.5,
+            borderRadius: '999px',
+            // bgcolor: user.isActive ? 'rgba(34, 197, 94, 0.12)' : 'rgba(239, 68, 68, 0.12)',
+            // border: '1px solid',
+            // borderColor: user.isActive ? 'rgba(34, 197, 94, 0.3)' : 'rgba(239, 68, 68, 0.3)',
+          }}
+        >
+          <Box
+            sx={{
+              width: 8,
+              height: 8,
+              borderRadius: '50%',
+              bgcolor: user.isActive ? '#22c55e' : '#ef4444',
+              flexShrink: 0,
+            }}
+          />
+          <Typography
+            variant="caption"
+            fontWeight={600}
+            sx={{ color: user.isActive ? '#16a34a' : '#dc2626', lineHeight: 1 }}
+          >
+            {user.isActive ? 'نشط' : 'غير نشط'}
+          </Typography>
+        </Box>
+      ),
+      actions: (user: Clients) => (
+        <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+          {/* View button */}
+          <Box
+            component="button"
+            onClick={() => handleViewUser(user)}
+            sx={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: 0.5,
+              px: 1.5,
+              py: 0.6,
+              borderRadius: '8px',
+              bgcolor: 'rgba(59, 130, 246, 0.1)',
+              border: '1px solid rgba(59, 130, 246, 0.25)',
+              color: '#3b82f6',
+              fontSize: '0.75rem',
+              fontWeight: 600,
+              cursor: 'pointer',
+              transition: 'all 0.2s',
+              '&:hover': {
+                bgcolor: 'rgba(59, 130, 246, 0.2)',
+                borderColor: 'rgba(59, 130, 246, 0.5)',
+              },
+            }}
+          >
+            <Iconify icon="solar:eye-bold" style={{ width: 14, height: 14 }} />
+            عرض
+          </Box>
+
+          {/* Toggle status button */}
+          <Box
+            sx={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: 0.5,
+              px: 1,
+              py: 0.4,
+              borderRadius: '8px',
+              bgcolor: user.isActive ? 'rgba(239, 68, 68, 0.08)' : 'rgba(34, 197, 94, 0.08)',
+              // border: '1px solid',
+              // borderColor: user.isActive ? 'rgba(239, 68, 68, 0.25)' : 'rgba(34, 197, 94, 0.25)',
+            }}
+          >
+            <Switch
+              checked={user.isActive}
+              onChange={() => handleToggleStatus(user)}
+              size="small"
+              sx={{
+                '& .MuiSwitch-switchBase.Mui-checked': { color: '#22c55e' },
+                '& .MuiSwitch-switchBase.Mui-checked + .MuiSwitch-track': { bgcolor: '#22c55e' },
+                '& .MuiSwitch-switchBase:not(.Mui-checked)': { color: '#ef4444' },
+                '& .MuiSwitch-switchBase:not(.Mui-checked) + .MuiSwitch-track': { bgcolor: '#ef4444' },
+              }}
+            />
+            <Typography
+              variant="caption"
+              fontWeight={600}
+              sx={{ color: user.isActive ? '#ef4444' : '#22c55e', lineHeight: 1, userSelect: 'none' }}
+            >
+              {user.isActive ? 'تعطيل' : 'تفعيل'}
+            </Typography>
+          </Box>
+        </Box>
       ),
     }),
-    [handleToggleStatus]
+    [handleToggleStatus, handleViewUser]
   );
 
   return (
@@ -278,6 +395,81 @@ export default function UsersListView() {
             startIcon={creating ? <CircularProgress size={16} color="inherit" /> : null}
           >
             {creating ? 'جارٍ الإنشاء...' : 'إنشاء العميل'}
+          </Button>
+        </DialogActions>
+      </Dialog>
+
+      {/* ── View User Dialog ── */}
+      <Dialog
+        open={openView}
+        onClose={() => { if (!viewLoading) { setOpenView(false); setViewUser(null); } }}
+        maxWidth="xs"
+        fullWidth
+        PaperProps={{ sx: { borderRadius: 3 } }}
+      >
+        <DialogTitle sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', pb: 1 }}>
+          <Typography variant="h6" fontWeight={700}>بيانات العميل</Typography>
+          <IconButton onClick={() => { setOpenView(false); setViewUser(null); }} disabled={viewLoading} size="small">
+            <Iconify icon="eva:close-fill" />
+          </IconButton>
+        </DialogTitle>
+
+        <DialogContent dividers>
+          {viewLoading ? (
+            <Box display="flex" justifyContent="center" alignItems="center" py={5}>
+              <CircularProgress />
+            </Box>
+          ) : viewUser ? (
+            <Stack spacing={2.5} pt={1} alignItems="center">
+              {/* Avatar */}
+              <Avatar
+                src={viewUser.profileImage || ''}
+                alt={viewUser.name}
+                sx={{ width: 80, height: 80, fontSize: 32, bgcolor: 'primary.main' }}
+              >
+                {viewUser.name?.charAt(0)?.toUpperCase()}
+              </Avatar>
+
+              {/* Status badge */}
+              <Box
+                sx={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: 0.75,
+                  px: 1.5,
+                  py: 0.5,
+                  borderRadius: '999px',
+                  bgcolor: viewUser.isActive ? 'rgba(34,197,94,0.12)' : 'rgba(239,68,68,0.12)',
+                  border: '1px solid',
+                  borderColor: viewUser.isActive ? 'rgba(34,197,94,0.3)' : 'rgba(239,68,68,0.3)',
+                }}
+              >
+                <Box sx={{ width: 8, height: 8, borderRadius: '50%', bgcolor: viewUser.isActive ? '#22c55e' : '#ef4444' }} />
+                <Typography variant="caption" fontWeight={600} sx={{ color: viewUser.isActive ? '#16a34a' : '#dc2626' }}>
+                  {viewUser.isActive ? 'نشط' : 'غير نشط'}
+                </Typography>
+              </Box>
+
+              <Divider flexItem />
+
+              {/* Info rows */}
+              {[
+                { label: 'الاسم', value: viewUser.name },
+                { label: 'البريد الإلكتروني', value: viewUser.email },
+                { label: 'رقم الهاتف', value: viewUser.phoneNumber },
+              ].map((row) => (
+                <Box key={row.label} sx={{ width: '100%', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                  <Typography variant="body2" color="text.secondary" fontWeight={500}>{row.label}</Typography>
+                  <Typography variant="body2" fontWeight={600}>{row.value || '—'}</Typography>
+                </Box>
+              ))}
+            </Stack>
+          ) : null}
+        </DialogContent>
+
+        <DialogActions sx={{ px: 3, py: 2 }}>
+          <Button onClick={() => { setOpenView(false); setViewUser(null); }} variant="outlined" color="inherit" fullWidth>
+            إغلاق
           </Button>
         </DialogActions>
       </Dialog>

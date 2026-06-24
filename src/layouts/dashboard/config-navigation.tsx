@@ -43,7 +43,7 @@ export function useNavData() {
             children: [
               {
                 title: 'content_title',
-                path: paths.dashboard.content.aboutUs,
+                path: paths.dashboard.content.content,
               },
               {
                 title: 'about-us',
