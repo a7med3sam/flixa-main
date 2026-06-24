@@ -650,7 +650,9 @@
       "actions": "الإجراءات",
       "search_placeholder": "البحث...",
       "view": "عرض",
-      "reply": "رد"
+      "reply": "رد",
+      "login_success": "تم تسجيل الدخول بنجاح",
+      "login_failed": "فشل تسجيل الدخول"
     },
     "Drivers": {
       "driver_title": "السائقين",

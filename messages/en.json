@@ -647,7 +647,9 @@
       "actions": "Actions",
       "search_placeholder": "Search...",
       "view": "View",
-      "reply": "Reply"
+      "reply": "Reply",
+      "login_success": "Login successful",
+      "login_failed": "Login failed"
     },
     "Drivers": {
       "driver_title": "Drivers",

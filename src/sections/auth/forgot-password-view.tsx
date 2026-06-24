@@ -114,7 +114,7 @@ function EmailStep({ onNextStep, setEmail }: StepProps & { setEmail: (email: str
       variant="h3"
       textTransform="capitalize"
       textAlign="center"
-      color="primary.contrastText"
+      color="primary.main"
     >
       {t('Pages.Auth.forgot_password')}
     </Typography>
@@ -133,14 +133,14 @@ function EmailStep({ onNextStep, setEmail }: StepProps & { setEmail: (email: str
             color="primary"
             formLabelProps={{
               sx: {
-                color: 'white',
+                color: 'text.secondary',
               },
             }}
           />
           <Link
             href={paths.auth.login}
             component={RouterLink}
-            color="primary.light"
+            color="primary.main"
             variant="caption"
             paddingInlineStart={2}
             display="inline-block"
@@ -216,7 +216,7 @@ function OtpStep({
       variant="h3"
       textTransform="capitalize"
       textAlign="center"
-      color="primary.contrastText"
+      color="primary.main"
     >
       {t('Pages.Auth.verify_otp')}
     </Typography>
@@ -228,7 +228,7 @@ function OtpStep({
         {renderHead}
 
         <Box>
-          <Typography textAlign="center" color="primary.contrastText" gutterBottom>
+          <Typography textAlign="center" color="text.secondary" gutterBottom>
             {t('Pages.Auth.otp_sent_to', { email })}
           </Typography>
 
@@ -300,7 +300,7 @@ const ResendOtp = memo(({ email: _email }: { email: string }) => {
 
   return (
     <Link
-      color="#fffc"
+      color="primary.main"
       textAlign="center"
       width="100%"
       variant="subtitle2"
@@ -361,7 +361,7 @@ function NewPasswordStep({ onBackStep }: StepProps & { token: string }) {
       variant="h3"
       textTransform="capitalize"
       textAlign="center"
-      color="primary.contrastText"
+      color="primary.main"
     >
       {t('Pages.Auth.reset_password')}
     </Typography>
@@ -377,7 +377,7 @@ function NewPasswordStep({ onBackStep }: StepProps & { token: string }) {
           color="primary"
           formLabelProps={{
             sx: {
-              color: 'white',
+              color: 'text.secondary',
             },
           }}
           variant="filled"
@@ -402,7 +402,7 @@ function NewPasswordStep({ onBackStep }: StepProps & { token: string }) {
           variant="filled"
           formLabelProps={{
             sx: {
-              color: 'white',
+              color: 'text.secondary',
             },
           }}
           type={showPassword.value ? 'text' : 'password'}

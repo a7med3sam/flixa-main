@@ -8,7 +8,7 @@ type Props = {
 export default function Layout({ children }: Props) {
   const t = useTranslations();
   return (
-    <AuthClassicLayout title={t('Global.title')} image="/logo/logo_single.png">
+    <AuthClassicLayout title={t('Global.title')} image="/assets/Bg.jpg">
       {children}
     </AuthClassicLayout>
   );

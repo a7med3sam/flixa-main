@@ -52,21 +52,18 @@ export default function LoginView() {
     try {
       await login({ email: data.email, password: data.password });
       router.push(PATH_AFTER_LOGIN);
-      enqueueSnackbar(t('Global.Action.success') || 'Login successful', { variant: 'success' });
+      enqueueSnackbar(t('Pages.Messages.login_success') || 'Login successful', { variant: 'success' });
     } catch (error: any) {
       console.error(error);
-      enqueueSnackbar(error?.message || t('Global.Action.error') || 'Login failed', { variant: 'error' });
+      enqueueSnackbar(error?.message || t('Pages.Messages.login_failed') || 'Login failed', {
+        variant: 'error',
+      });
     }
   });
 
   const renderHead = (
-    <Typography
-      variant="h3"
-      textTransform="capitalize"
-      textAlign="center"
-      color="primary.contrastText"
-    >
-      {t('Pages.Auth.login_title')}
+    <Typography variant="h3" textTransform="capitalize" textAlign="start" color="primary.main">
+      Welcome 👋
     </Typography>
   );
 
@@ -77,12 +74,21 @@ export default function LoginView() {
       <RHFTextField
         name="email"
         label={LABELS.email}
-        
         variant="filled"
         color="primary"
         formLabelProps={{
           sx: {
-            color: 'white',
+            px: 1,
+            borderRadius: 1,
+            fontSize: 14,
+          },
+        }}
+        inputProps={{
+          sx: {
+            bgcolor: '#F8F8F8',
+            px: 1,
+            borderRadius: 1,
+            fontSize: 14,
           },
         }}
       />
@@ -90,13 +96,34 @@ export default function LoginView() {
       <Box>
         <RHFTextField
           name="password"
-          
           label={LABELS.password}
           type={showPassword.value ? 'text' : 'password'}
           variant="filled"
           color="primary"
           slotProps={{
             input: {
+              sx: {
+                bgcolor: '#F8F8F8',
+                borderRadius: 1,
+                fontSize: 14,
+                pr: 1,
+
+                '&:hover': {
+                  bgcolor: '#F8F8F8',
+                },
+
+                '&.Mui-focused': {
+                  bgcolor: '#F8F8F8',
+                },
+
+                '&:before': {
+                  borderBottom: 'none',
+                },
+
+                '&:hover:not(.Mui-disabled, .Mui-error):before': {
+                  borderBottom: 'none',
+                },
+              },
               endAdornment: (
                 <InputAdornment position="end">
                   <IconButton onClick={showPassword.onToggle} edge="end">
@@ -108,14 +135,22 @@ export default function LoginView() {
           }}
           formLabelProps={{
             sx: {
-              color: 'white',
+              color: 'text.secondary',
+              px: 1,
+              borderRadius: 1,
+              fontSize: 14,
+            },
+          }}
+          inputProps={{
+            sx: {
+              px: 1,
             },
           }}
         />
         <Link
           href={paths.auth.forgotPassword}
           component={RouterLink}
-          color="primary.light"
+          color="primary.main"
           variant="caption"
           paddingInlineStart={2}
           display="inline-block"
@@ -131,7 +166,7 @@ export default function LoginView() {
         type="submit"
         variant="soft"
         loading={isSubmitting}
-        sx={{ mt: -1, color: 'primary.contrastText' }}
+        sx={{ mt: -1, color: 'common.white', fontWeight: 500, fontSize: 16, py: 1.5 }}
       >
         {t('Pages.Auth.login_submit')}
       </LoadingButton>
