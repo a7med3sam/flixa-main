@@ -157,7 +157,7 @@ export default function UsersListView() {
     <div className="p-6">
       <div className="bg-white dark:bg-[#212B36] rounded-2xl shadow-card dark:shadow-cardDark overflow-hidden">
         {/* Header */}
-        <div className="flex flex-wrap items-start justify-between gap-4 px-6 py-5 border-b border-solid border-grey-200 dark:border-grey-700">
+        <div className="flex flex-wrap items-start justify-between gap-4 px-6 py-5">
           <div>
             <h2 className="text-base font-bold text-[#263238] dark:text-white">إدارة العملاء</h2>
             <p className="mt-0.5 text-sm text-grey-600 dark:text-grey-400">
