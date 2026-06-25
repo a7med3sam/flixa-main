@@ -14,10 +14,7 @@ export const metadata = {
   keywords: 'react,material,kit,application,dashboard,admin,template',
   manifest: '/manifest.json',
   icons: [
-    { rel: 'icon', url: '/favicon/favicon.ico' },
-    { rel: 'icon', type: 'image/png', sizes: '16x6', url: '/favicon/favicon-16x16.png' },
-    { rel: 'icon', type: 'image/png', sizes: '32x12', url: '/favicon/favicon-32x32.png' },
-    { rel: 'apple-touch-icon', sizes: '180x67', url: '/favicon/apple-touch-icon.png' },
+    { rel: 'icon', type: 'image/svg+xml', url: '/favicon/flexa_logo.svg' },
   ],
 };
 
