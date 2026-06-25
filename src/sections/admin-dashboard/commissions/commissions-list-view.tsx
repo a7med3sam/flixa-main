@@ -1,166 +1,275 @@
 'use client';
 
-import { useState, useMemo } from 'react';
+import { useState } from 'react';
 import { useTranslations } from 'next-intl';
+import { m, AnimatePresence } from 'framer-motion';
 import {
   _commissionsList,
   COMMISSION_TYPE_OPTIONS,
   COMMISSION_STATUS_OPTIONS,
 } from 'src/_mock/_dashboard-commissions';
 import Iconify from 'src/components/iconify';
-import SharedTable from 'src/components/SharedTable/SharedTable';
 
 type DashboardCommission = (typeof _commissionsList)[number];
 
-const STATUS_BADGE_CLASSES: Record<string, string> = {
-  active:
-    'bg-success/10 text-success-dark dark:text-success-light border border-solid border-success/30',
-  inactive:
-    'bg-grey-100 dark:bg-grey-800 text-grey-600 dark:text-grey-400 border border-solid border-grey-300 dark:border-grey-700',
-  pending:
-    'bg-warning/10 text-warning-dark dark:text-warning-light border border-solid border-warning/30',
+const STATUS_COLORS: Record<string, string> = {
+  active: 'bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20',
+  inactive: 'bg-gray-500/10 text-gray-600 dark:text-gray-400 border-gray-500/20',
+  pending: 'bg-amber-500/10 text-amber-600 dark:text-amber-400 border-amber-500/20',
 };
 
 export default function CommissionsListView() {
   const t = useTranslations();
-  const [commissions, setCommissions] = useState(_commissionsList);
+  // Using the first 4 for the demo since they represent unique commission categories
+  const [commissions, setCommissions] = useState(_commissionsList.slice(0, 4)); 
   const [searchTerm, setSearchTerm] = useState('');
+  const [editingId, setEditingId] = useState<string | null>(null);
 
   const filteredCommissions = commissions.filter((c) =>
     c.name.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
-  const handleAddCommission = () => {
-    const newCommission: DashboardCommission = {
-      ..._commissionsList[0],
-      id: Date.now().toString(),
-      name: 'عمولة جديدة',
-      type: 'percentage',
-      rate: '0',
-      minAmount: 0,
-      maxAmount: 0,
-      status: 'pending',
-      totalTransactions: 0,
-      totalAmount: 0,
-      totalCommission: 0,
-    };
-
-    setCommissions((prevCommissions) => [newCommission, ...prevCommissions]);
+  const handleEditToggle = (id: string) => {
+    setEditingId(editingId === id ? null : id);
   };
 
-  const handleEditCommission = (commission: DashboardCommission) => {
-    setCommissions((prevCommissions) =>
-      prevCommissions.map((item) =>
-        item.id === commission.id
-          ? { ...item, status: item.status === 'active' ? 'inactive' : 'active' }
-          : item
-      )
+  const handleSave = (id: string, newRate: string, newType: string, newStatus: string) => {
+    setCommissions((prev) =>
+      prev.map((c) => (c.id === id ? { ...c, rate: newRate, type: newType, status: newStatus } : c))
     );
+    setEditingId(null);
   };
-
-  const handleDeleteCommission = (commissionId: string) => {
-    setCommissions((prevCommissions) =>
-      prevCommissions.filter((commission) => commission.id !== commissionId)
-    );
-  };
-
-  const actions = useMemo(
-    () => [
-      {
-        label: 'إضافة',
-        icon: <Iconify icon="solar:add-circle-bold" />,
-        onClick: () => handleAddCommission(),
-      },
-      {
-        label: 'تعديل',
-        icon: <Iconify icon="solar:pen-bold" />,
-        onClick: (row: DashboardCommission) => handleEditCommission(row),
-      },
-      {
-        label: 'حذف',
-        icon: <Iconify icon="solar:trash-bin-trash-bold" />,
-        onClick: (row: DashboardCommission) => handleDeleteCommission(row.id),
-        sx: { color: 'error.main' },
-      },
-    ],
-    []
-  );
-
-  const customRender = useMemo(
-    () => ({
-      type: (commission: DashboardCommission) => (
-        <span>{COMMISSION_TYPE_OPTIONS.find((t) => t.value === commission.type)?.label}</span>
-      ),
-      rate: (commission: DashboardCommission) => (
-        <span>
-          {commission.type === 'percentage' ? `${commission.rate}%` : `${commission.rate} ريال`}
-        </span>
-      ),
-      status: (commission: DashboardCommission) => {
-        const label = COMMISSION_STATUS_OPTIONS.find((s) => s.value === commission.status)?.label;
-        const cls = STATUS_BADGE_CLASSES[commission.status] ?? STATUS_BADGE_CLASSES.inactive;
-        return (
-          <span
-            className={`inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-semibold ${cls}`}
-          >
-            {label}
-          </span>
-        );
-      },
-    }),
-    []
-  );
 
   return (
-    <div className="p-6">
-      <div className="bg-white dark:bg-[#212B36] rounded-2xl shadow-card dark:shadow-cardDark overflow-hidden">
-        {/* Header */}
-        <div className="flex flex-wrap items-start justify-between gap-4 px-6 py-5 border-b border-solid border-grey-200 dark:border-grey-700">
-          <div>
-            <h2 className="text-base font-bold text-[#263238] dark:text-white">
-              {t('Pages.Commissions.title')}
-            </h2>
-            <p className="mt-0.5 text-sm text-grey-600 dark:text-grey-400">
-              {t('Pages.Commissions.subtitle')}
-            </p>
-          </div>
-
-          {/* Search */}
-          <div className="relative">
-            <span className="absolute inset-y-0 start-3 flex items-center pointer-events-none text-grey-500 dark:text-grey-400">
-              <Iconify icon="mdi:magnify" className="w-5 h-5" />
-            </span>
-            <input
-              type="text"
-              placeholder="البحث..."
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              className="ps-10 pe-4 py-2 rounded-xl border border-solid border-grey-300 dark:border-grey-700 bg-grey-100 dark:bg-grey-800 text-sm text-grey-800 dark:text-grey-200 placeholder:text-grey-400 focus:outline-none focus:ring-2 focus:ring-primary transition"
-            />
-          </div>
+    <div className="p-6 max-w-7xl mx-auto min-h-screen">
+      {/* Header Section */}
+      <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-10">
+        <div className="space-y-1">
+          <h1 className="text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-primary to-primary-light">
+            إعدادات العمولات
+          </h1>
+          <p className="text-grey-500 dark:text-grey-400 font-medium">
+            قم بإدارة وتعديل نسب العمولات للتطبيق بسهولة
+          </p>
         </div>
 
-        {/* Table */}
-        <SharedTable<DashboardCommission>
-          tableHead={[
-            { id: 'name', label: 'Pages.Commissions.name', align: 'right' as any },
-            { id: 'type', label: 'Pages.Commissions.type', align: 'right' as any },
-            { id: 'rate', label: 'Pages.Commissions.rate', align: 'right' as any },
-            { id: 'minAmount', label: 'Pages.Commissions.min_amount', align: 'right' as any },
-            { id: 'maxAmount', label: 'Pages.Commissions.max_amount', align: 'right' as any },
-            { id: 'status', label: 'Pages.Commissions.status', align: 'right' as any },
-            {
-              id: 'totalCommission',
-              label: 'Pages.Commissions.total_commission',
-              align: 'right' as any,
-            },
-          ]}
-          data={filteredCommissions}
-          count={filteredCommissions.length}
-          customRender={customRender}
-          actions={actions}
-        />
+        {/* Search */}
+        <div className="relative group w-full md:w-80">
+          <div className="absolute inset-y-0 start-0 flex items-center ps-4 pointer-events-none text-grey-400 group-focus-within:text-primary transition-colors">
+            <Iconify icon="solar:magnifer-linear" className="w-5 h-5" />
+          </div>
+          <input
+            type="text"
+            placeholder="ابحث عن عمولة..."
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            className="w-full h-12 ps-12 pe-4 rounded-2xl border border-solid border-grey-200 dark:border-grey-800 bg-white dark:bg-[#212B36] text-sm text-grey-800 dark:text-white placeholder:text-grey-400 focus:outline-none focus:border-primary focus:ring-4 focus:ring-primary/10 transition-all shadow-sm"
+          />
+        </div>
       </div>
+
+      {/* Cards Grid */}
+      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-2 2xl:grid-cols-3 gap-6">
+        <AnimatePresence>
+          {filteredCommissions.map((commission, index) => (
+            <CommissionCard
+              key={commission.id}
+              commission={commission}
+              isEditing={editingId === commission.id}
+              onToggleEdit={() => handleEditToggle(commission.id)}
+              onSave={handleSave}
+              index={index}
+            />
+          ))}
+        </AnimatePresence>
+      </div>
+
+      {filteredCommissions.length === 0 && (
+        <div className="flex flex-col items-center justify-center py-20">
+          <Iconify icon="solar:folder-error-broken" className="w-24 h-24 text-grey-300 dark:text-grey-700 mb-4" />
+          <p className="text-lg text-grey-500 dark:text-grey-400">لا توجد عمولات مطابقة للبحث</p>
+        </div>
+      )}
     </div>
+  );
+}
+
+function CommissionCard({
+  commission,
+  isEditing,
+  onToggleEdit,
+  onSave,
+  index,
+}: {
+  commission: DashboardCommission;
+  isEditing: boolean;
+  onToggleEdit: () => void;
+  onSave: (id: string, rate: string, type: string, status: string) => void;
+  index: number;
+}) {
+  const [editRate, setEditRate] = useState(commission.rate);
+  const [editType, setEditType] = useState(commission.type);
+  const [editStatus, setEditStatus] = useState(commission.status);
+
+  const handleSave = () => {
+    onSave(commission.id, editRate, editType, editStatus);
+  };
+
+  const handleCancel = () => {
+    setEditRate(commission.rate);
+    setEditType(commission.type);
+    setEditStatus(commission.status);
+    onToggleEdit();
+  };
+
+  return (
+    <m.div
+      layout
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, scale: 0.9 }}
+      transition={{ duration: 0.3, delay: index * 0.1 }}
+      className="relative overflow-hidden bg-white dark:bg-[#212B36] rounded-[2rem] border border-solid border-grey-100 dark:border-grey-800 shadow-xl shadow-grey-200/40 dark:shadow-black/20 group hover:shadow-2xl hover:-translate-y-1 transition-all duration-300"
+    >
+      {/* Decorative Gradient Blob */}
+      <div className="absolute -top-24 -end-24 w-48 h-48 bg-primary/5 rounded-full blur-3xl group-hover:bg-primary/10 transition-colors pointer-events-none" />
+
+      <div className="p-8 relative z-10">
+        <div className="flex justify-between items-start mb-6">
+          <div className="flex items-center gap-4">
+            <div className="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center text-primary shadow-inner">
+              <Iconify icon="solar:wallet-money-bold-duotone" className="w-7 h-7" />
+            </div>
+            <div>
+              <h3 className="text-lg font-bold text-grey-900 dark:text-white mb-1">
+                {commission.name}
+              </h3>
+              <span
+                className={`inline-flex items-center px-2.5 py-1 rounded-lg text-xs font-bold border border-solid ${
+                  STATUS_COLORS[commission.status] || STATUS_COLORS.inactive
+                }`}
+              >
+                {COMMISSION_STATUS_OPTIONS.find((s) => s.value === commission.status)?.label ||
+                  commission.status}
+              </span>
+            </div>
+          </div>
+          
+          <button
+            onClick={isEditing ? handleCancel : onToggleEdit}
+            className={`flex items-center justify-center w-10 h-10 rounded-full border border-solid transition-all duration-300 shadow-sm ${
+              isEditing 
+                ? 'border-red-200 dark:border-red-900 bg-red-50 dark:bg-red-900/20 text-red-600 hover:bg-red-600 hover:text-white hover:border-red-600 hover:shadow-red-500/30' 
+                : 'border-grey-200 dark:border-grey-700 bg-white dark:bg-grey-800 text-grey-600 dark:text-grey-300 hover:bg-primary hover:text-white hover:border-primary hover:shadow-primary/30'
+            }`}
+          >
+            <Iconify icon={isEditing ? 'solar:close-circle-linear' : 'solar:pen-linear'} className="w-5 h-5" />
+          </button>
+        </div>
+
+        <AnimatePresence mode="wait">
+          {!isEditing ? (
+            <m.div
+              key="view"
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: 20 }}
+              transition={{ duration: 0.2 }}
+            >
+              <div className="flex items-baseline gap-2 mb-8">
+                <span className="text-5xl font-black text-grey-900 dark:text-white tracking-tight">
+                  {commission.rate}
+                </span>
+                <span className="text-xl font-semibold text-grey-400">
+                  {commission.type === 'percentage' ? '%' : 'ريال'}
+                </span>
+              </div>
+              
+              <div className="grid grid-cols-2 gap-4">
+                <div className="bg-grey-50 dark:bg-grey-800/50 p-4 rounded-2xl border border-solid border-grey-100 dark:border-grey-700/50">
+                  <p className="text-xs text-grey-500 mb-1">الحد الأدنى</p>
+                  <p className="font-bold text-grey-900 dark:text-white">{commission.minAmount} ريال</p>
+                </div>
+                <div className="bg-grey-50 dark:bg-grey-800/50 p-4 rounded-2xl border border-solid border-grey-100 dark:border-grey-700/50">
+                  <p className="text-xs text-grey-500 mb-1">الحد الأقصى</p>
+                  <p className="font-bold text-grey-900 dark:text-white">{commission.maxAmount} ريال</p>
+                </div>
+              </div>
+            </m.div>
+          ) : (
+            <m.div
+              key="edit"
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -20 }}
+              transition={{ duration: 0.2 }}
+              className="space-y-5"
+            >
+              <div>
+                <label className="block text-sm font-semibold text-grey-700 dark:text-grey-300 mb-2">
+                  قيمة العمولة
+                </label>
+                <div className="relative">
+                  <input
+                    type="number"
+                    value={editRate}
+                    onChange={(e) => setEditRate(e.target.value)}
+                    className="w-full h-12 px-4 rounded-xl border border-solid border-grey-300 dark:border-grey-700 bg-white dark:bg-grey-900 text-grey-900 dark:text-white focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all font-bold text-lg"
+                  />
+                  <div className="absolute inset-y-0 end-0 flex items-center pe-3 pointer-events-none">
+                    <span className="text-grey-400 font-medium">
+                      {editType === 'percentage' ? '%' : 'SAR'}
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-sm font-semibold text-grey-700 dark:text-grey-300 mb-2">
+                    نوع العمولة
+                  </label>
+                  <select
+                    value={editType}
+                    onChange={(e) => setEditType(e.target.value)}
+                    className="w-full h-12 px-4 rounded-xl border border-solid border-grey-300 dark:border-grey-700 bg-white dark:bg-grey-900 text-grey-900 dark:text-white focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all"
+                  >
+                    {COMMISSION_TYPE_OPTIONS.map((opt) => (
+                      <option key={opt.value} value={opt.value}>
+                        {opt.label}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+                <div>
+                  <label className="block text-sm font-semibold text-grey-700 dark:text-grey-300 mb-2">
+                    الحالة
+                  </label>
+                  <select
+                    value={editStatus}
+                    onChange={(e) => setEditStatus(e.target.value)}
+                    className="w-full h-12 px-4 rounded-xl border border-solid border-grey-300 dark:border-grey-700 bg-white dark:bg-grey-900 text-grey-900 dark:text-white focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all"
+                  >
+                    {COMMISSION_STATUS_OPTIONS.map((opt) => (
+                      <option key={opt.value} value={opt.value}>
+                        {opt.label}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+              </div>
+
+              <button
+                onClick={handleSave}
+                className="w-full h-12 mt-2 bg-primary hover:bg-primary-dark text-white rounded-xl font-bold transition-colors shadow-lg shadow-primary/30 flex items-center justify-center gap-2"
+              >
+                <Iconify icon="solar:check-circle-bold" className="w-5 h-5" />
+                حفظ التغييرات
+              </button>
+            </m.div>
+          )}
+        </AnimatePresence>
+      </div>
+    </m.div>
   );
 }
