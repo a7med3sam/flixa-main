@@ -59,13 +59,13 @@
   },
   "Nav": {
     "main": "Main",
-    "users": "Users Management",
-    "commissions": "Commissions Management",
+    "users": "Users",
+    "commissions": "Commissions",
     "financial": "Financial Reports",
     "content": "Content Management",
     "about-us": "About Us",
     "terms": "Terms & Conditions",
-    "notifications": "Notifications Management",
+    "notifications": "Notifications",
     "categories": "Categories",
     "subcategories": "Subcategories",
     "products": "Products",
@@ -191,7 +191,10 @@
       "new_password": "New Password",
       "confirm_new_password": "Confirm New Password",
       "basic_data": "Basic Data",
-      "change_password": "Change Password"
+      "change_password": "Change Password",
+      "activate": "Activate",
+      "deactivate": "Deactivate",
+      "clients": "Clients"
     },
     "Helper": {
       "drop_or_select": "Drop files here or click <browse>browse</browse> through your machine",

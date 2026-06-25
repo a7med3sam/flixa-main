@@ -27,7 +27,7 @@ export default function SharedTableRow<T extends { id: string }>({
     return 'text-start';
   };
 
-  const paddingClass = dense ? 'px-2 py-0.5' : 'px-2 py-1';
+  const paddingClass = dense ? 'px-6 py-1' : 'px-6 py-2';
 
   return (
     <>
@@ -42,7 +42,7 @@ export default function SharedTableRow<T extends { id: string }>({
         ))}
 
         {!!actions?.length && (
-          <td className="px-2 py-1 whitespace-nowrap text-end border-b border-l-0 border-r-0 border-t-0 border-solid border-grey-100 group-last:border-b-0 dark:border-grey-700">
+          <td className="px-6 py-4 whitespace-nowrap text-end border-b border-l-0 border-r-0 border-t-0 border-solid border-grey-100 group-last:border-b-0 dark:border-grey-700">
             <IconButton color={popover.open ? 'inherit' : 'default'} onClick={popover.onOpen}>
               <Iconify icon="eva:more-vertical-fill" />
             </IconButton>

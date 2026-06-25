@@ -23,18 +23,19 @@ import {
   Typography,
   IconButton,
 } from '@mui/material';
+import { useTranslations } from 'next-intl';
 
 const TABLE_HEAD = [
   { id: 'name', label: 'Global.Label.name' },
   { id: 'email', label: 'Global.Label.email' },
   { id: 'phoneNumber', label: 'Global.Label.phone' },
   { id: 'isActive', label: 'Global.Label.status' },
-  { id: 'actions', label: 'Global.Label.actions' },
+  { id: 'actions', label: 'Pages.Messages.actions' },
 ];
 
 export default function UsersListView() {
   const { enqueueSnackbar } = useSnackbar();
-
+  const t = useTranslations('');
   const [users, setUsers] = useState<Clients[]>([]);
   const [totalCount, setTotalCount] = useState(0);
   const [loading, setLoading] = useState(true);
@@ -177,7 +178,7 @@ export default function UsersListView() {
             gap: 0.75,
             px: 1.5,
             py: 0.5,
-            borderRadius: '999px',
+            // borderRadius: '999px',
             // bgcolor: user.isActive ? 'rgba(34, 197, 94, 0.12)' : 'rgba(239, 68, 68, 0.12)',
             // border: '1px solid',
             // borderColor: user.isActive ? 'rgba(34, 197, 94, 0.3)' : 'rgba(239, 68, 68, 0.3)',
@@ -194,10 +195,10 @@ export default function UsersListView() {
           />
           <Typography
             variant="caption"
-            fontWeight={600}
+            fontWeight={500}
             sx={{ color: user.isActive ? '#16a34a' : '#dc2626', lineHeight: 1 }}
           >
-            {user.isActive ? 'نشط' : 'غير نشط'}
+            {user.isActive ? t('Global.Label.active') : t('Global.Label.inactive')}
           </Typography>
         </Box>
       ),
@@ -211,24 +212,24 @@ export default function UsersListView() {
               display: 'inline-flex',
               alignItems: 'center',
               gap: 0.5,
-              px: 1.5,
+              px: 1,
               py: 0.6,
               borderRadius: '8px',
-              bgcolor: 'rgba(59, 130, 246, 0.1)',
-              border: '1px solid rgba(59, 130, 246, 0.25)',
-              color: '#3b82f6',
+              bgcolor: '#EDF4FF',
+              border: '0px',
+              color: '#2077FF',
               fontSize: '0.75rem',
-              fontWeight: 600,
+              fontWeight: 500,
               cursor: 'pointer',
               transition: 'all 0.2s',
               '&:hover': {
                 bgcolor: 'rgba(59, 130, 246, 0.2)',
-                borderColor: 'rgba(59, 130, 246, 0.5)',
+                // borderColor: 'rgba(59, 130, 246, 0.5)',
               },
             }}
           >
-            <Iconify icon="solar:eye-bold" style={{ width: 14, height: 14 }} />
-            عرض
+            <Iconify icon="solar:eye-linear" style={{ width: 14, height: 14 }} />
+            {t("Global.Action.view")}
           </Box>
 
           {/* Toggle status button */}
@@ -236,11 +237,11 @@ export default function UsersListView() {
             sx={{
               display: 'inline-flex',
               alignItems: 'center',
-              gap: 0.5,
+              // gap: 0.5,
               px: 1,
-              py: 0.4,
+              py: 0.2,
               borderRadius: '8px',
-              bgcolor: user.isActive ? 'rgba(239, 68, 68, 0.08)' : 'rgba(34, 197, 94, 0.08)',
+              bgcolor: user.isActive ? '#FF9EA033' : '#E5FFEEB2',
               // border: '1px solid',
               // borderColor: user.isActive ? 'rgba(239, 68, 68, 0.25)' : 'rgba(34, 197, 94, 0.25)',
             }}
@@ -249,19 +250,20 @@ export default function UsersListView() {
               checked={user.isActive}
               onChange={() => handleToggleStatus(user)}
               size="small"
-              sx={{
-                '& .MuiSwitch-switchBase.Mui-checked': { color: '#22c55e' },
-                '& .MuiSwitch-switchBase.Mui-checked + .MuiSwitch-track': { bgcolor: '#22c55e' },
-                '& .MuiSwitch-switchBase:not(.Mui-checked)': { color: '#ef4444' },
-                '& .MuiSwitch-switchBase:not(.Mui-checked) + .MuiSwitch-track': { bgcolor: '#ef4444' },
-              }}
+              // sx={{
+              //   '& .MuiSwitch-switchBase.Mui-checked': { color: '#22c55e' },
+              //   '& .MuiSwitch-switchBase.Mui-checked + .MuiSwitch-track': { bgcolor: '#22c55e' },
+              //   '& .MuiSwitch-switchBase:not(.Mui-checked)': { color: '#ef4444' },
+              //   '& .MuiSwitch-switchBase:not(.Mui-checked) + .MuiSwitch-track': { bgcolor: '#ef4444' },
+              // }}
             />
             <Typography
               variant="caption"
               fontWeight={600}
-              sx={{ color: user.isActive ? '#ef4444' : '#22c55e', lineHeight: 1, userSelect: 'none' }}
+              sx={{ color: user.isActive ? '#ef4444' : '#22c55e', lineHeight: 1, userSelect: 'none', fontSize: '0.75rem',
+              fontWeight: 500, }}
             >
-              {user.isActive ? 'تعطيل' : 'تفعيل'}
+              {user.isActive ? t('Global.Label.deactivate') : t('Global.Label.activate')}
             </Typography>
           </Box>
         </Box>
@@ -276,10 +278,10 @@ export default function UsersListView() {
         {/* Header */}
         <div className="flex flex-wrap items-start justify-between gap-4 px-6 py-5">
           <div>
-            <h2 className="text-base font-bold text-[#263238] dark:text-white">إدارة العملاء</h2>
-            <p className="mt-0.5 text-sm text-grey-600 dark:text-grey-400">
+            <h1 className="text-base font-bold text-[#263238] dark:text-white">{t("Global.Label.clients")}</h1>
+            {/* <p className="mt-0.5 text-sm text-grey-600 dark:text-grey-400">
               إدارة حسابات العملاء وتفعيلها أو تعطيلها
-            </p>
+            </p> */}
           </div>
 
           <div className="flex items-center gap-3 flex-wrap">
@@ -290,7 +292,7 @@ export default function UsersListView() {
               </span>
               <input
                 type="text"
-                placeholder="البحث..."
+                placeholder={t("Pages.Messages.search_placeholder")}
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
                 className="ps-10 pe-4 py-2 rounded-xl border border-solid border-grey-300 dark:border-grey-700 bg-grey-100 dark:bg-grey-800 text-sm text-grey-800 dark:text-grey-200 placeholder:text-grey-400 focus:outline-none focus:ring-2 focus:ring-primary transition"
@@ -309,11 +311,7 @@ export default function UsersListView() {
         </div>
 
         {/* Loading state */}
-        {loading ? (
-          <Box display="flex" justifyContent="center" alignItems="center" py={8}>
-            <CircularProgress />
-          </Box>
-        ) : (
+        
           <SharedTable<Clients>
             tableHead={TABLE_HEAD}
             data={filteredUsers}
@@ -321,7 +319,7 @@ export default function UsersListView() {
             customRender={customRender}
             actions={[]}
           />
-        )}
+       
       </div>
 
       {/* ── Create Customer Dialog ── */}
