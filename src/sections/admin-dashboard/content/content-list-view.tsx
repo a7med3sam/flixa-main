@@ -25,9 +25,9 @@ import { Page, UpdatePageRequest } from 'src/types/content-page';
 // ----------------------------------------------------------------------
 
 const TABLE_HEAD: headCellType[] = [
-  { id: 'slug', label: 'Pages.Content.title_col', align: cellAlignment.right },
-  { id: 'description', label: 'Pages.Content.description_col', align: cellAlignment.right },
-  { id: 'actions', label: 'Pages.Content.actions_col', align: cellAlignment.right },
+  { id: 'slug', label: 'Pages.Content.title_col' },
+  { id: 'description', label: 'Pages.Content.description_col' },
+  { id: 'actions', label: 'Pages.Content.actions_col' },
 ];
 
 // ----------------------------------------------------------------------

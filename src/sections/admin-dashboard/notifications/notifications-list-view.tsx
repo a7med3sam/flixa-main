@@ -27,12 +27,12 @@ type NotificationFormData = {
 };
 
 const TABLE_HEAD: headCellType[] = [
-  { id: 'titleAr', label: 'Pages.Notification.title_ar_col', align: cellAlignment.right },
-  { id: 'type', label: 'Pages.Notification.type_col', align: cellAlignment.right },
-  { id: 'status', label: 'Pages.Notification.status_col', align: cellAlignment.right },
-  { id: 'recipientCount', label: 'Pages.Notification.recipients_col', align: cellAlignment.right },
-  { id: 'successRate', label: 'Pages.Notification.success_rate', align: cellAlignment.right },
-  { id: 'createdAt', label: 'Pages.Notification.date_col', align: cellAlignment.right },
+  { id: 'titleAr', label: 'Pages.Notification.title_ar_col'},
+  { id: 'type', label: 'Pages.Notification.type_col'},
+  { id: 'status', label: 'Pages.Notification.status_col'},
+  { id: 'recipientCount', label: 'Pages.Notification.recipients_col'},
+  { id: 'successRate', label: 'Pages.Notification.success_rate'},
+  { id: 'createdAt', label: 'Pages.Notification.date_col'},
 ];
 
 const STATUS_BADGE_CLASSES: Record<string, string> = {

@@ -29,9 +29,9 @@ export default function SharedTable<T extends { id: string }>({
   const dense = table.dense;
 
   return (
-    <div className="w-full p-3 border-0 outline-none ring-0 shadow-none">
-      <div className="w-full overflow-x-auto overflow-y-hidden relative border-0 outline-none ring-0 shadow-none bg-white dark:bg-[#212B36]">
-        <table className="w-full text-sm text-start border-collapse border-spacing-0 border-0 outline-none ring-0 shadow-none">
+    <div className="w-full p-3">
+      <div className="w-full overflow-x-auto overflow-y-hidden relative bg-white dark:bg-[#212B36]">
+        <table className="w-full min-w-full table-auto text-sm text-start border-collapse border-spacing-0">
           <TableHeadCustom headLabel={tableHead} enableActions={!!actions?.length} />
 
           <tbody>

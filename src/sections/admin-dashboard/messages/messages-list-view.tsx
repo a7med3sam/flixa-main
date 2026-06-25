@@ -14,13 +14,13 @@ import { DEFAULT_LIMIT } from 'src/components/constant';
 type DashboardMessage = (typeof _messagesList)[number];
 
 const TABLE_HEAD: headCellType[] = [
-  { id: 'status', label: 'Pages.Messages.status', align: cellAlignment.right },
-  { id: 'senderName', label: 'Pages.Messages.sender_name', align: cellAlignment.right },
-  { id: 'subject', label: 'Pages.Messages.subject', align: cellAlignment.right },
-  { id: 'category', label: 'Pages.Messages.category', align: cellAlignment.right },
-  { id: 'priority', label: 'Pages.Messages.priority', align: cellAlignment.right },
-  { id: 'receivedAt', label: 'Pages.Messages.date', align: cellAlignment.right },
-  { id: 'actions', label: 'Pages.Messages.actions', align: cellAlignment.right },
+  { id: 'status', label: 'Pages.Messages.status'},
+  { id: 'senderName', label: 'Pages.Messages.sender_name'},
+  { id: 'subject', label: 'Pages.Messages.subject'},
+  { id: 'category', label: 'Pages.Messages.category'},
+  { id: 'priority', label: 'Pages.Messages.priority'},
+  { id: 'receivedAt', label: 'Pages.Messages.date'},
+  { id: 'actions', label: 'Pages.Messages.actions'},
 ];
 
 const PRIORITY_BADGE_CLASSES: Record<string, string> = {
