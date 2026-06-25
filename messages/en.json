@@ -200,7 +200,9 @@
       "platform_revenue": "Platform Revenue",
       "total_transaction_volume": "Total Transaction Volume",
       "sar": "SAR",
-      "Welcome": "Welcome"
+      "Welcome": "Welcome",
+      "monthlyPerformance": "Monthly Performance",
+      "upper_than_last_month": "Higher than Last Month (+43%)"
     },
     "Helper": {
       "drop_or_select": "Drop files here or click <browse>browse</browse> through your machine",

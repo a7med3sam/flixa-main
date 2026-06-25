@@ -43,7 +43,7 @@ export default function NavVertical({ openNav, onCloseNav }: Props) {
 
   const renderContent = (
     <div className="flex h-full flex-col">
-      <div className="flex items-center justify-center px-5 py-3 mb-4">
+      <div className="flex items-center justify-start px-5 py-3 my-4">
         <Logo
           enableText
           title={t('Metadata.title')}

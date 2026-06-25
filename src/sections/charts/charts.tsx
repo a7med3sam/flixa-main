@@ -4,7 +4,7 @@ import type { ApexOptions } from 'apexcharts';
 
 import ApexChart from 'src/components/ApexChart';
 import DashboardCard from 'src/components/DashboardCard';
-
+import { useTranslations } from 'next-intl';
 import {
   BRANCH_BAR_COLORS,
   BRANCH_PERFORMANCE,
@@ -52,6 +52,7 @@ function ChartHeader({ title, subtitle }: { title: string; subtitle: string }) {
 }
 
 export function DailyCouponUsageChart() {
+  const t = useTranslations('');
   const options: ApexOptions = {
     ...baseChartOptions,
     chart: { ...baseChartOptions.chart, type: 'line', height: 340 },
@@ -90,6 +91,7 @@ export function DailyCouponUsageChart() {
 }
 
 export function MonthlyPerformanceChart() {
+  const t = useTranslations('');
   const options: ApexOptions = {
     ...baseChartOptions,
     chart: { ...baseChartOptions.chart, type: 'area', height: 340 },
@@ -113,8 +115,8 @@ export function MonthlyPerformanceChart() {
   ];
 
   return (
-    <DashboardCard className="h-auto md:h-[420px]">
-      <ChartHeader title="الأداء الشهري" subtitle="(+43%) أعلى من الشهر الماضي" />
+    <DashboardCard className="h-auto md:h-[420px] mb-9">
+      <ChartHeader title={t("Global.Label.monthlyPerformance")} subtitle={t("Global.Label.upper_than_last_month")} />
       <ApexChart options={options} series={series} type="area" height={340} />
     </DashboardCard>
   );

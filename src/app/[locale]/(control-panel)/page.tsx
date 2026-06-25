@@ -13,7 +13,9 @@ export default function DashboardPage() {
     <div className="bg-white rounded-3xl shadow-card dark:bg-[#212B36] dark:shadow-cardDark p-0 mt-5">
       <div className="p-5">
         <div className="grid grid-cols-12 gap-6">
+
         {/* Summary Cards */}
+        <div className='col-span-12 grid grid-cols-12 gap-6 my-6'>
         <div className="col-span-12 sm:col-span-6 md:col-span-3">
           <div className="bg-[#F8F8F8] rounded-2xl shadow-card dark:shadow-cardDark p-5">
             <div className="flex items-center justify-between gap-3 mb-2">
@@ -91,9 +93,9 @@ export default function DashboardPage() {
             </h4>
           </div>
         </div>
-
+        </div>
         {/* Charts */}
-        <div className="col-span-12">
+        <div className="col-span-12 mb-6">
           <AnalyticsSection />
         </div>
 

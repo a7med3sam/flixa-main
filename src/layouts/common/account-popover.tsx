@@ -42,7 +42,7 @@ export default function AccountPopover() {
   </Typography>
 
   <Avatar
-    src={"/customer.png"}
+    src={"/3d.png"}
     alt={user?.name}
     sx={{ width: 32, height: 32 }}
   >
@@ -64,7 +64,7 @@ export default function AccountPopover() {
         }}
       >
         <Stack alignItems="center" spacing={1}>
-          <Avatar src={user?.avatar} alt={user?.name} sx={{ width: 80, height: 80 }}>
+          <Avatar src={"/3d.png"} alt={user?.name} sx={{ width: 80, height: 80 }}>
             {user?.name?.charAt(0).toUpperCase()}
           </Avatar>
 

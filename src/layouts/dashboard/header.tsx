@@ -68,14 +68,12 @@ export default function Header({ onOpenNav }: Props) {
             onClick={onOpenNav}
             className="inline-flex items-center justify-center rounded-full p-2 hover:bg-grey-500/[0.08]"
           >
-            <SvgColor
-              src="/assets/icons/navbar/ic_menu_item.svg"
-              className="text-[#454F5B]"
-            />
+            <SvgColor src="/assets/icons/navbar/ic_menu_item.svg" className="text-[#454F5B]" />
           </button>
         )}
 
-        <div className="flex flex-1 flex-row items-center justify-end gap-1 sm:gap-2">
+        <div className="flex flex-1 items-center justify-between">
+          {/* Search */}
           <div className="relative">
             <span className="pointer-events-none absolute start-1 top-1/2 flex -translate-y-1/2 items-center p-2">
               <Iconify icon="eva:search-fill" width={20} className="text-grey-600" />
@@ -83,13 +81,15 @@ export default function Header({ onOpenNav }: Props) {
             <input
               type="search"
               placeholder={t('Global.Label.search')}
-              className="h-10 w-[140px] border-0 rounded-[20px] bg-[#f7f7f7] px-4 ps-10 text-sm font-medium text-grey-800 placeholder:text-grey-500 focus:outline-none sm:w-[220px]"
+              className="h-10 w-[180px] rounded-[20px] border-0 bg-[#f7f7f7] px-4 ps-10 text-sm font-medium text-grey-800 placeholder:text-grey-500 focus:outline-none sm:w-[320px]"
             />
           </div>
 
-          <LanguagePopover />
-
-          <AccountPopover />
+          {/* Right side */}
+          <div className="flex items-center gap-1 sm:gap-2">
+            <LanguagePopover />
+            <AccountPopover />
+          </div>
         </div>
       </div>
     </header>

@@ -198,7 +198,9 @@
       "platform_revenue": "إيرادات المنصة",
       "total_transaction_volume": "إجمالي حجم المعاملات",
       "sar": "ر.س",
-      "Welcome": "مرحــبــــاً"
+      "Welcome": "مرحــبــــاً",
+      "monthlyPerformance": "الأداء الشهري",
+      "upper_than_last_month": "(+43%) أعلى من الشهر الماضي"
     },
     "Helper": {
       "drop_or_select": "قم بإسقاط الملفات هنا أو انقر <browse>تصفح</browse> من جهازك",
