@@ -251,19 +251,20 @@ const StyledNavItem = styled(ListItemButton, {
         ...baseStyles.arrow,
       },
       ...(active && {
-        background: `linear-gradient(135deg, ${alpha(primaryColor, 0.9)} 0%, ${alpha(
-          primaryColor,
-          0.4
-        )} 100%)`,
+        background: `linear-gradient(to right, ${alpha(primaryColor, 0.6)} 0%, ${primaryColor} 20%)`,
         backdropFilter: 'blur(8px)',
-        boxShadow: `0 4px 12px 0 ${alpha(primaryColor, 0.2)}, inset 0 1px 1px 0 ${alpha(
-          '#ffffff',
-          0.4
-        )}`,
+        boxShadow: `0 4px 12px 0 ${alpha(primaryColor, 0.3)}`,
         color: '#FFFFFF',
         gap: theme.spacing(1.5),
         '&::before': {
-          display: 'none',
+          display: 'block',
+          backgroundColor: '#FFFFFF',
+          insetInlineStart: 'auto',
+          insetInlineEnd: 0,
+          width: 3,
+          borderRadius: 4,
+          top: 6,
+          bottom: 6,
         },
         '& .icon': {
           opacity: 1,
