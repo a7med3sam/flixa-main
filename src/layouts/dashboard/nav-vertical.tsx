@@ -81,7 +81,7 @@ export default function NavVertical({ openNav, onCloseNav }: Props) {
         <button
           type="button"
           onClick={handleLogout}
-          className="flex w-full items-center gap-2.5 rounded-lg border-0 px-2 py-2 text-sm font-medium text-grey-600 outline-none transition-colors hover:bg-red-50 hover:text-red-600"
+          className="flex w-full items-center gap-2.5 rounded-lg border-0 px-2 py-2 text-sm font-medium text-grey-600 outline-none bg-transparent transition-colors hover:bg-red-50 hover:text-red-600"
         >
           <Iconify icon="solar:logout-2-bold-duotone" width={20} />
           {t('Pages.Notification.status.logout')}

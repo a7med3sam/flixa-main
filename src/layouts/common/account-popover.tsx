@@ -31,13 +31,20 @@ export default function AccountPopover() {
     px: 1,
     py: 0.5,
     borderRadius: '20px',
-    bgcolor: '#f7f7f7',
+    bgcolor: 'background.paper',
     color: 'text.primary',
     textTransform: 'none',
     gap: 1,
+    boxShadow: (theme) => `inset 0 0 12px 0 ${alpha(theme.palette.primary.main, 0.2)}`,
+    transition: 'all 0.3s ease',
+    '&:hover': {
+      bgcolor: 'background.paper',
+      boxShadow: (theme) => `inset 0 0 16px 0 ${alpha(theme.palette.primary.main, 0.4)}`,
+      transform: 'translateY(-1px)',
+    }
   }}
 >
-  <Typography variant="body2" sx={{ fontWeight: 500, color: 'grey.700' }}>
+  <Typography variant="body2" sx={{ fontWeight: 600, color: 'text.primary' }}>
     Admin
   </Typography>
 
@@ -59,7 +66,7 @@ export default function AccountPopover() {
           width: 250,
           p: 3,
           borderRadius: 3,
-          boxShadow: 10,
+          boxShadow: (theme) => `0 8px 24px -4px ${alpha(theme.palette.grey[900], 0.1)}, inset 0 0 16px 0 ${alpha(theme.palette.primary.main, 0.2)}`,
           textAlign: 'center',
         }}
       >

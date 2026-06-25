@@ -17,8 +17,9 @@ export default function DashboardPage() {
         {/* Summary Cards */}
         <div className='col-span-12 grid grid-cols-12 gap-6 my-6'>
         <div className="col-span-12 sm:col-span-6 md:col-span-3">
-          <div className="bg-[#F8F8F8] rounded-2xl shadow-card dark:shadow-cardDark p-5">
-            <div className="flex items-center justify-between gap-3 mb-2">
+          <div className="relative overflow-hidden bg-gradient-to-br from-[#F8F8F8] to-[#EAEAEA] dark:from-[#2A3441] dark:to-[#212B36] rounded-2xl shadow-card dark:shadow-cardDark p-5 border border-white/60 dark:border-white/10 group hover:-translate-y-1 hover:shadow-lg transition-all duration-300">
+            <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/30 to-white/70 dark:via-white/5 dark:to-white/10 pointer-events-none" />
+            <div className="relative z-10 flex items-center justify-between gap-3 mb-2">
               <span className="block text-sm font-medium text-[#0F172A]">
                 {t("Global.Label.total_transaction_volume")}
               </span>
@@ -31,15 +32,16 @@ export default function DashboardPage() {
                 height={44}
               />
             </div>
-            <h4 className="text-xl md:text-2xl font-semibold text-[#0F172A] mb-1">
+            <h4 className="relative z-10 text-xl md:text-2xl font-semibold text-[#0F172A] dark:text-white mb-1">
               {_statisticsSummary.totalUsers.toLocaleString()} {t("Global.Label.sar")}
             </h4>
           </div>
         </div>
 
         <div className="col-span-12 sm:col-span-6 md:col-span-3">
-          <div className="bg-[#E5FFEE] rounded-2xl shadow-card dark:shadow-cardDark p-5">
-            <div className="flex items-center justify-between gap-3 mb-2">
+          <div className="relative overflow-hidden bg-gradient-to-br from-[#E5FFEE] to-[#C1F8D5] dark:from-[#113120] dark:to-[#0A2014] rounded-2xl shadow-card dark:shadow-cardDark p-5 border border-white/60 dark:border-white/10 group hover:-translate-y-1 hover:shadow-lg transition-all duration-300">
+            <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/40 to-white/80 dark:via-white/5 dark:to-white/10 pointer-events-none" />
+            <div className="relative z-10 flex items-center justify-between gap-3 mb-2">
               <span className="block text-sm font-medium text-[#0F172A]">
                 {t("Global.Label.platform_revenue")}
               </span>
@@ -50,15 +52,16 @@ export default function DashboardPage() {
                 aria-hidden="true"
               />
             </div>
-            <h4 className="text-xl md:text-2xl font-semibold text-[#34C759] mb-1">
+            <h4 className="relative z-10 text-xl md:text-2xl font-semibold text-[#34C759] mb-1">
               {_statisticsSummary.totalOrders.toLocaleString()} {t("Global.Label.sar")}
             </h4>
           </div>
         </div>
 
         <div className="col-span-12 sm:col-span-6 md:col-span-3">
-          <div className="bg-[#EDF4FF] rounded-2xl shadow-card dark:shadow-cardDark p-5">
-            <div className="flex items-center justify-between gap-3 mb-2">
+          <div className="relative overflow-hidden bg-gradient-to-br from-[#EDF4FF] to-[#CDE0FF] dark:from-[#0D2447] dark:to-[#071730] rounded-2xl shadow-card dark:shadow-cardDark p-5 border border-white/60 dark:border-white/10 group hover:-translate-y-1 hover:shadow-lg transition-all duration-300">
+            <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/40 to-white/80 dark:via-white/5 dark:to-white/10 pointer-events-none" />
+            <div className="relative z-10 flex items-center justify-between gap-3 mb-2">
               <span className="block text-sm font-medium text-[#0F172A]">
                 {t("Global.Label.new_customer_signups")}
               </span>
@@ -69,15 +72,16 @@ export default function DashboardPage() {
                 aria-hidden="true"
               />
             </div>
-            <h4 className="text-xl md:text-2xl font-semibold text-[#2077FF] mb-1">
+            <h4 className="relative z-10 text-xl md:text-2xl font-semibold text-[#2077FF] mb-1">
               {_financialSummary.totalRevenue.toLocaleString()}
             </h4>
           </div>
         </div>
 
         <div className="col-span-12 sm:col-span-6 md:col-span-3">
-          <div className="bg-[#F4EDFF] rounded-2xl shadow-card dark:shadow-cardDark p-5">
-            <div className="flex items-center justify-between gap-3 mb-2">
+          <div className="relative overflow-hidden bg-gradient-to-br from-[#F4EDFF] to-[#E3CFFF] dark:from-[#2B1B4D] dark:to-[#1A0F33] rounded-2xl shadow-card dark:shadow-cardDark p-5 border border-white/60 dark:border-white/10 group hover:-translate-y-1 hover:shadow-lg transition-all duration-300">
+            <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/40 to-white/80 dark:via-white/5 dark:to-white/10 pointer-events-none" />
+            <div className="relative z-10 flex items-center justify-between gap-3 mb-2">
               <span className="block text-sm font-medium text-[#0F172A]">
                 {t("Global.Label.new_merchant_applications")}
               </span>
@@ -88,7 +92,7 @@ export default function DashboardPage() {
                 aria-hidden="true"
               />
             </div>
-            <h4 className="text-xl md:text-2xl font-semibold text-[#8E4AFF] mb-1">
+            <h4 className="relative z-10 text-xl md:text-2xl font-semibold text-[#8E4AFF] mb-1">
               {_financialSummary.netProfit.toLocaleString()}
             </h4>
           </div>
