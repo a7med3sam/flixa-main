@@ -194,7 +194,12 @@
       "change_password": "Change Password",
       "activate": "Activate",
       "deactivate": "Deactivate",
-      "clients": "Clients"
+      "clients": "Clients",
+      "new_merchant_applications": "New Merchant Applications",
+      "new_customer_signups": "New Customer Signups",
+      "platform_revenue": "Platform Revenue",
+      "total_transaction_volume": "Total Transaction Volume",
+      "sar": "SAR"
     },
     "Helper": {
       "drop_or_select": "Drop files here or click <browse>browse</browse> through your machine",

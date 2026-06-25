@@ -5,8 +5,10 @@ import { _financialSummary } from 'src/_mock/_dashboard-financial';
 import Link from 'next/link';
 import { paths } from 'src/routes/paths';
 import { AnalyticsSection, BranchPerformanceChart } from 'src/sections/charts/charts';
+import { useTranslations } from 'next-intl';
 
 export default function DashboardPage() {
+  const t = useTranslations('');
   return (
     <div className="bg-white rounded-3xl shadow-card dark:bg-[#212B36] dark:shadow-cardDark p-0 mt-5">
       <div className="p-5">
@@ -14,9 +16,9 @@ export default function DashboardPage() {
         {/* Summary Cards */}
         <div className="col-span-12 sm:col-span-6 md:col-span-3">
           <div className="bg-[#F8F8F8] rounded-2xl shadow-card dark:shadow-cardDark p-5">
-            <div className="flex items-start justify-between gap-3 mb-2">
+            <div className="flex items-center justify-between gap-3 mb-2">
               <span className="block text-sm font-medium text-[#0F172A]">
-                Total Transaction <br /> Volume
+                {t("Global.Label.total_transaction_volume")}
               </span>
               <img
                 src="/assets/icons/home/cart.svg"
@@ -28,16 +30,16 @@ export default function DashboardPage() {
               />
             </div>
             <h4 className="text-xl md:text-2xl font-semibold text-[#0F172A] mb-1">
-              {_statisticsSummary.totalUsers.toLocaleString()} SAR
+              {_statisticsSummary.totalUsers.toLocaleString()} {t("Global.Label.sar")}
             </h4>
           </div>
         </div>
 
         <div className="col-span-12 sm:col-span-6 md:col-span-3">
           <div className="bg-[#E5FFEE] rounded-2xl shadow-card dark:shadow-cardDark p-5">
-            <div className="flex items-start justify-between gap-3 mb-2">
+            <div className="flex items-center justify-between gap-3 mb-2">
               <span className="block text-sm font-medium text-[#0F172A]">
-                Platform Revenue
+                {t("Global.Label.platform_revenue")}
               </span>
               <img
                 src="/assets/icons/home/send_money.svg"
@@ -47,16 +49,16 @@ export default function DashboardPage() {
               />
             </div>
             <h4 className="text-xl md:text-2xl font-semibold text-[#34C759] mb-1">
-              {_statisticsSummary.totalOrders.toLocaleString()} SAR
+              {_statisticsSummary.totalOrders.toLocaleString()} {t("Global.Label.sar")}
             </h4>
           </div>
         </div>
 
         <div className="col-span-12 sm:col-span-6 md:col-span-3">
           <div className="bg-[#EDF4FF] rounded-2xl shadow-card dark:shadow-cardDark p-5">
-            <div className="flex items-start justify-between gap-3 mb-2">
+            <div className="flex items-center justify-between gap-3 mb-2">
               <span className="block text-sm font-medium text-[#0F172A]">
-                New Customer Signups
+                {t("Global.Label.new_customer_signups")}
               </span>
               <img
                 src="/assets/icons/home/plus_user.svg"
@@ -73,9 +75,9 @@ export default function DashboardPage() {
 
         <div className="col-span-12 sm:col-span-6 md:col-span-3">
           <div className="bg-[#F4EDFF] rounded-2xl shadow-card dark:shadow-cardDark p-5">
-            <div className="flex items-start justify-between gap-3 mb-2">
+            <div className="flex items-center justify-between gap-3 mb-2">
               <span className="block text-sm font-medium text-[#0F172A]">
-                New Merchant Applications
+                {t("Global.Label.new_merchant_applications")}
               </span>
               <img
                 src="/assets/icons/home/plus_user_2.svg"
