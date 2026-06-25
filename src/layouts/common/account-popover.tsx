@@ -80,7 +80,7 @@ export default function AccountPopover() {
         <Divider sx={{ my: 2 }} />
 
         <Stack spacing={1}>
-          <Button
+          {/* <Button
             fullWidth
             variant="outlined"
             color="success"
@@ -89,7 +89,7 @@ export default function AccountPopover() {
             sx={{ justifyContent: 'center', fontWeight: 600 }}
           >
             {t('Pages.Notification.status.account_update')}
-          </Button>
+          </Button> */}
 
           <Button
             fullWidth
