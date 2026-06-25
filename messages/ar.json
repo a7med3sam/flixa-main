@@ -197,7 +197,8 @@
       "new_customer_signups": "تسجيلات العملاء الجديدة",
       "platform_revenue": "إيرادات المنصة",
       "total_transaction_volume": "إجمالي حجم المعاملات",
-      "sar": "ر.س"
+      "sar": "ر.س",
+      "Welcome": "مرحــبــــاً"
     },
     "Helper": {
       "drop_or_select": "قم بإسقاط الملفات هنا أو انقر <browse>تصفح</browse> من جهازك",

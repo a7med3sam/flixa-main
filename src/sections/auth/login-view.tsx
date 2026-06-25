@@ -63,7 +63,7 @@ export default function LoginView() {
 
   const renderHead = (
     <Typography variant="h3" textTransform="capitalize" textAlign="start" color="primary.main">
-      Welcome 👋
+      {t('Global.Label.Welcome')} 👋
     </Typography>
   );
 

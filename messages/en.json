@@ -199,7 +199,8 @@
       "new_customer_signups": "New Customer Signups",
       "platform_revenue": "Platform Revenue",
       "total_transaction_volume": "Total Transaction Volume",
-      "sar": "SAR"
+      "sar": "SAR",
+      "Welcome": "Welcome"
     },
     "Helper": {
       "drop_or_select": "Drop files here or click <browse>browse</browse> through your machine",
