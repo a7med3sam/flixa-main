@@ -48,14 +48,14 @@ export default function Header({ onOpenNav }: Props) {
   return (
     <header
       className={[
-        'fixed top-0 z-[1101] w-full bg-white',
+        'fixed top-0 z-[1101] w-full bg-white/70 dark:bg-[#212B36]/70 backdrop-blur-xl border-b border-grey-200/50 dark:border-grey-800/50',
         lgUp && isNavHorizontal && 'border-b border-[rgba(145,158,171,0.16)]',
       ]
         .filter(Boolean)
         .join(' ')}
       style={headerStyle}
     >
-      <div className="flex h-full items-center bg-white px-0 lg:px-10">
+      <div className="flex h-full items-center px-4 lg:px-10">
         {lgUp && isNavHorizontal && (
           <div className="me-5">
             <Logo />

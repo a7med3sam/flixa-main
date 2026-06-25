@@ -93,7 +93,10 @@ export default function NavVertical({ openNav, onCloseNav }: Props) {
   return (
     <div className="shrink-0 lg:w-[280px]">
       {lgUp ? (
-        <div className="fixed h-full" style={{ width: NAV.W_VERTICAL }}>
+        <div 
+          className="fixed h-full bg-gradient-to-br from-white/90 to-white/40 dark:from-[#212B36]/90 dark:to-[#212B36]/40 backdrop-blur-2xl border-e border-white/50 dark:border-white/10 shadow-[inset_1px_1px_0_0_rgba(255,255,255,0.6)] dark:shadow-[inset_1px_1px_0_0_rgba(255,255,255,0.1)]" 
+          style={{ width: NAV.W_VERTICAL }}
+        >
           {renderContent}
         </div>
       ) : (
@@ -108,7 +111,7 @@ export default function NavVertical({ openNav, onCloseNav }: Props) {
 
           <div
             className={[
-              'fixed top-0 bottom-0 z-[1201] bg-white transition-transform duration-300 ease-in-out lg:hidden',
+              'fixed top-0 bottom-0 z-[1201] bg-gradient-to-br from-white/90 to-white/40 dark:from-[#212B36]/90 dark:to-[#212B36]/40 backdrop-blur-2xl border-e border-white/50 dark:border-white/10 shadow-[inset_1px_1px_0_0_rgba(255,255,255,0.6)] dark:shadow-[inset_1px_1px_0_0_rgba(255,255,255,0.1)] transition-transform duration-300 ease-in-out lg:hidden',
               openNav
                 ? 'translate-x-0'
                 : '-translate-x-full pointer-events-none rtl:translate-x-full',
