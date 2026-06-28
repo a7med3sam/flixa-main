@@ -285,6 +285,10 @@
         "previous_page": "Previous page",
         "next_page": "Next page"
       }
+    },
+    "Loading": {
+      "loading": "Loading ...",
+      "updating": "Updating..."
     }
   },
   "Pages": {
@@ -625,7 +629,12 @@
       "max_amount": "Max Amount",
       "status": "Status",
       "total_commission": "Total Commission",
-      "actions": "Actions"
+      "actions": "Actions",
+      "automatic_payment_commission": "Automatic Payment Commission",
+      "search_placeholder": "Search...",
+      "add_automatic_payment_commission": "Add Automatic Payment Commission",
+      "edit_automatic_payment_commission": "Edit Automatic Payment Commission",
+      "delete_automatic_payment_commission": "Delete Automatic Payment Commission"
     },
     "Financial": {
       "title": "Financial Reports",
@@ -660,7 +669,14 @@
       "view": "View",
       "reply": "Reply",
       "login_success": "Login successful",
-      "login_failed": "Login failed"
+      "login_failed": "Login failed",
+      "received_at": "received at",
+      "message_content": "message content",
+      "ticket_id": "Ticket Id",
+      "change_status": "Change Status",
+      "select_status": "Select New Ticket Stat  us",
+      "current_status": "Current Status",
+      "closed_at": "Closed at"
     },
     "Drivers": {
       "driver_title": "Drivers",

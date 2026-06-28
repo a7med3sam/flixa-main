@@ -283,6 +283,10 @@
         "previous_page": "الصفحة السابقة",
         "next_page": "الصفحة التالية"
       }
+    },
+    "Loading": {
+      "loading": "جاري التحميل ...",
+      "updating": "جاري التحديث..."
     }
   },
   "Pages": {
@@ -335,7 +339,6 @@
       "edit_free_shipping_vat": "تعديل الشحن المجاني وضريبة القيمة المضافة والحد الأدنى للطلب",
       "minimum_order_amount": "الحد الأدنى للطلب"
     },
-
     "Categories": {
       "categories_title": "الأقسام الرئيسية",
       "subcategories_title": "الأقسام الفرعية",
@@ -628,7 +631,12 @@
       "max_amount": "الحد الأقصى",
       "status": "الحالة",
       "total_commission": "إجمالي العمولات",
-      "actions": "الإجراءات"
+      "actions": "الإجراءات",
+      "automatic_payment_commission": "عمولة الدفع الآلي",
+      "search_placeholder": "ابحث...",
+      "add_automatic_payment_commission": "إضافة عمولة دفع آلي",
+      "edit_automatic_payment_commission": "تعديل عمولة الدفع الآلي",
+      "delete_automatic_payment_commission": "حذف عمولة الدفع الآلي"
     },
     "Financial": {
       "title": "التقارير المالية",
@@ -663,7 +671,14 @@
       "view": "عرض",
       "reply": "رد",
       "login_success": "تم تسجيل الدخول بنجاح",
-      "login_failed": "فشل تسجيل الدخول"
+      "login_failed": "فشل تسجيل الدخول",
+      "received_at": "تم الإستلام في",
+      "message_content": "محتوى الرسالة",
+      "ticket_id": "رقم التذكرة",
+      "change_status": "تغيير الحالة",
+      "select_status": "اختر الحالة الجديدة للتذكرة",
+      "current_status": "الحالة الحالية",
+      "closed_at": "أغلق في"
     },
     "Drivers": {
       "driver_title": "السائقين",
