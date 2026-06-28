@@ -1,11 +1,11 @@
 
 export const endpoints = {
-  home:{
-    reports:"/admin/home/report",
-    mostPurchasedProducts:"/admin/home/most-purchased-products",
-    salesRenveu:"/admin/home/sales",
-    freeShipping:"/admin/settings",
-    editFreeShipping:(id:string)=>`/admin/settings/${id}`
+  home: {
+    reports: "/admin/home/report",
+    mostPurchasedProducts: "/admin/home/most-purchased-products",
+    salesRenveu: "/admin/home/sales",
+    freeShipping: "/admin/settings",
+    editFreeShipping: (id: string) => `/admin/settings/${id}`
   },
   auth: {
     login: '/api/v1/admin/auth/login',
@@ -87,7 +87,7 @@ export const endpoints = {
     delete: (id: string) => `/admin/product-unit-of-measure-offers/${id}`,
   },
 
-  notification:{
+  notification: {
     list: '/admin/firebase-notification',
     postAll: '/admin/firebase-notification/send-notification-to-all-users',
     post: '/admin/firebase-notification/send-notification-to-user',
@@ -105,7 +105,7 @@ export const endpoints = {
     editStatus: (id: string) => `/admin/drivers/change-status/${id}`,
     patch: (id: string) => `/admin/drivers/${id}`,
     count: '/admin/drivers/count',
-    orderDriver:(id: string) =>`/admin/drivers/${id}/orders`,
+    orderDriver: (id: string) => `/admin/drivers/${id}/orders`,
     delete: (id: string) => `/admin/drivers/${id}`,
   },
   clients: {
@@ -116,40 +116,48 @@ export const endpoints = {
     delete: (id: string) => `/api/v1/admin/customers/${id}`,
     patch: (id: string) => `/api/v1/admin/customers/${id}`,
   },
-  reports:{
-    listReports:'/admin/reports',
-    ListOrderReports:'/admin/reports/all-orders-report'
+  reports: {
+    listReports: '/admin/reports',
+    ListOrderReports: '/admin/reports/all-orders-report'
   },
-    staticPages: {
-    list:(pageType: string) => `/admin/static-pages/${pageType}`,
-    patch:(pageType: string) => `/admin/static-pages/${pageType}`
+  staticPages: {
+    list: (pageType: string) => `/admin/static-pages/${pageType}`,
+    patch: (pageType: string) => `/admin/static-pages/${pageType}`
   },
-  contactUs:{
-    list:'/admin/social-media',
-    post:'/admin/social-media',
-    delete: (id: string) =>`/admin/social-media/${id}`,
-    patch:(id: string) =>`/admin/social-media/${id}`,
+  contactUs: {
+    list: '/admin/social-media',
+    post: '/admin/social-media',
+    delete: (id: string) => `/admin/social-media/${id}`,
+    patch: (id: string) => `/admin/social-media/${id}`,
   },
-employee:{
+  employee: {
     list: '/admin/employees',
-    listPermissions:'/admin/employee-permission/all',
+    listPermissions: '/admin/employee-permission/all',
     create: '/employee/employee/register',
     single: (id: string) => `/admin/employees/${id}`,
     editStatus: (id: string) => `/admin/employees/${id}`,
     delete: (id: string) => `/admin/employees/${id}`,
     patch: (id: string) => `/admin/employees/${id}`,
-    editPermission:'/admin/employee-permission/add-and-delete-employee-permission'
+    editPermission: '/admin/employee-permission/add-and-delete-employee-permission'
   },
-  DeliveryFees:{
-    list:'/admin/shoping-costs',
-    single:(id:string)=>`/admin/shoping-costs/${id}`,
-    patch:(id:string)=>`/admin/shoping-costs/${id}`,
-    create:'/admin/shoping-costs',
-    delete:(id:string)=>`/admin/shoping-costs/${id}`,
+  DeliveryFees: {
+    list: '/admin/shoping-costs',
+    single: (id: string) => `/admin/shoping-costs/${id}`,
+    patch: (id: string) => `/admin/shoping-costs/${id}`,
+    create: '/admin/shoping-costs',
+    delete: (id: string) => `/admin/shoping-costs/${id}`,
   },
   pages: {
     list: '/api/v1/admin/pages',
     single: (id: string) => `/api/v1/admin/pages/${id}`,
     update: (id: string) => `/api/v1/admin/pages/${id}`,
   },
+  message: {
+    list: '/api/v1/admin/support-tickets',
+    single: (id: string) => `/api/v1/admin/support-tickets/${id}`,
+    patch: (id: string) => `/api/v1/admin/support-tickets/${id}`,
+  },
+  AdminCommissionSettings: {
+    list: "/api/v1/admin/commission-setting"
+  }
 };

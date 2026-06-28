@@ -1,5 +1,0 @@
-allowBuilds:
-  sharp: true
-minimumReleaseAgeExclude:
-  - apexcharts@5.15.1
-  - react-apexcharts@2.1.1

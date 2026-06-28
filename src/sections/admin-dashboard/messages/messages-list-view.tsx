@@ -1,26 +1,47 @@
 'use client';
 
-import { useMemo, useState } from 'react';
-import { useSearchParams } from 'next/navigation';
-import { useTranslations } from 'next-intl';
+import axios from 'src/utils/axios';
+import { endpoints } from 'src/utils/endpoints';
+import { useSnackbar } from 'notistack';
 import Iconify from 'src/components/iconify';
 import SharedTable from 'src/components/SharedTable/SharedTable';
-import { _messagesList, MESSAGE_PRIORITY_OPTIONS } from 'src/_mock/_dashboard-messages';
-import { headCellType, cellAlignment } from 'src/components/SharedTable/types';
+import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useTranslations } from 'next-intl';
+import { headCellType } from 'src/components/SharedTable/types';
 import { DEFAULT_LIMIT } from 'src/components/constant';
+import { useRouter } from 'next/navigation';
 
 // ----------------------------------------------------------------------
+// Types
+// ----------------------------------------------------------------------
 
-type DashboardMessage = (typeof _messagesList)[number];
+interface SupportTicket {
+  id: string;
+  status: string; // 'new' | 'read' | 'replied' | 'archived'
+  name: string;
+  email: string;
+  message: string;
+  closedAt: string | null;
+  creationTime: string;
+}
+
+interface SupportTicketsResponse {
+  items: SupportTicket[];
+  totalCount: number;
+}
+
+// ----------------------------------------------------------------------
+// Constants
+// ----------------------------------------------------------------------
 
 const TABLE_HEAD: headCellType[] = [
-  { id: 'status', label: 'Pages.Messages.status'},
-  { id: 'senderName', label: 'Pages.Messages.sender_name'},
-  { id: 'subject', label: 'Pages.Messages.subject'},
-  { id: 'category', label: 'Pages.Messages.category'},
-  { id: 'priority', label: 'Pages.Messages.priority'},
-  { id: 'receivedAt', label: 'Pages.Messages.date'},
-  { id: 'actions', label: 'Pages.Messages.actions'},
+  { id: 'status', label: 'Pages.Messages.status' },
+  { id: 'name', label: 'Pages.Messages.sender_name' },
+  { id: 'subject', label: 'Pages.Messages.subject' },
+  { id: 'category', label: 'Pages.Messages.category' },
+  { id: 'priority', label: 'Pages.Messages.priority' },
+  { id: 'creationTime', label: 'Pages.Messages.date' },
+  { id: 'actions', label: 'Pages.Messages.actions' },
 ];
 
 const PRIORITY_BADGE_CLASSES: Record<string, string> = {
@@ -37,39 +58,112 @@ const STATUS_ICONS: Record<string, string> = {
   archived: 'mdi:archive',
 };
 
+// For demo purposes - since API doesn't have these fields yet
+const MOCK_PRIORITY = ['urgent', 'high', 'medium', 'low'];
+const MOCK_CATEGORY = ['عام', 'شكاوى', 'استفسارات', 'اقتراحات'];
+const MOCK_SUBJECTS = [
+  'مشكلة في الدعم',
+  'استفسار عن المنتج',
+  'شكوى عن الشحن',
+  'طلب استرجاع',
+];
+
 // ----------------------------------------------------------------------
 
 export default function MessagesListView() {
-  const [searchTerm, setSearchTerm] = useState('');
-  const searchParams = useSearchParams();
+  const { enqueueSnackbar } = useSnackbar();
   const t = useTranslations();
+  const [tickets, setTickets] = useState<SupportTicket[]>([]);
+  const [totalCount, setTotalCount] = useState(0);
+  const [loading, setLoading] = useState(true);
+  const [searchTerm, setSearchTerm] = useState('');
+  const router = useRouter();
 
-  const page = Number(searchParams.get('page')) || 1;
-  const limit = Number(searchParams.get('limit')) || DEFAULT_LIMIT;
+  // ──────────────────────────────────────────────
+  // Fetch tickets from API
+  // ──────────────────────────────────────────────
+  const fetchTickets = useCallback(async () => {
+    setLoading(true);
+    try {
+      const res = await axios.get<SupportTicketsResponse>(endpoints.message.list);
+      const data = res.data;
+      setTickets(data.items ?? []);
+      setTotalCount(data.totalCount ?? 0);
+    } catch (err: any) {
+      enqueueSnackbar(err?.message || 'Failed to load messages', { variant: 'error' });
+    } finally {
+      setLoading(false);
+    }
+  }, [enqueueSnackbar]);
 
-  const filteredMessages = _messagesList.filter(
-    (msg) =>
-      msg.senderName.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      msg.subject.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+  useEffect(() => {
+    fetchTickets();
+  }, [fetchTickets]);
 
-  const start = (page - 1) * limit;
-  const end = page * limit;
-  const paginatedMessages = filteredMessages.slice(start, end);
+  // ──────────────────────────────────────────────
+  // Filter tickets
+  // ──────────────────────────────────────────────
+  const filteredTickets = useMemo(() => {
+    if (!searchTerm.trim()) return tickets;
 
-  const unreadCount = _messagesList.filter((m) => !m.isRead).length;
+    return tickets.filter(
+      (ticket) =>
+        ticket.name?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        ticket.message?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        ticket.email?.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+  }, [tickets, searchTerm]);
 
+  // ──────────────────────────────────────────────
+  // Helper: get mock data for missing fields
+  // ──────────────────────────────────────────────
+  const getMockPriority = (id: string) => {
+    const index = id.charCodeAt(id.length - 1) % MOCK_PRIORITY.length;
+    return MOCK_PRIORITY[index];
+  };
+
+  const getMockCategory = (id: string) => {
+    const index = id.charCodeAt(id.length - 2) % MOCK_CATEGORY.length;
+    return MOCK_CATEGORY[index];
+  };
+
+  const getMockSubject = (id: string) => {
+    const index = id.charCodeAt(id.length - 3) % MOCK_SUBJECTS.length;
+    return MOCK_SUBJECTS[index];
+  };
+
+  // ──────────────────────────────────────────────
+  // Custom render for table cells
+  // ──────────────────────────────────────────────
   const customRender = useMemo(
     () => ({
-      status: (row: DashboardMessage) => (
-        <Iconify icon={STATUS_ICONS[row.status] || 'mdi:email'} className="w-5 h-5" />
+      status: (row: SupportTicket) => (
+        <Iconify
+          icon={STATUS_ICONS[row.status] || 'mdi:email'}
+          className="w-5 h-5"
+        />
       ),
-      subject: (row: DashboardMessage) => (
-        <span className={!row.isRead ? 'font-bold' : 'font-normal'}>{row.subject}</span>
+      name: (row: SupportTicket) => (
+        <span className={row.status === 'new' ? 'font-bold' : 'font-normal'}>
+          {row.name}
+        </span>
       ),
-      priority: (row: DashboardMessage) => {
-        const label = MESSAGE_PRIORITY_OPTIONS.find((p) => p.value === row.priority)?.label;
-        const cls = PRIORITY_BADGE_CLASSES[row.priority] || '';
+      subject: (row: SupportTicket) => {
+        // Use message as subject since API doesn't have subject field
+        const subject = row.message?.slice(0, 30) || getMockSubject(row.id);
+        return (
+          <span className={row.status === 'new' ? 'font-bold' : 'font-normal'}>
+            {subject.length > 30 ? `${subject}...` : subject}
+          </span>
+        );
+      },
+      category: (row: SupportTicket) => (
+        <span>{getMockCategory(row.id)}</span>
+      ),
+      priority: (row: SupportTicket) => {
+        const priority = getMockPriority(row.id);
+        const label = priority.charAt(0).toUpperCase() + priority.slice(1);
+        const cls = PRIORITY_BADGE_CLASSES[priority] || '';
         return (
           <span
             className={`inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-semibold ${cls}`}
@@ -78,26 +172,76 @@ export default function MessagesListView() {
           </span>
         );
       },
-      receivedAt: (row: DashboardMessage) => (
-        <span>{new Date(row.receivedAt).toLocaleDateString('ar-SA')}</span>
+      creationTime: (row: SupportTicket) => (
+        <span>
+          {row.creationTime
+            ? new Date(row.creationTime).toLocaleDateString('ar-SA')
+            : '—'}
+        </span>
       ),
-      actions: () => (
+      actions: (row: SupportTicket) => (
         <div className="flex gap-2">
-          <button className="px-3 py-1.5 text-xs font-medium rounded-lg border border-solid border-grey-300 dark:border-grey-700 text-grey-700 dark:text-grey-300 hover:bg-grey-100 dark:hover:bg-grey-800 transition-colors">
+          <button
+            onClick={() => handleViewTicket(row)}
+            className="px-3 py-1.5 text-xs font-medium rounded-lg border border-solid border-grey-300 dark:border-grey-700 text-grey-700 dark:text-grey-300 hover:bg-grey-100 dark:hover:bg-grey-800 transition-colors"
+          >
             {t('Pages.Messages.view')}
           </button>
-          <button className="px-3 py-1.5 text-xs font-medium rounded-lg border border-solid border-success/30 text-success-dark dark:text-success-light hover:bg-success/10 transition-colors">
+          <button
+            onClick={() => handleReplyTicket(row)}
+            className="px-3 py-1.5 text-xs font-medium rounded-lg border border-solid border-success/30 text-success-dark dark:text-success-light hover:bg-success/10 transition-colors"
+          >
             {t('Pages.Messages.reply')}
           </button>
         </div>
       ),
     }),
-    []
+    [t]
   );
 
+  // ──────────────────────────────────────────────
+  // Handlers for actions
+  // ──────────────────────────────────────────────
+  const handleViewTicket = (ticket: SupportTicket) => {
+    router.push(`/messages/${ticket.id}`);
+  };
+
+  const handleReplyTicket = (ticket: SupportTicket) => {
+    // TODO: Open reply dialog or navigate to reply page
+    enqueueSnackbar(`Replying to: ${ticket.name}`, { variant: 'info' });
+  };
+
+  // ──────────────────────────────────────────────
+  // Count unread tickets
+  // ──────────────────────────────────────────────
+  const unreadCount = useMemo(
+    () => tickets.filter((t) => t.status === 'new').length,
+    [tickets]
+  );
+
+  // ──────────────────────────────────────────────
+  // Loading state
+  // ──────────────────────────────────────────────
+  if (loading) {
+    return (
+      <div className="p-6 flex items-center justify-center min-h-[400px]">
+        <div className="flex flex-col items-center gap-4">
+          <div className="w-8 h-8 border-4 border-primary border-t-transparent rounded-full animate-spin" />
+          <p className="text-grey-500 dark:text-grey-400 text-sm">
+            {t('Global.Loading.loading') || 'Loading messages...'}
+          </p>
+        </div>
+      </div>
+    );
+  }
+
+  // ──────────────────────────────────────────────
+  // Render
+  // ──────────────────────────────────────────────
   return (
     <div className="p-6">
       <div className="bg-white dark:bg-[#212B36] rounded-2xl shadow-card dark:shadow-cardDark overflow-hidden">
+        {/* Header */}
         <div className="flex flex-wrap items-start justify-between gap-4 px-6 py-5 border-b border-solid border-grey-200 dark:border-grey-700">
           <div>
             <div className="flex items-center gap-3">
@@ -115,6 +259,7 @@ export default function MessagesListView() {
             </p>
           </div>
 
+          {/* Search */}
           <div className="relative">
             <span className="absolute inset-y-0 start-3 flex items-center pointer-events-none text-grey-500 dark:text-grey-400">
               <Iconify icon="mdi:magnify" className="w-5 h-5" />
@@ -129,13 +274,23 @@ export default function MessagesListView() {
           </div>
         </div>
 
-        <SharedTable<DashboardMessage>
-          tableHead={TABLE_HEAD}
-          data={paginatedMessages}
-          count={filteredMessages.length}
-          customRender={customRender}
-          showPagination
-        />
+        {/* Table */}
+        {filteredTickets.length === 0 ? (
+          <div className="flex flex-col items-center justify-center py-12 px-4">
+            <Iconify icon="mdi:inbox-outline" className="w-16 h-16 text-grey-300 dark:text-grey-600 mb-4" />
+            <p className="text-grey-500 dark:text-grey-400 text-sm">
+              {searchTerm ? 'لا توجد نتائج مطابقة للبحث' : 'لا توجد رسائل حتى الآن'}
+            </p>
+          </div>
+        ) : (
+          <SharedTable<SupportTicket>
+            tableHead={TABLE_HEAD}
+            data={filteredTickets}
+            count={filteredTickets.length}
+            customRender={customRender}
+            showPagination
+          />
+        )}
       </div>
     </div>
   );
