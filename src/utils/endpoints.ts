@@ -157,7 +157,8 @@ export const endpoints = {
     single: (id: string) => `/api/v1/admin/support-tickets/${id}`,
     patch: (id: string) => `/api/v1/admin/support-tickets/${id}`,
   },
-  AdminCommissionSettings: {
-    list: "/api/v1/admin/commission-setting"
+ AdminCommissionSettings: {
+    list: "/api/v1/admin/commission-setting",
+    update: "/api/v1/admin/commission-setting"
   }
 };
