@@ -1,5 +1,5 @@
 import { getTranslations } from 'next-intl/server';
-import MessagesListView from 'src/sections/admin-dashboard/messages/messages-list-view';
+import MessagesListView from 'src/sections/messages/messages-list-view';
 
 export default async function MessagesPage() {
   return <MessagesListView />;
@@ -13,4 +13,3 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     title: t('title'),
   };
 }
-
