@@ -45,7 +45,9 @@ function buildCreateFormData(payload: CreateEmployeePayload): FormData {
   fd.append('Password', payload.password);
   fd.append('ConfirmPassword', payload.confirmPassword);
   fd.append('IsActive', String(payload.isActive));
-  fd.append('ProfileImage', payload.profileImage ?? 'null');
+  if (payload.profileImage) {
+    fd.append('ProfileImage', payload.profileImage);
+  }
   return fd;
 }
 
@@ -56,7 +58,9 @@ function buildUpdateFormData(payload: UpdateEmployeePayload): FormData {
   if (payload.phoneNumber !== undefined) fd.append('PhoneNumber', payload.phoneNumber);
   if (payload.userGender !== undefined) fd.append('Gender', payload.userGender);
   if (payload.isActive !== undefined) fd.append('IsActive', String(payload.isActive));
-  fd.append('ProfileImage', payload.profileImage ?? 'null');
+  if (payload.profileImage) {
+    fd.append('ProfileImage', payload.profileImage);
+  }
   return fd;
 }
 
@@ -95,7 +99,9 @@ export async function toggleEmployeeStatus(
   formData.append('PhoneNumber', currentEmployee.phoneNumber || '');
   formData.append('Gender', currentEmployee.userGender || '');
   formData.append('IsActive', String(isActive));
-  formData.append('ProfileImage', currentEmployee.profileImage || 'null');
+  if (currentEmployee.profileImage) {
+    formData.append('ProfileImage', currentEmployee.profileImage);
+  }
 
   const res = await axiosInstance.put<Employee>(
     endpoints.employee.patch(id),

@@ -7,6 +7,7 @@ import Iconify from 'src/components/iconify';
 import { useEmployee } from 'src/hooks/useEmployee';
 
 import EmployeeDeleteDialog from './employee-delete-dialog';
+import { getGenderLabel, formatDate } from './employee.utils';
 
 interface EmployeeViewProps {
   id: string;
@@ -48,9 +49,6 @@ export default function EmployeeView({ id }: EmployeeViewProps) {
   const { employee, loading, toggleLoading, isDeleting, handleToggleStatus, handleDelete } =
     useEmployee(id);
   const [showDelete, setShowDelete] = useState(false);
-
-  const getGenderLabel = (gender?: string) =>
-    gender === 'Male' ? 'ذكر' : gender === 'Female' ? 'أنثى' : gender || '—';
 
   const getStatusBadge = (isActive: boolean) => (
     <span
@@ -142,15 +140,7 @@ export default function EmployeeView({ id }: EmployeeViewProps) {
             <InfoCard label={t('Global.Label.role')} value={employee.role || 'Employee'} />
             <InfoCard
               label={t('Global.Label.registrationDate')}
-              value={
-                employee.registrationDate
-                  ? new Date(employee.registrationDate).toLocaleDateString('ar-EG', {
-                      year: 'numeric',
-                      month: 'long',
-                      day: 'numeric',
-                    })
-                  : '—'
-              }
+              value={formatDate(employee.registrationDate)}
             />
           </div>
           <div className="mt-8 pt-6 border-t border-grey-200 dark:border-grey-700">

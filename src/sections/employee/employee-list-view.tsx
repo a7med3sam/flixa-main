@@ -2,7 +2,6 @@
 
 import type { Employee } from 'src/types/employee';
 
-import { useSnackbar } from 'notistack';
 import { useMemo, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useTranslations } from 'next-intl';
@@ -11,6 +10,7 @@ import { useEmployees } from 'src/hooks/useEmployees';
 import SharedTable from 'src/components/SharedTable/SharedTable';
 
 import EmployeeDeleteDialog from './employee-delete-dialog';
+import { GENDER_OPTIONS, STATUS_OPTIONS, getGenderLabel } from './employee.utils';
 
 const TABLE_HEAD = [
   { id: 'name', label: 'Global.Label.name' },
@@ -21,21 +21,8 @@ const TABLE_HEAD = [
   { id: 'actions', label: 'Pages.Messages.actions' },
 ];
 
-const GENDER_OPTIONS = [
-  { value: '', label: 'Global.Label.all' },
-  { value: 'Male', label: 'Global.Label.male' },
-  { value: 'Female', label: 'Global.Label.female' },
-];
-
-const STATUS_OPTIONS = [
-  { value: '', label: 'Global.Label.all' },
-  { value: 'true', label: 'Global.Label.active' },
-  { value: 'false', label: 'Global.Label.inactive' },
-];
-
 export default function EmployeeListView() {
   const router = useRouter();
-  const { enqueueSnackbar } = useSnackbar();
   const t = useTranslations('');
   const {
     employees,
@@ -62,9 +49,6 @@ export default function EmployeeListView() {
   const handleNavigateToEdit = (id: string) => {
     router.push(`/employees/edit/${id}`);
   };
-
-  const getGenderLabel = (gender: string) =>
-    gender === 'Male' ? 'ذكر' : gender === 'Female' ? 'أنثى' : gender || '—';
 
   const customRender = useMemo(
     () => ({

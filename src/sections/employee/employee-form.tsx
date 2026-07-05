@@ -8,6 +8,7 @@ import { useTranslations } from 'next-intl';
 import Iconify from 'src/components/iconify';
 import { useRef, useState, useEffect } from 'react';
 import { useEmployee } from 'src/hooks/useEmployee';
+import { FORM_GENDER_OPTIONS } from './employee.utils';
 
 interface EmployeeFormProps {
   mode: 'create' | 'edit';
@@ -23,11 +24,6 @@ interface FormState {
   confirmPassword: string;
   isActive: boolean;
 }
-
-const GENDER_OPTIONS = [
-  { value: 'Male', label: 'ذكر' },
-  { value: 'Female', label: 'أنثى' },
-];
 
 const ACCEPTED_IMAGE_TYPES = ['image/jpeg', 'image/jpg', 'image/png', 'image/gif', 'image/webp'];
 const MAX_IMAGE_SIZE = 5 * 1024 * 1024;
@@ -192,10 +188,10 @@ export default function EmployeeForm({ mode, employeeId }: EmployeeFormProps) {
   const displaySrc = previewUrl || (mode === 'edit' ? initialData?.profileImage : null);
 
   return (
-    <div className="min-h-screen bg-grey-50 dark:bg-[#1a1a1a]">
-      <div className="p-6">
-        <div className="bg-white dark:bg-[#212B36] rounded-2xl shadow-card p-6">
-        <div className="flex items-center gap-3 mb-6 pb-4 border-b border-grey-200 dark:border-grey-700">
+    <div className="min-h-screen bg-grey-50 dark:bg-[#1a1a1a] p-4 md:p-6">
+      <div className="w-full">
+        <div className="bg-white dark:bg-[#212B36] rounded-2xl shadow-card dark:shadow-cardDark overflow-hidden">
+        <div className="flex items-center gap-3 px-6 py-5 border-b border-grey-200 dark:border-grey-700">
           <button
             onClick={() => router.back()}
             className="p-2 rounded-lg hover:bg-grey-100 dark:hover:bg-grey-800 transition"
@@ -214,6 +210,7 @@ export default function EmployeeForm({ mode, employeeId }: EmployeeFormProps) {
             </p>
           </div>
         </div>
+        <div className="p-6">
 
         <form onSubmit={handleSubmit} className="space-y-6">
           {/* Profile Image Upload */}
@@ -293,7 +290,7 @@ export default function EmployeeForm({ mode, employeeId }: EmployeeFormProps) {
                 className={inputClass(errors.userGender)}
               >
                 <option value="">{t('Pages.Messages.select_gender')}</option>
-                {GENDER_OPTIONS.map((opt) => (
+                {FORM_GENDER_OPTIONS.map((opt) => (
                   <option key={opt.value} value={opt.value}>
                     {opt.label}
                   </option>
@@ -373,6 +370,7 @@ export default function EmployeeForm({ mode, employeeId }: EmployeeFormProps) {
             </button>
           </div>
         </form>
+        </div>
         </div>
       </div>
     </div>

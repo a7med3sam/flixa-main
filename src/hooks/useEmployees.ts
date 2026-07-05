@@ -3,7 +3,6 @@
 import type { Employee, EmployeeQueryParams } from 'src/types/employee';
 
 import { useSnackbar } from 'notistack';
-import { useRouter } from 'next/navigation';
 import { useRef, useState, useEffect, useCallback } from 'react';
 import { getEmployees, deleteEmployee, toggleEmployeeStatus } from 'src/services/employee.service';
 
@@ -27,7 +26,6 @@ interface UseEmployeesReturn {
 const DEFAULT_PAGE_SIZE = 10;
 
 export function useEmployees(): UseEmployeesReturn {
-  const router = useRouter();
   const { enqueueSnackbar } = useSnackbar();
   const [employees, setEmployees] = useState<Employee[]>([]);
   const [totalCount, setTotalCount] = useState(0);
