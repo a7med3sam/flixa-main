@@ -5,6 +5,7 @@ import { useResponsive } from 'src/hooks/use-responsive';
 import { useSettingsContext } from 'src/components/settings';
 
 import { NAV, HEADER } from '../config-layout';
+import ForbiddenErrorHandler from 'src/components/forbidden-error/forbidden-error-handler';
 
 // ----------------------------------------------------------------------
 
@@ -35,6 +36,7 @@ export default function Main({ children, sx, ...other }: BoxProps) {
         }}
         bgcolor="background.neutral"
       >
+        <ForbiddenErrorHandler />
         {children}
       </Box>
     );
@@ -61,6 +63,7 @@ export default function Main({ children, sx, ...other }: BoxProps) {
       bgcolor="background.neutral"
       {...other}
     >
+      <ForbiddenErrorHandler />
       {children}
     </Box>
   );
