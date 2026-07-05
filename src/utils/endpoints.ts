@@ -160,5 +160,10 @@ export const endpoints = {
  AdminCommissionSettings: {
     list: "/api/v1/admin/commission-setting",
     update: "/api/v1/admin/commission-setting"
+  },
+  permissions:{
+    root: '/admin/permissions',
+    userPermissions: (userId: string) => `/admin/permissions/user-permissions/${userId}`,
+    addAndDeletePermission: '/admin/permissions/add-and-delete-permission',
   }
 };
