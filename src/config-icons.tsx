@@ -19,6 +19,7 @@ export const ICONS = {
     policy: icon('navbar/ic_policy'),
     contactUs: icon('navbar/ic_contact_us'),
     deliveryFees: icon('navbar/ic_delivery_fees'),
+    employees: icon('navbar/ic_employees'),
    },
   global: {
     eye: icon('global/ic_eye'),

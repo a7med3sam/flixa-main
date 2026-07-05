@@ -22,6 +22,11 @@ export function useNavData() {
             icon: ICONS.navbar.users,
           },
           {
+            title: 'Users.employees',
+            path: paths.dashboard.employees.list,
+            icon: ICONS.navbar.employees,
+          },
+          {
             title: 'commissions',
             path: paths.dashboard.commissions.list,
             icon: ICONS.navbar.marketings,
