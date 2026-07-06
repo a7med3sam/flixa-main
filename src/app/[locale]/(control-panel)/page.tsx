@@ -6,13 +6,11 @@ import Link from 'next/link';
 import { paths } from 'src/routes/paths';
 import { AnalyticsSection, BranchPerformanceChart } from 'src/sections/charts/charts';
 import { useTranslations } from 'next-intl';
-import PermissionGuard from 'src/auth/guard/permission-guard';
 
 export default function DashboardPage() {
   const t = useTranslations('');
   return (
-    <PermissionGuard permissions={['Dashboard.View']}>
-      <div className="bg-white rounded-3xl shadow-card dark:bg-[#212B36] dark:shadow-cardDark p-0 mt-5">
+    <div className="bg-white rounded-3xl shadow-card dark:bg-[#212B36] dark:shadow-cardDark p-0 mt-5">
       <div className="p-5">
         <div className="grid grid-cols-12 gap-6">
 
@@ -186,6 +184,5 @@ export default function DashboardPage() {
       </div>
       </div>
     </div>
-    </PermissionGuard>
   );
 }

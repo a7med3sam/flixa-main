@@ -94,9 +94,12 @@ async function request<TResponse>(
       : await response.text();
 
     if (!response.ok) {
+      const is403 = response.status === 403;
       const errorResponse: ApiErrorResponse = {
         success: false,
-        error: parseErrorMessage(payload, response.statusText || 'Request failed'),
+        error: is403
+          ? 'ليس لديك صلاحية للقيام بهذا الإجراء'
+          : parseErrorMessage(payload, response.statusText || 'Request failed'),
         status: response.status,
         code:
           typeof payload === 'object' && payload !== null
