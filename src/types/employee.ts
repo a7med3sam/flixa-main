@@ -1,34 +1,54 @@
-export interface PermissionAction {
-  id: string;
-  key: string;
-  nameAr: string;
-  nameEn: string;
-}
-
-export interface EmployeePermission {
-  id: string;
-  key: string;
-  nameAr: string;
-  nameEn: string;
-  actions: PermissionAction[];
-}
-
 export interface Employee {
   id: string;
-  url: string;
+  userId: string;
   name: string;
+  email: string;
   phoneNumber: string;
+  role: string;
+  userGroup: string;
+  profileImage: string | null;
+  isActive: boolean;
+  userGender: 'Male' | 'Female' | string;
+  registrationDate: string;
   creationTime: string;
   hasFullAccess: boolean;
-  email: string;
-  passwordNew: string;
-  passwordOld: string;
-   status: boolean | string;
   employeePermissions: {
     key: string;
-    permissionActions: {
-      key: string;
-    }[];
+    permissionActions: { key: string }[];
   }[];
-  // EmployeePermissions: EmployeePermission[]; // Changed from string[] to typed array
+}
+
+export interface EmployeeListResponse {
+  totalCount: number;
+  items: Employee[];
+}
+
+export interface CreateEmployeePayload {
+  name: string;
+  email: string;
+  phoneNumber: string;
+  userGender: string;
+  password: string;
+  confirmPassword: string;
+  isActive: boolean;
+  profileImage?: File | null;
+}
+
+export interface UpdateEmployeePayload {
+  name?: string;
+  email?: string;
+  phoneNumber?: string;
+  userGender?: string;
+  isActive?: boolean;
+  profileImage?: File | null;
+}
+
+export interface EmployeeQueryParams {
+  search?: string;
+  userGender?: string;
+  isActive?: boolean;
+  sortBy?: string;
+  sortOrder?: 'asc' | 'desc';
+  skipCount?: number;
+  maxResultCount?: number;
 }
