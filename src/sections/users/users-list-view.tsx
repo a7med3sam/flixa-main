@@ -8,6 +8,7 @@ import SharedTable from 'src/components/SharedTable/SharedTable';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { Clients, CreateClientPayload, CustomersListResponse } from 'src/types/clients';
 import { useTranslations } from 'next-intl';
+import { useSearchParams } from 'next/navigation';
 
 const TABLE_HEAD = [
   { id: 'name', label: 'Global.Label.name' },
@@ -245,6 +246,10 @@ function Button({
 export default function UsersListView() {
   const { enqueueSnackbar } = useSnackbar();
   const t = useTranslations('');
+  const searchParams = useSearchParams();
+  const page = searchParams.get('page') ? Number(searchParams.get('page')) : 1;
+  const limit = searchParams.get('limit') ? Number(searchParams.get('limit')) : 15;
+
   const [users, setUsers] = useState<Clients[]>([]);
   const [totalCount, setTotalCount] = useState(0);
   const [loading, setLoading] = useState(true);
@@ -272,7 +277,13 @@ export default function UsersListView() {
   const fetchCustomers = useCallback(async () => {
     setLoading(true);
     try {
-      const res = await axios.get<CustomersListResponse>(endpoints.clients.list);
+      const skipCount = (page - 1) * limit;
+      const res = await axios.get<CustomersListResponse>(endpoints.clients.list, {
+        params: {
+          SkipCount: skipCount,
+          MaxResultCount: limit,
+        },
+      });
       const data = res.data;
       setUsers(data.items ?? []);
       setTotalCount(data.totalCount ?? 0);
@@ -281,7 +292,7 @@ export default function UsersListView() {
     } finally {
       setLoading(false);
     }
-  }, [enqueueSnackbar]);
+  }, [enqueueSnackbar, page, limit]);
 
   useEffect(() => {
     fetchCustomers();
@@ -461,6 +472,7 @@ export default function UsersListView() {
           count={totalCount}
           customRender={customRender}
           actions={[]}
+          showPagination
         />
       </div>
 
