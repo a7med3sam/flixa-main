@@ -9,6 +9,7 @@ export interface User {
   isVerified: boolean;
   avatar?: string; // Optional if we still need an avatar field
   modules?: any[];
+  permissions?: string[];
 }
 
 export interface LoginCredentials {

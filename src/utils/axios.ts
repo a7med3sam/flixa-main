@@ -21,7 +21,12 @@ axiosInstance.interceptors.request.use(
 );
 
 axiosInstance.interceptors.response.use(
-  (res) => res,
+  (res) => {
+    if (typeof window !== 'undefined') {
+      window.dispatchEvent(new Event('clear_forbidden_error'));
+    }
+    return res;
+  },
   async (error) => {
     const originalRequest = error.config;
 
@@ -60,6 +65,12 @@ axiosInstance.interceptors.response.use(
         localStorage.removeItem('user');
         window.location.href = '/auth/login'; // Or emit an event
         return Promise.reject(refreshError);
+      }
+    }
+
+    if (error.response?.status === 403) {
+      if (typeof window !== 'undefined') {
+        window.dispatchEvent(new Event('forbidden_error'));
       }
     }
 
