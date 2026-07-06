@@ -116,6 +116,7 @@ export const paths = {
       list: '/employees',
       register: '/employees/register',
       edit: (id: string) => `/employees/edit/${id}`,
+      permission: (userId: string) => `/employees/${userId}/permission`,
     }
   },
 };
