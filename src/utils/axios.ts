@@ -72,6 +72,10 @@ axiosInstance.interceptors.response.use(
       if (typeof window !== 'undefined') {
         window.dispatchEvent(new Event('forbidden_error'));
       }
+      return Promise.reject({
+        message: 'ليس لديك صلاحية للقيام بهذا الإجراء',
+        error: 'ليس لديك صلاحية للقيام بهذا الإجراء'
+      });
     }
 
     return Promise.reject(
