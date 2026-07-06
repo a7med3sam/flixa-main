@@ -27,30 +27,19 @@ export default function ForbiddenErrorHandler() {
   if (!show) return null;
 
   return (
-    <div className="w-full bg-red-50 dark:bg-red-900/20 border-b border-red-200 dark:border-red-900/50 p-4 transition-all duration-300 ease-in-out">
-      <div className="max-w-7xl mx-auto flex items-start sm:items-center justify-between gap-4">
-        <div className="flex items-start sm:items-center gap-3">
-          <div className="shrink-0 p-2 bg-red-100 dark:bg-red-800/30 rounded-lg text-red-600 dark:text-red-400">
-            <Iconify icon="solar:shield-warning-bold-duotone" width={24} />
-          </div>
-          <div className="flex flex-col">
-            <h4>
-              تم رفض الوصول
-            </h4>
-            <p className="text-sm text-red-600 dark:text-red-400 mt-1 mb-0 font-medium">
-              عفوا، ليس لديك الصلاحيات الكاملة للقيام بهذا الإجراء. يرجى مراجعة مدير النظام.
-            </p>
-          </div>
+    <div className="w-full bg-red-50 dark:bg-red-900/20 border-b border-red-200 dark:border-red-900/50 rounded-lg py-2 px-4 transition-all duration-300 ease-in-out">
+      <div className="max-w-7xl mx-auto flex items-center gap-3">
+        <div className="shrink-0 p-1.5 bg-red-100 dark:bg-red-800/30 rounded-md text-red-600 dark:text-red-400">
+          <Iconify icon="solar:shield-warning-bold-duotone" width={18} />
         </div>
-
-        <button
-          type="button"
-          onClick={() => setShow(false)}
-          className="shrink-0 p-2 text-red-400 hover:text-red-600 dark:hover:text-red-300 hover:bg-red-100 dark:hover:bg-red-800/50 rounded-lg transition-colors border-none bg-transparent cursor-pointer outline-none"
-          title="إخفاء التحذير"
-        >
-          <Iconify icon="eva:close-fill" width={20} />
-        </button>
+        <div className="flex items-center gap-2 flex-wrap">
+          <span className="text-sm font-bold text-red-800 dark:text-red-300 leading-none">
+            تم رفض الوصول
+          </span>
+          <span className="text-xs text-red-600 dark:text-red-400 font-medium">
+            — عفوا، ليس لديك الصلاحيات الكاملة للقيام بهذا الإجراء. يرجى مراجعة مدير النظام.
+          </span>
+        </div>
       </div>
     </div>
   );
