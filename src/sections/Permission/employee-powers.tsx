@@ -13,27 +13,25 @@ import {
 } from '@mui/material';
 import Iconify from 'src/components/iconify';
 import { useTranslations } from 'next-intl';
-import { useFormContext } from 'react-hook-form';
 import { useState } from 'react';
 import { useSnackbar } from 'notistack';
-import { EmployeeFormValues } from '../employee-form';
-import {
-  PermissionItem,
-  assignPermissionAction,
-  revokePermissionAction,
-} from 'src/actions/employees';
+import { PermissionItem, assignPermissionAction, revokePermissionAction } from 'src/actions/permissions';
 
 type Props = {
   permissions: PermissionItem[];
   userId?: string;
+  initialPermissionIds?: string[];
 };
 
-export default function EmployeePowers({ permissions, userId }: Props) {
+export default function EmployeePowers({
+  permissions,
+  userId,
+  initialPermissionIds = [],
+}: Props) {
   const t = useTranslations('Permissions');
   const tMessage = useTranslations('Message');
   const { enqueueSnackbar } = useSnackbar();
-  const { watch, setValue } = useFormContext<EmployeeFormValues>();
-  const permissionIds = watch('permissionIds') || [];
+  const [permissionIds, setPermissionIds] = useState<string[]>(initialPermissionIds);
   const [loadingId, setLoadingId] = useState<string | null>(null);
 
   const handleToggle = async (id: string) => {
@@ -50,7 +48,7 @@ export default function EmployeePowers({ permissions, userId }: Props) {
         if (res.success) {
           const index = newChecked.indexOf(id);
           if (index !== -1) newChecked.splice(index, 1);
-          setValue('permissionIds', newChecked, { shouldDirty: true });
+          setPermissionIds(newChecked);
           enqueueSnackbar(tMessage('Success.updated', { item: t('permissions') }), {
             variant: 'success',
           });
@@ -63,7 +61,7 @@ export default function EmployeePowers({ permissions, userId }: Props) {
         const res = await assignPermissionAction(userId, [id]);
         if (res.success) {
           newChecked.push(id);
-          setValue('permissionIds', newChecked, { shouldDirty: true });
+          setPermissionIds(newChecked);
           enqueueSnackbar(tMessage('Success.updated', { item: t('permissions') }), {
             variant: 'success',
           });

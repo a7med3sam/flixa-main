@@ -163,7 +163,8 @@ export const endpoints = {
   },
   permissions:{
     root: '/admin/permissions',
-    userPermissions: (userId: string) => `/admin/permissions/user-permissions/${userId}`,
-    addAndDeletePermission: '/admin/permissions/add-and-delete-permission',
+    assign: '/admin/permissions/assign',
+    revoke: '/admin/permissions/revoke',
+    userPermissions: (userId: string) => `/admin/permissions/users/${userId}/permissions`,
   }
 };
