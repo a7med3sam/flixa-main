@@ -1,10 +1,3 @@
-// import UsersListView from 'src/sections/users/users-list-view';
-
-// export default function UsersPage() {
-//   return <UsersListView />;
-// }
-import { notFound } from 'next/navigation';
-
 import {
   getPermissionsAction,
   getUserPermissionsAction,
@@ -18,15 +11,12 @@ type PageProps = {
   params: Promise<{ id: string }>;
 };
 
-export default async function Page({ params }: PageProps) {
-  const { id } = await params;
-  // const response = await getEmployeeByIdAction(id);
+export default async function EmployeePermissionPage({ params }: PageProps) {
+  const { id: userId } = await params;
   const permissionsRes = await getPermissionsAction();
 
   const permissions =
     permissionsRes.success && permissionsRes.data?.items ? permissionsRes.data.items : [];
-
-  const userId = '60c7037c-153c-4e2b-a9fc-26ef5534aa5f';
 
   const userPermissionsRes = userId ? await getUserPermissionsAction(userId) : null;
 

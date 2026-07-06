@@ -334,12 +334,21 @@
       "sar": "ر.س",
       "Welcome": "مرحــبــــاً",
       "monthlyPerformance": "الأداء الشهري",
-      "upper_than_last_month": "(+43%) أعلى من الشهر الماضي"
+      "upper_than_last_month": "(+43%) أعلى من الشهر الماضي",
+      "employees":" الموظفين",
+      "gender": "الجنس",
+      "all": "الكل",
+      "male": "ذكر",
+      "female": "أنثى",
+      "role": "الدور",
+      "registrationDate": "تاريخ التسجيل",
+      "loading": "جاري التحميل ..."
     },
     "Helper": {
       "drop_or_select": "قم بإسقاط الملفات هنا أو انقر <browse>تصفح</browse> من جهازك",
       "allowed_image": "الصيغ المسموحة {formate} <br></br> الحجم الأقصى: {size}",
-      "multi_text": "يقبل قيم متعددة. اضغط (Enter) لإضافة قيمة جديدة"
+      "multi_text": "يقبل قيم متعددة. اضغط (Enter) لإضافة قيمة جديدة",
+      "image_hint": "jpg, png, gif, webp — حد أقصى 5 ميجابايت"
     },
     "Action": {
       "add": "إضافة",
@@ -363,7 +372,12 @@
       "active": "مفعل",
       "next": "التالي",
       "finish": "اكتمال",
-      "register": "تسجيل"
+      "register": "تسجيل",
+      "add_employee": "إضافة موظف",
+      "update": "تحديث",
+      "confirm_delete": "تأكيد الحذف",
+      "delete_message": "هل أنت متأكد من حذف",
+      "permissions": "الصلاحيات"
     },
     "Validation": {
       "var_required": "{var} مطلوب",
@@ -400,7 +414,9 @@
       "required": "هذا الحقل مطلوب",
       "vat_min": "يجب أن تكون نسبة الضريبة على الأقل 0.01",
       "vat_max": "لا يمكن أن تتجاوز نسبة الضريبة 1.00",
-      "vat_invalid": "الرجاء إدخال نسبة ضريبة صالحة بين 0.01 و 1.00"
+      "vat_invalid": "الرجاء إدخال نسبة ضريبة صالحة بين 0.01 و 1.00",
+      "invalid_image_type": "يرجى اختيار ملف صورة صالح (jpg, png, gif, webp)",
+      "image_max_size": "حجم الصورة يجب أن يكون أقل من 5 ميجابايت"
     },
     "Sections": {
       "DeleteDialog": {
@@ -812,7 +828,14 @@
       "change_status": "تغيير الحالة",
       "select_status": "اختر الحالة الجديدة للتذكرة",
       "current_status": "الحالة الحالية",
-      "closed_at": "أغلق في"
+      "closed_at": "أغلق في",
+      "no_data": "لا توجد بيانات",
+      "enter_name": "أدخل الاسم",
+      "enter_email": "أدخل البريد الإلكتروني",
+      "enter_phone": "أدخل رقم الهاتف",
+      "enter_password": "أدخل كلمة المرور",
+      "confirm_password": "تأكيد كلمة المرور",
+      "select_gender": "اختر الجنس"
     },
     "Drivers": {
       "driver_title": "السائقين",

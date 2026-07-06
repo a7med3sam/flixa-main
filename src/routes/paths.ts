@@ -112,5 +112,11 @@ export const paths = {
       new: '/notifications/new',
       edit: (id: string) => `/notifications/edit/${id}`,
     },
+    employees: {
+      list: '/employees',
+      register: '/employees/register',
+      edit: (id: string) => `/employees/edit/${id}`,
+      permission: (userId: string) => `/employees/${userId}/permission`,
+    }
   },
 };

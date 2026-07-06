@@ -10,11 +10,14 @@ import {
   Accordion,
   AccordionSummary,
   AccordionDetails,
+  IconButton,
 } from '@mui/material';
 import Iconify from 'src/components/iconify';
 import { useTranslations } from 'next-intl';
+import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { useSnackbar } from 'notistack';
+import { paths } from 'src/routes/paths';
 import { PermissionItem, assignPermissionAction, revokePermissionAction } from 'src/actions/permissions';
 
 type Props = {
@@ -29,7 +32,9 @@ export default function EmployeePowers({
   initialPermissionIds = [],
 }: Props) {
   const t = useTranslations('Permissions');
+  const tAction = useTranslations('Global.Action');
   const tMessage = useTranslations('Message');
+  const router = useRouter();
   const { enqueueSnackbar } = useSnackbar();
   const [permissionIds, setPermissionIds] = useState<string[]>(initialPermissionIds);
   const [loadingId, setLoadingId] = useState<string | null>(null);
@@ -79,10 +84,22 @@ export default function EmployeePowers({
   };
 
   return (
-    <Card
-      variant="outlined"
-      sx={{ borderRadius: 2, border: (theme) => `1px solid ${theme.palette.divider}` }}
-    >
+    <Stack spacing={2}>
+      <Stack direction="row" alignItems="center" spacing={1}>
+        <IconButton
+          onClick={() => router.push(paths.dashboard.employees.list)}
+          aria-label={tAction('back')}
+          sx={{ bgcolor: 'background.paper', border: (theme) => `1px solid ${theme.palette.divider}` }}
+        >
+          <Iconify icon="mdi:arrow-right" />
+        </IconButton>
+        <Typography variant="h6">{t('permissions')}</Typography>
+      </Stack>
+
+      <Card
+        variant="outlined"
+        sx={{ borderRadius: 2, border: (theme) => `1px solid ${theme.palette.divider}` }}
+      >
       {/* Permissions Accordions */}
       <Stack>
         {permissions.map((permission, index) => (
@@ -182,5 +199,6 @@ export default function EmployeePowers({
         )}
       </Stack>
     </Card>
+    </Stack>
   );
 }

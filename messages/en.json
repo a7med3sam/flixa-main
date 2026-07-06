@@ -336,12 +336,21 @@
       "sar": "SAR",
       "Welcome": "Welcome",
       "monthlyPerformance": "Monthly Performance",
-      "upper_than_last_month": "Higher than Last Month (+43%)"
+      "upper_than_last_month": "Higher than Last Month (+43%)",
+      "employees":" Employees",
+      "gender": "Gender",
+      "all": "All",
+      "male": "Male",
+      "female": "Female",
+      "role": "Role",
+      "registrationDate": "Registration Date",
+      "loading": "Loading ..."
     },
     "Helper": {
       "drop_or_select": "Drop files here or click <browse>browse</browse> through your machine",
       "allowed_image": "Allowed {formate} <br></br> Max Size: {size}",
-      "multi_text": "Accepts multiple values. Press (Enter) to add a new value"
+      "multi_text": "Accepts multiple values. Press (Enter) to add a new value",
+      "image_hint": "jpg, png, gif, webp — Max 5MB"
     },
     "Action": {
       "add": "Add",
@@ -365,7 +374,12 @@
       "active": "Active",
       "next": "Next",
       "finish": "Finish",
-      "register": "Register"
+      "register": "Register",
+      "add_employee": "Add Employee",
+      "update": "Update",
+      "confirm_delete": "Confirm Delete",
+      "delete_message": "Are you sure you want to delete",
+      "permissions": "Permissions"
     },
     "Validation": {
       "var_required": "{var} is Required",
@@ -402,7 +416,9 @@
       "required": "This field is required",
       "vat_min": "VAT must be at least 0.01",
       "vat_max": "VAT cannot exceed 1.00",
-      "vat_invalid": "Please enter a valid VAT percentage between 0.01 and 1.00"
+      "vat_invalid": "Please enter a valid VAT percentage between 0.01 and 1.00",
+      "invalid_image_type": "Please select a valid image file (jpg, png, gif, webp)",
+      "image_max_size": "Image size must be less than 5MB"
     },
     "Sections": {
       "DeleteDialog": {
@@ -810,7 +826,14 @@
       "change_status": "Change Status",
       "select_status": "Select New Ticket Stat  us",
       "current_status": "Current Status",
-      "closed_at": "Closed at"
+      "closed_at": "Closed at",
+      "no_data": "No data",
+      "enter_name": "Enter name",
+      "enter_email": "Enter email",
+      "enter_phone": "Enter phone",
+      "enter_password": "Enter password",
+      "confirm_password": "Confirm password",
+      "select_gender": "Select gender"
     },
     "Drivers": {
       "driver_title": "Drivers",

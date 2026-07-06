@@ -131,14 +131,15 @@ export const endpoints = {
     patch: (id: string) => `/admin/social-media/${id}`,
   },
   employee: {
-    list: '/admin/employees',
-    listPermissions: '/admin/employee-permission/all',
-    create: '/employee/employee/register',
-    single: (id: string) => `/admin/employees/${id}`,
-    editStatus: (id: string) => `/admin/employees/${id}`,
-    delete: (id: string) => `/admin/employees/${id}`,
-    patch: (id: string) => `/admin/employees/${id}`,
-    editPermission: '/admin/employee-permission/add-and-delete-employee-permission'
+    list: '/api/v1/admin/employees',
+    listPermissions: '/api/v1/admin/employee-permission/all',
+    create: '/api/v1/admin/employees',
+    single: (id: string) => `/api/v1/admin/employees/${id}`,
+    editStatus: (id: string) => `/api/v1/admin/employees/${id}`,
+    delete: (id: string) => `/api/v1/admin/employees/${id}`,
+    patch: (id: string) => `/api/v1/admin/employees/${id}`,
+    editPermission: '/api/v1/admin/employee-permission/add-and-delete-employee-permission',
+    edit: '/api/v1/admin/employees/update-employee',
   },
   DeliveryFees: {
     list: '/admin/shoping-costs',
