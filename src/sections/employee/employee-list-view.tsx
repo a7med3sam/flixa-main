@@ -2,8 +2,8 @@
 
 import type { Employee } from 'src/types/employee';
 
-import { useMemo, useState } from 'react';
-import { useRouter } from 'next/navigation';
+import { useMemo, useState, useEffect } from 'react';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import Iconify from 'src/components/iconify';
 import { paths } from 'src/routes/paths';
@@ -33,9 +33,23 @@ export default function EmployeeListView() {
     setSearch,
     setGenderFilter,
     setStatusFilter,
+    setPage,
+    setPageSize,
     handleToggleStatus,
     handleDelete,
   } = useEmployees();
+
+  const searchParams = useSearchParams();
+  const page = searchParams.get('page') ? Number(searchParams.get('page')) : 1;
+  const limit = searchParams.get('limit') ? Number(searchParams.get('limit')) : 10;
+
+  useEffect(() => {
+    setPage(page);
+  }, [page, setPage]);
+
+  useEffect(() => {
+    setPageSize(limit);
+  }, [limit, setPageSize]);
 
   const [deleteTarget, setDeleteTarget] = useState<Employee | null>(null);
 
@@ -271,6 +285,7 @@ export default function EmployeeListView() {
             count={totalCount}
             customRender={customRender}
             actions={[]}
+            showPagination
           />
         )}
         </div>
