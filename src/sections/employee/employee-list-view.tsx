@@ -6,6 +6,7 @@ import { useMemo, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import Iconify from 'src/components/iconify';
+import { paths } from 'src/routes/paths';
 import { useEmployees } from 'src/hooks/useEmployees';
 import SharedTable from 'src/components/SharedTable/SharedTable';
 
@@ -48,6 +49,10 @@ export default function EmployeeListView() {
 
   const handleNavigateToEdit = (id: string) => {
     router.push(`/employees/edit/${id}`);
+  };
+
+  const handleNavigateToPermission = (userId: string) => {
+    router.push(paths.dashboard.employees.permission(userId));
   };
 
   const customRender = useMemo(
@@ -109,6 +114,14 @@ export default function EmployeeListView() {
             <Iconify icon="solar:pen-linear" style={{ width: 14, height: 14 }} />
             {t('Global.Action.edit')}
           </button>
+          <button
+            type="button"
+            onClick={() => handleNavigateToPermission(employee.userId)}
+            className="inline-flex items-center gap-1 px-2 py-1 rounded-lg bg-[#FFF8E1] border-0 text-[#F9A825] text-xs font-medium cursor-pointer transition-all hover:bg-yellow-500/20"
+          >
+            <Iconify icon="solar:pen-linear" style={{ width: 14, height: 14 }} />
+            {t('Global.Action.permissions')}
+          </button>
           <div
             className={`inline-flex items-center gap-1.5 px-2 py-1 rounded-full ${
               employee.isActive ? 'bg-[#FDECEC]' : 'bg-[#E8FBF0]'
@@ -149,7 +162,7 @@ export default function EmployeeListView() {
         </div>
       ),
     }),
-    [handleToggleStatus, handleNavigateToView, handleNavigateToEdit, t]
+    [handleToggleStatus, handleNavigateToView, handleNavigateToEdit, handleNavigateToPermission, t]
   );
 
   if (loading) {

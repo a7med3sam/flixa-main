@@ -54,7 +54,8 @@ export default async function Page({ searchParams }: Props) {
     if (orderReportsList.status === 403) {
       return <NoPermissionView />;
     }
-    throw new Error(orderReportsList.error);
+    // throw new Error(orderReportsList.error);
+    return <div>Error: {JSON.stringify(orderReportsList.error)}</div>;
   }
   const paymentMethodItems = await getData<PaymentMethodsApiResponse>(
     `${endpoints.paynentMethod.list}?${urlSearchParams.toString()}`,
